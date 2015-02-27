@@ -1,0 +1,57 @@
+%-------------------------------------------------------------------------------
+% Daniel S. Standage
+% Ph.D. Candidate
+% Computational Genome Science Lab
+% Indiana University
+%-------------------------------------------------------------------------------
+
+\documentclass[12pt]{Assets/isuthesis}
+
+\usepackage[pdftex]{graphicx}
+\usepackage{Assets/Styles/isutraditional}
+\usepackage{Assets/Styles/rotating}
+\usepackage[numbers]{Assets/Styles/natbib}
+\bibliographystyle{Assets/BibStyles/pnas}
+
+\chaptertitle
+\alternate
+
+% Optional [ackage to add PDF bookmarks and hypertext links
+\usepackage[pdftex,hypertexnames=false,linktocpage=true]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,
+            filecolor=blue,urlcolor=blue,bookmarksnumbered=true,pdfview=FitB}
+
+\begin{document}
+\DeclareGraphicsExtensions{.jpg,.pdf,.mps,.png}
+
+% Front matter
+\include{Text/Preface/titlepage}
+\include{Text/Preface/dedication}
+\pdfbookmark[1]{TABLE OF CONTENTS}{table}
+\tableofcontents
+\addtocontents{toc}{\def\protect\@chapapp{}} \cleardoublepage \phantomsection
+\addcontentsline{toc}{chapter}{LIST OF TABLES}
+\listoftables
+\cleardoublepage \phantomsection
+\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+\listoffigures
+\addtocontents{toc}{\def\protect\@chapapp{CHAPTER\ }}
+\cleardoublepage \phantomsection  %Optional Acknowledgements
+\include{Text/Preface/acknowl}    %Optional Acknowledgements
+\cleardoublepage \phantomsection  %Optional thesis abstract
+\include{Text/Preface/abstract}   %Optional thesis abstract
+\newpage
+\pagenumbering{arabic}
+
+% Main body
+\include{Text/Body/chapter1}
+\include{Text/Body/chapter2}
+\include{Text/Body/chapter3}
+\include{Text/Body/chapter4}
+\include{Text/Body/chapter5}
+
+% Back matter
+\include{Text/Appendix/appendix1}
+\include{Text/Appendix/appendix2}
+\include{Reference/bibtex}
+\end{document}
