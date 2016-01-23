@@ -34,7 +34,13 @@
     - high quality genes, even if only a small %, sufficient; more genes is not
       better if gene models are spurious or inaccurate
 - reproducibility over time
-    -
+    - most projects will need continuous refinement
+    - however, sometimes you need to report on what you have now
+    - maintaining a versioned history of annotations critical for reproducible
+      science
+    - *ad hoc* conventions, manual archiving difficult to maintain
+    - version control software already solves these problems, just need to
+      leverage for a domain-specific solution
 - organizational framework
     - all of this requires a robust organizational framework
     - genes insufficient; incomplete representation of genome, do not account
@@ -54,3 +60,4 @@
       species
     - chapter 5: GeneAnnoLogy: quality control and version control for
       reproducibility
+    - chapter 6: conclusion
