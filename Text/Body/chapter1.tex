@@ -2,18 +2,38 @@
 
 \section{Introduction}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed enim tortor, euismod sit amet bibendum congue, eleifend quis tellus. Maecenas et libero vitae risus laoreet pharetra. Mauris et odio blandit, ullamcorper dui vitae, commodo ante. In mattis ultricies condimentum. In eleifend consequat aliquam. Cras quis libero id leo vehicula elementum. Nam quis lacus quis eros rhoncus porttitor.
+In the 2000s, the advent of new nucleotide sequencing strategies based on ion semiconductors (Ion Torrent), pyrosequencing (454), and sequencing-by-synthesis (Illumina) provided new tools for studying genomes of both model and non-model organisms at unprecedented scale, resolution, and cost effectiveness.
+More recent platforms based on single-molecule sequencing (PacBio SMRT and Oxford Nanopore) promise to ... (continue to?)
+By the 2010s, these so-called \textit{next-generation sequencing (NGS)} technologies\footnote{Asdf} had transformed genome sequencing into a routine laboratory procedure, leading to a tremendous increase in the number of published genome projects and draft genome sequences (cite NCBI genomes page).
+To say that these new technologies have transformed the life sciences is an understatement.
 
-Nunc tempor ante vel lacus sodales, vitae sagittis lacus venenatis. Sed posuere nisl in dui dignissim, id ornare erat pretium. Morbi porttitor consectetur pharetra. Phasellus sed pretium justo. Nunc eleifend, nulla eu bibendum molestie, elit lorem congue orci, vel venenatis justo libero quis nunc. Fusce ligula elit, viverra quis porttitor at, suscipit et dui. Praesent faucibus sem non tellus consequat malesuada. Nam vestibulum viverra erat eu tempor. Nulla sapien nisl, molestie at fermentum vitae, hendrerit a elit.
+The availability of high-quality model reference genomes in this same time frame, however, has increased at a much more modest pace.
+The effort and resources required to refine a provisional draft genome into a complete, finished product remains substantial.
+Data collection is now extremely cheap, and an abundance of new algorithms and software tools have emerged for analyzing NGS data.
+However, the tasks of genome assembly and annotation remain complex and difficult (cite Assemblathons, others), due in no small part to NGS data's own inherent limitations.
+As a result, data quality can vary considerably across data sets and even within the same data set.
+Doing good, reproducible science in such a setting requires not only an awareness of these issues but also a framework for disciplined quality control and analysis of annotated genomes.
+The focus of this dissertation has been the development of that framework (and associated software tools) as motivated by research problems I encountered in genomics research projects.
 
-Phasellus semper lacinia vehicula. Praesent risus libero, finibus id eros at, rhoncus dignissim ligula. Quisque sodales, erat nec vulputate dignissim, purus eros semper felis, non consequat arcu ligula at sem. Ut egestas neque nec elit tincidunt sagittis. Proin aliquam interdum pretium. In hac habitasse platea dictumst. Vivamus lectus urna, finibus in rutrum non, tempor nec turpis. Proin non dignissim ligula, non semper magna. Aliquam ut nisi eget risus pharetra egestas non et justo. Phasellus a risus luctus, scelerisque urna eget, faucibus sem. Quisque non nibh hendrerit, consequat ligula ac, finibus massa. Curabitur aliquam fringilla lacus, non ultrices justo bibendum vitae.
+My first task as a graduate student was to evaluate the performance of a new automated genome annotation workflow, involving primarily the comparison of its outputs to an existing annotation.
+Similar comparisons were also required in subsequent projects, particularly while re-annotating an insect genome with an improved transcriptome assembly and additional protein evidence.
+Quantitative measures of agreement between gene predictions and a reliable reference had long been established (cite Burset/Guigo), and are easily adapted for comparison of two alternative sources of annotation of unknown relative quality.
+However, software capable of computing these similarity statistics at the time (cite Eval, GFPE) were unsatisfactory for our needs.
+Designed more for algorithm and model refinement than for biological interpretation, these tools report a huge number of statistics aggregated over all data inputs, offering exquisite detail into overall performance but no detail at the level of individual loci.
+To address these limitations, I created the ParsEval tool to provide locus-level reports in addition to overall aggregate statistics.
+The strategy utilized by ParsEval for partitioning the genome into units that can be independently analyzed not only offered significant improvements in runtime and memory usage, but also provided the foundation for developing a more generalized genome analysis framework.
 
-Sed ultrices, eros sit amet placerat pretium, mi nulla viverra dolor, vitae semper dui nibh ut neque. Donec ut tempus risus, quis vulputate nibh. Vestibulum vel mollis dolor. Aliquam sagittis auctor tincidunt. Vestibulum volutpat lobortis mauris. Quisque condimentum sapien vel augue malesuada aliquet. Nullam vel nunc id libero euismod egestas eu quis ante. Suspendisse et rhoncus lacus, quis mattis nulla. Fusce non congue quam, eu elementum mauris. Nullam hendrerit quam in nisl pulvinar, sed dictum sapien condimentum. Ut vitae odio sit amet nulla fermentum pretium. Cras feugiat risus odio. Nullam porta, tortor at laoreet mollis, lorem velit semper ligula, ac dictum justo ante ac odio. Nunc sit amet dictum eros. Sed nec dictum nibh. Nulla commodo lectus id lorem ultrices malesuada.
+Another one of my earliest tasks as a graduate student was to assist with \textit{de novo} assembly of the genome of the paper wasp \textit{Polistes dominula}.
+I subsequently ended up taking charge of the assembly effort, as well as genome annotation, transcriptome profiling, and comparative genomics analysis.
+Pursuit of these latter
 
-Duis blandit orci in fermentum ultrices. Morbi at quam tincidunt, auctor quam sed, gravida dolor. Suspendisse ultricies felis vel erat blandit blandit. Suspendisse odio magna, dignissim id lorem quis, vulputate fringilla nisl. Nam dapibus lorem at mi vehicula pellentesque. Nulla vulputate sapien nunc, a tempor nisl rhoncus in. Maecenas convallis dolor vel gravida commodo. Pellentesque vel malesuada lacus. Suspendisse vitae tempus metus. Maecenas gravida rhoncus diam nec egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis auctor, arcu non elementum interdum, velit erat pellentesque mi, vitae imperdiet turpis massa at turpis. Aliquam erat volutpat. Curabitur viverra ex sed vestibulum porta. Sed venenatis efficitur ante.
+\section{Dissertation Organization}
 
-\section{Thesis Organization}
-
-Morbi iaculis dictum posuere. Praesent placerat leo lorem, sed aliquam massa varius non. Vivamus massa libero, sodales eu volutpat vitae, fermentum ac eros. Aliquam hendrerit et orci non molestie. Nunc a bibendum dolor. Nullam sed purus sit amet ipsum auctor maximus. Donec varius varius tempor. Nulla sed quam vel neque imperdiet luctus vel nec metus. Donec aliquam est id dapibus ullamcorper. Donec hendrerit neque eget diam hendrerit, a auctor velit rutrum. Curabitur nunc diam, efficitur varius eleifend vitae, accumsan sit amet neque. Curabitur fermentum erat mauris, vel maximus lorem convallis eu.
-
-Nulla eu velit aliquet, euismod magna vel, blandit metus. Nam ac leo a nisl mollis fermentum ac at felis. Ut metus tellus, pretium vitae aliquam ut, blandit eget erat. In hac habitasse platea dictumst. Aliquam cursus, sapien eu lacinia feugiat, massa ante egestas odio, et sollicitudin turpis libero a lacus. Nam tincidunt bibendum turpis, eu venenatis massa. Mauris tincidunt volutpat diam, et vulputate ipsum egestas faucibus. Nullam lobortis vehicula nisl, at euismod ligula malesuada at. Maecenas id ultrices lorem, vitae molestie libero. Etiam dapibus felis et felis porta molestie. Donec ac velit sapien. Donec tempus ut orci non vestibulum.
+This dissertation is organized into six chapters.
+Chapter 1 provides an overview of the dissertation, a motivation for the work, and a brief discussion of relevant literature.
+Chapters 2 through 5 are presented as complete manuscripts.
+Chapter 2 is a research paper published in \textit{Molecular Ecology} describing the genome, transcriptome, and methylome of the paper wasp \textit{Polistes dominula}, highlighting its reduced DNA methylation system, several hundred genomic loci with caste-related differential expression, and the lack of any detectable caste-related alternative splicing in the adult organism.
+Chapter 3 is a paper published in \textit{BMC Bioinformatics} describing \textit{ParsEval}, a tool for comparing two alternative sources of annotation for a genome sequence.
+Chapter 4 is a methodology paper currently under review at \textit{BMC Bioinformatics/Genomics}, describing the use of \textit{interval loci (iLoci)} as an organizational framework facilitating reproducible genome analysis.
+Chapter 5 is a manuscript slated for submission to \textit{A Journal} describing \textit{GeneAnnoLogy}, an \textit{iLocus}-based tool for quality control and version control of genome annotations.
+Chapter 6 provides brief concluding remarks and suggestions for further research.
