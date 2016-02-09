@@ -21,7 +21,6 @@ Bibliography=Reference/bibtex.tex \
 Graphics=Assets/Graphics/dc5.jpg
 
 all: thesis.pdf
-	open thesis.pdf
 
 thesis.pdf: thesis.tex $(FrontMatter) $(Chapters) $(Appendices) $(Bibliography)
 	pdflatex thesis
@@ -29,5 +28,5 @@ thesis.pdf: thesis.tex $(FrontMatter) $(Chapters) $(Appendices) $(Bibliography)
 	pdflatex thesis
 	pdflatex thesis
 
-clean:	
-	rm -f $$(cat .gitignore) thesis.pdf
+clean:
+	rm -f $$(cat .gitignore)

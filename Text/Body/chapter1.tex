@@ -3,9 +3,9 @@
 \section{Introduction}
 
 In the 2000s, the advent of new nucleotide sequencing strategies based on ion semiconductors (Ion Torrent), pyrosequencing (454), and sequencing-by-synthesis (Illumina) provided new tools for studying genomes of both model and non-model organisms at unprecedented scale, resolution, and cost effectiveness.
-More recent platforms based on single-molecule sequencing (PacBio SMRT and Oxford Nanopore) promise to ... (continue to?)
-By the 2010s, these so-called \textit{next-generation sequencing (NGS)} technologies\footnote{Asdf} had transformed genome sequencing into a routine laboratory procedure, leading to a tremendous increase in the number of published genome projects and draft genome sequences (cite NCBI genomes page).
-To say that these new technologies have transformed the life sciences is an understatement.
+These technologies continue to evolve, the latest innovations involving single-molecule long read sequencing (Pacific Biosciences SMRT and Oxford Nanopore).
+By the 2010s, these so-called \textit{next-generation sequencing (NGS)} technologies had transformed genome sequencing into a routine laboratory procedure, leading to a tremendous increase in the number of published genome projects and draft genome sequences (cite NCBI genomes page).
+%To say that these new technologies have transformed the life sciences is an understatement.
 
 The availability of high-quality model reference genomes in this same time frame, however, has increased at a much more modest pace.
 The effort and resources required to refine a provisional draft genome into a complete, finished product remains substantial.
@@ -13,27 +13,46 @@ Data collection is now extremely cheap, and an abundance of new algorithms and s
 However, the tasks of genome assembly and annotation remain complex and difficult (cite Assemblathons, others), due in no small part to NGS data's own inherent limitations.
 As a result, data quality can vary considerably across data sets and even within the same data set.
 Doing good, reproducible science in such a setting requires not only an awareness of these issues but also a framework for disciplined quality control and analysis of annotated genomes.
-The focus of this dissertation has been the development of that framework (and associated software tools) as motivated by research problems I encountered in genomics research projects.
+The focus of this dissertation has been the development of such a framework (and associated software tools) as motivated by research problems I encountered in genomics research projects.
 
-My first task as a graduate student was to evaluate the performance of a new automated genome annotation workflow, involving primarily the comparison of its outputs to an existing annotation.
-Similar comparisons were also required in subsequent projects, particularly while re-annotating an insect genome with an improved transcriptome assembly and additional protein evidence.
+My first task as a graduate student was to evaluate the performance of a new automated genome annotation workflow, involving primarily the comparison of its outputs to an existing reference annotation.
+Similar comparisons were also required in subsequent projects, particularly while re-annotating an insect genome using an improved transcriptome assembly and additional protein evidence.
 Quantitative measures of agreement between gene predictions and a reliable reference had long been established (cite Burset/Guigo), and are easily adapted for comparison of two alternative sources of annotation of unknown relative quality.
-However, software capable of computing these similarity statistics at the time (cite Eval, GFPE) were unsatisfactory for our needs.
+However, software capable of computing these accuracy/similarity statistics at the time (cite Eval, GFPE) were unsatisfactory for our needs.
 Designed more for algorithm and model refinement than for biological interpretation, these tools report a huge number of statistics aggregated over all data inputs, offering exquisite detail into overall performance but no detail at the level of individual loci.
 To address these limitations, I created the ParsEval tool to provide locus-level reports in addition to overall aggregate statistics.
-The strategy utilized by ParsEval for partitioning the genome into units that can be independently analyzed not only offered significant improvements in runtime and memory usage, but also provided the foundation for developing a more generalized genome analysis framework.
+The strategy utilized by ParsEval for partitioning the genome into units that can be independently analyzed not only offered significant improvements in runtime and memory usage over previous tools, but also provided the foundation for developing a more generalized genome analysis framework.
 
-Another one of my earliest tasks as a graduate student was to assist with \textit{de novo} assembly of the genome of the paper wasp \textit{Polistes dominula}.
+Another one of my earliest projects as a graduate student was to assist with \textit{de novo} assembly of the genome of the paper wasp \textit{Polistes dominula}.
 I subsequently ended up taking charge of the assembly effort, as well as genome annotation, transcriptome profiling, and comparative genomics analysis.
-Pursuit of these latter
+These latter analyses get to the heart of the interest of \textit{Polistes} as a model system for studying the evolution of social organization and behavior.
+Previous to this study, no published genomic data was available for the vespid wasps, one of three major lineages of social \textit{Hymenoptera} (along with bees and ants), and accordingly we were eager to characterize the similarities and differences between the wasps and their hymenopteran relatives.
+%\footnote{Patalano \textit{et al.} was published online about 1-2 weeks before the slated submission date of our manuscript to the same journal.}
+We were also interested in what expression data from adult queens and workers could reveal about genes related to caste differentiation in \textit{Polistes}.
+
+Although our \textit{Polistes} assembly and annotation compared favorably to any other published hymenopteran genome, all the data accessible to us was subject to the same data quality inconsistencies that characterize any NGS-based genome project.
+Answering questions related to gene expression and genome composition therefore required careful consideration of, for example, how precisely to handle overlapping gene models, and how to distinguish differences rooted in biology from technical artifacts.
+It was in addressing these issues that we extended the \textit{gene locus} concept introduced by ParsEval and developed \textit{interval loci (iLoci)} as a generalized organizational framework for genome analyses.
+\textit{iLoci} define an unambiguous parsing of an annotated genome into distinct regions, each encapsulating the genomic context of a gene or intergenic space, providing a complete and granular representation of the genome.
+Following the publication of the \textit{P. dominula} genome paper, in which \textit{iLoci} played a central role, we investigated general applications of \textit{iLoci}, describing their stability across assembly and annotation versions and their utility for characterizing genome organization, within a single genome and between multiple genomes in a clade of species.
+
+One of the earliest applications of \textit{iLoci} I envisioned was as an organizational principle for version control of annotations.
+Continual refinement of our genome assembly and annotation made progress on our research more difficult at times, and this issue is certainly not unique to our work.
+The honeybee, for example, had three official annotation versions in concurrent use during our work on the \textit{Polistes} genome, with some studies even making their own unpublished refinements to an annotation (citations).
+What seemed to be lacking was a precise way to refer to a particular gene or genomic region, as annotated at a particular time, and to make statements about its expression, or conservation, or methylation status, or any number of additional characteristics.
+The idea of tracking annotations over time is not new (cite AED paper), and some well-supported communities provide tools for mapping annotations from an older assembly version to updated assembly (cite liftover, RATT).
+However, \textit{iLoci} provide an alternative solution to these issues, and with the additional benefits previously described provide a complete framework for organization, quality control, and reproducibility for provisional genome projects.
+At an early stage in my training, I prototyped a tool called \textit{GeneAnnoLogy} for maintaining an annotation version history, leveraging existing version control tools to track changes to individual \textit{iLoci} over time.
+I later built in features that facilitate filtering \textit{iLoci} based on their length, nucleotide composition, annotation quality, or any number of additional characteristics that can be computed from or attached to the annotation.
+The \textit{GeneAnnoLogy} tool encapsulates the culmination of concepts and principles investigated in this dissertation.
 
 \section{Dissertation Organization}
 
 This dissertation is organized into six chapters.
 Chapter 1 provides an overview of the dissertation, a motivation for the work, and a brief discussion of relevant literature.
-Chapters 2 through 5 are presented as complete manuscripts.
-Chapter 2 is a research paper published in \textit{Molecular Ecology} describing the genome, transcriptome, and methylome of the paper wasp \textit{Polistes dominula}, highlighting its reduced DNA methylation system, several hundred genomic loci with caste-related differential expression, and the lack of any detectable caste-related alternative splicing in the adult organism.
-Chapter 3 is a paper published in \textit{BMC Bioinformatics} describing \textit{ParsEval}, a tool for comparing two alternative sources of annotation for a genome sequence.
-Chapter 4 is a methodology paper currently under review at \textit{BMC Bioinformatics/Genomics}, describing the use of \textit{interval loci (iLoci)} as an organizational framework facilitating reproducible genome analysis.
-Chapter 5 is a manuscript slated for submission to \textit{A Journal} describing \textit{GeneAnnoLogy}, an \textit{iLocus}-based tool for quality control and version control of genome annotations.
+Chapters 2 through 5 are presented as complete manuscripts:
+chapter 2 is a research paper published in \textit{Molecular Ecology} describing the genome, transcriptome, and methylome of the paper wasp \textit{Polistes dominula}, highlighting its reduced DNA methylation system, several hundred genomic loci with caste-related differential expression, and the lack of any detectable caste-related alternative splicing in the adult organism;
+chapter 3 is a paper published in \textit{BMC Bioinformatics} describing \textit{ParsEval}, a tool for comparing two alternative sources of annotation for a genome sequence;
+chapter 4 is a methodology to be submitted to \textit{BMC Bioinformatics/Genomics}\footnote{Will be submitted within a couple of weeks.}, describing the use of \textit{interval loci (iLoci)} as an organizational framework facilitating reproducible genome analysis;
+chapter 5 is a manuscript slated for submission to \textit{A Journal} describing \textit{GeneAnnoLogy}, an \textit{iLocus}-based tool for quality control and version control of genome annotations.
 Chapter 6 provides brief concluding remarks and suggestions for further research.
