@@ -4,16 +4,17 @@
 
 In the 2000s, the advent of new nucleotide sequencing strategies based on ion semiconductors (Ion Torrent), pyrosequencing (454), and sequencing-by-synthesis (Illumina) provided new tools for studying genomes of both model and non-model organisms at unprecedented scale, resolution, and cost effectiveness.
 These technologies continue to evolve, the latest innovations involving single-molecule long read sequencing (Pacific Biosciences SMRT and Oxford Nanopore).
-By the 2010s, these so-called \textit{next-generation sequencing (NGS)} technologies had transformed genome sequencing into a routine laboratory procedure, leading to a tremendous increase in the number of published genome projects and draft genome sequences (cite NCBI genomes page).
-%To say that these new technologies have transformed the life sciences is an understatement.
+By the 2010s, these so-called \textit{next-generation sequencing (NGS)} technologies had made genome sequencing accessible to essentially any scientist with even a modest research budget.
+This ``democratization of sequencing" has precipitated a tremendous increase in the number of published genome projects and draft genome sequences (\url{http://www.ncbi.nlm.nih.gov/genome/browse/}), as well as genome-scale data sets profiling gene expression, chromatin accessibility, transcription initiation, and a multitude of other genomic characteristics.
 
-The availability of high-quality model reference genomes in this same time frame, however, has increased at a much more modest pace.
-The effort and resources required to refine a provisional draft genome into a complete, finished product remains substantial.
-Data collection is now extremely cheap, and an abundance of new algorithms and software tools have emerged for analyzing NGS data.
-However, the tasks of genome assembly and annotation remain complex and difficult (cite Assemblathons, others), due in no small part to NGS data's own inherent limitations.
-As a result, data quality can vary considerably across data sets and even within the same data set.
-Doing good, reproducible science in such a setting requires not only an awareness of these issues but also a framework for disciplined quality control and analysis of annotated genomes.
-The focus of this dissertation has been the development of such a framework (and associated software tools) as motivated by research problems I encountered in genomics research projects.
+During this same time frame, however, genome analysis has been democratized to a much lesser extent.
+The availability of high-quality model reference genomes has changed very little, and many scientists struggle to effectively manage these newly acquired data and critically evaluate downstream research products.
+The proliferation of new algorithms and software tools for analyzing NGS data is a mixed blessing for scientists who now have both the flexibility and the burden of selecting suitable tool(s) for a particular analysis.
+
+The complexity and difficulty of \textit{de novo} genome assembly \cite{Assemblathon1,Assemblathon2,GAGE,QUAST}, annotation \cite{EGASP,Eilbeck,DentonFly}, and analysis (cite pig genes paper? RNA-seq trimming paper? others?) has been reported in various recent studies and community projects.
+The consistent, resounding message from this body of work is that data quality varies considerably across data sets and even within a single data set.
+When reference genome assemblies are fragmented, when annotated genome features vary in reliability, when raw -omics data contain a potentially large amount of technical bias or other artifacts, and when the performance of state-of-the-art algorithms is difficult to predict on new data, doing principled and reproducible science requires a framework for disciplined quality control and data evaluation.
+The focus of this dissertation has been the development of such a framework, and associated software tools, as motivated by research problems I encountered in genomics research projects.\footnote{I have only made it to here with my latest round of revisions.}
 
 My first task as a graduate student was to evaluate the performance of a new automated genome annotation workflow, involving primarily the comparison of its outputs to an existing reference annotation.
 Similar comparisons were also required in subsequent projects, particularly while re-annotating an insect genome using an improved transcriptome assembly and additional protein evidence.
