@@ -1,6 +1,6 @@
-\chapter{OVERVIEW}
+\chapter{INTRODUCTION}
 
-\section{Introduction}
+\section{Overview}
 
 In the 2000s, the advent of new nucleotide sequencing strategies based on ion semiconductors (Ion Torrent), pyrosequencing (454), and sequencing-by-synthesis (Illumina) provided new tools for studying genomes of both model and non-model organisms at unprecedented scale, resolution, and cost effectiveness.
 These technologies continue to evolve, the latest innovations involving single-molecule long read sequencing (Pacific Biosciences SMRT and Oxford Nanopore).
@@ -15,7 +15,19 @@ The complexity and difficulty of genome assembly \cite{Assemblathon1,Assemblatho
 The consistent, resounding message from this growing body of work is that genomics data quality varies considerably across data sets (and even within a single data set), that raw -omics data contain potentially large amounts of technical bias or other artifacts, and that the performance of state-of-the-art algorithms is difficult to predict on new data.
 Without a well-funded and well-staffed research consortium to manage the painstaking work of gap-filling each new genome assembly and carefully curating its contents, the new reality is that most reference genome assemblies will remain fragmented and unfinished, and that provisionally annotated genome features will fall on a wide spectrum of reliability.
 Doing principled and reproducible science in this setting requires disciplined quality control and data evaluation.
-The focus of this dissertation has been the development of a framework---and associated software tools---to enable robust annotation and analysis of NGS-based genomics data, as motivated by research problems I encountered in genomics research projects.\footnote{I have only made it to here with my latest round of revisions.}
+The focus of this dissertation has been the development of a framework---and associated software tools---to enable robust annotation and analysis of NGS-based genomics data, as motivated by research problems I encountered in genomics research projects.
+
+\section{\textit{Polistes dominula} genome project}
+
+My first encounter with many of these issues came from my genomics studies of the paper wasp \textit{Polistes dominula}.
+This wasp is an important model system for studying the evolution of social behavior, as it exhibits an intermediate level of social complexity, with no morphological differentiation between castes and frequent competition for reproductive opportunities within colonies.
+The molecular mechanisms underlying caste differentiation across all social insects are still poorly understood, although various mechanisms have been proposed to play primary roles, such as differential gene expression, differential alternative splicing, DNA methylation patterns, and recently emerged species- or clade-specific genes.
+These hypotheses have been tested in bees and ants, but prior to this study no genome resources were available for any species from the major vespid wasp lineage.
+This project was funded to sequence the genome, transcriptome, and methylome of the wasp, to facilitate investigation of the molecular basis of caste differentiation in \textit{Polistes}, and to provide an additional important data source for comparative analysis of all social insects.
+
+The initial challenge of this project was to assemble the genome from...
+
+\noindent\rule{4in}{0.4pt}
 
 My first task as a graduate student was to evaluate the performance of a new automated genome annotation workflow, involving primarily the comparison of its outputs to an existing reference annotation.
 Similar comparisons were also required in subsequent projects, particularly while re-annotating an insect genome using an improved transcriptome assembly and additional protein evidence.
