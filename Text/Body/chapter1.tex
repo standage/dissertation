@@ -7,12 +7,13 @@ These technologies continue to evolve, the latest innovations involving single-m
 By the 2010s, these so-called \textit{next-generation sequencing (NGS)} technologies had made genome sequencing accessible to essentially any scientist with even a modest research budget.
 This ``democratization of sequencing" has precipitated a tremendous increase in the number of published genome projects and draft genome sequences (\url{http://www.ncbi.nlm.nih.gov/genome/browse/}), as well as genome-scale data sets profiling gene expression, chromatin accessibility, transcription initiation, and a multitude of other genomic characteristics.
 
-During this same time frame, however, genome analysis has been democratized to a much lesser extent.
-The availability of high-quality model reference genomes has changed very little, and many scientists struggle to effectively manage these newly acquired data and critically evaluate downstream research products.
+During this same time frame, however, the democratization of genome analysis has occurred to a much lesser extent.
+The availability of high-quality model reference genomes has changed very little.
+And as newly acquired data continues to flood into public databases, many scientists struggle to effectively manage the data and critically evaluate downstream research products.
 The proliferation of new algorithms and software tools for analyzing NGS data is a mixed blessing for scientists who now have both the flexibility and the burden of selecting suitable tool(s) for a particular analysis.
 
 The complexity and difficulty of genome assembly \cite{Assemblathon1,Assemblathon2,GAGE,QUAST}, annotation \cite{EGASP,Eilbeck,DentonFly}, and analysis \cite{PigWatson,RnaSeqTrim,RnaSeqTrim2} has been reported in various recent studies and community projects.
-The consistent, resounding message from this growing body of work is that genomics data quality varies considerably across data sets (and even within a single data set), that raw -omics data contain potentially large amounts of technical bias or other artifacts, and that the performance of state-of-the-art algorithms is difficult to predict on new data.
+The consistent, resounding message from this growing body of work is that genomics data quality varies considerably across data sets (and even within a single data set), and that the performance of state-of-the-art algorithms is difficult to predict on new data.
 Without a well-funded and well-staffed research consortium to manage the painstaking work of gap-filling each new genome assembly and carefully curating its contents, the new reality is that most reference genome assemblies will remain fragmented and unfinished, and that provisionally annotated genome features will fall on a wide spectrum of reliability.
 Doing principled and reproducible science in this setting requires disciplined quality control and data evaluation.
 The focus of this dissertation has been the development of a framework---and associated software tools---to enable robust annotation and analysis of NGS-based genomics data, as motivated by research problems I encountered in genomics research projects.
@@ -20,8 +21,8 @@ The focus of this dissertation has been the development of a framework---and ass
 \section{\textit{Polistes dominula} genome project}
 
 My first encounter with many of these issues came from my genomics studies of the paper wasp \textit{Polistes dominula}.
-This wasp is an important model system for studying the evolution of social behavior, as it exhibits an intermediate level of social complexity, with no morphological differentiation between castes and frequent competition for reproductive opportunities within colonies.
-The molecular mechanisms underlying caste differentiation across all social insects are still poorly understood, although various mechanisms have been proposed to play primary roles, such as differential gene expression, differential alternative splicing, DNA methylation patterns, and recently emerged species- or clade-specific genes.
+This wasp is an important model system for studying the evolution of social behavior, as it exhibits an intermediate level of social complexity, with no morphological differentiation between castes and frequent competition for reproductive opportunities within colonies \cite{JandtToth}.
+The molecular mechanisms underlying caste differentiation across all social insects are still poorly understood, although various mechanisms have been proposed to play primary roles, such as differential gene expression (citations), differential splicing (citations), DNA methylation patterns (citations), and recently emerged species- or clade-specific genes (citations).
 These hypotheses have been tested in bees and ants, but prior to this study no genome resources were available for any species from the major vespid wasp lineage.
 This project was funded to sequence the genome, transcriptome, and methylome of the wasp, to facilitate investigation of the molecular basis of caste differentiation in \textit{Polistes}, and to provide an additional important data source for comparative analysis of all social insects.
 
@@ -29,12 +30,14 @@ Our initial work was driven largely by questions of genome composition.
 How large is the \textit{Polistes} genome?
 What is its nucleotide composition?
 How many genes does it encode?
-Are well-known ``social behavior" genes, such as juvenile hormone and vitellogenin, present in the genome as expected?
-Assembling and annotating the genome \textit{de novo} was the first step to investigating these questions, but solutions did not come easily.
-We were initially challenged with the tasks of configuring, running, and troubleshooting assembly and annotation software written by others.
-More important was the subsequent challenge of critically evaluating the assembly and annotation products.
+Are the small handful of well-known ``social behavior" genes present in the genome as expected?
+In short, is there anything that immediately distinguishes the paper wasp genome from genomes of related species?
 
-Characteristics of a genome's composition are of limited utility in isolation, and our next set of questions were driven by a comparative genomics perspective.
+%Assembling and annotating the genome \textit{de novo} was the first step to investigating these questions, but solutions did not come easily.
+%We were initially challenged with the tasks of configuring, running, and troubleshooting assembly and annotation software written by others.
+%More important was the subsequent challenge of critically evaluating the assembly and annotation products.
+
+The next set of questions were driven by a comparative genomics perspective.
 How does the size and composition of the \textit{Polistes} genome compare to the bees and the ants?
 What proportion of annotated gene models are well-conserved within the Hymenoptera?
 Can conserved single-copy orthologs provide any insight into the unresolved evolutionary lineage of the bees, ants, and wasps?
@@ -43,12 +46,44 @@ At the same time, we investigated questions of functional genomics and epigenomi
 How many \textit{Polistes} genes show differential expression between the queen and worker castes?
 What is the extent of alternative splicing in \textit{Polistes}, and do any alternative splicing events exhibit caste-related bias?
 What is the extent of DNA methylation in \textit{Polistes}, and does the genome encode a full complement of methylation-related genes?
-This last question led us to one of the highlight discoveries of the study: that \textit{Polistes} lacks a critical DNA methyltransferase (\textit{Dnmt3}) and has essentially zero DNA methylation genome-wide.
 
-Throughout the entire project, our progress was complicated by evolving tools and continued data collection.
-Making reliable comparisons of \textit{Polistes}...
+This last question led us to one of the highlight discoveries of the study: that \textit{Polistes} lacks a critical DNA methyltransferase (\textit{Dnmt3}) and has essentially no DNA methylation genome-wide.
+But more in line with the focus of this dissertation, the \textit{Polistes dominula} genome project exposed me to the challenges of creating genomic data resources \textit{de novo} for a non-model research system, and the corresponding challenges of data quality assessment and management.
+These challenges motivated the development of methods and tools to facilitate comparison, evaluation, and analysis of genome annotations, with additional applications to studying genome organization.
 
-\noindent\rule{4in}{0.4pt}
+\section{ParsEval: comparison of annotation sources}
+
+Genome annotation workflows typically rely on integrating tools for \textit{ab initio} gene prediction, transcript and protein spliced alignment, and modeling of a gene locus.
+Each class of tools comes with a variety of parameter settings, the effect of which on the final annotation is difficult to predict.
+When annotating a non-model genome \textit{de novo}, it is often necessary to refine parameter selection on a small subset of the available data before proceeding to annotate the entire genome.
+Subsequent re-annotation may also be necessary if additional data become available.
+And in some cases, the scientists annotating a particular genome have a vested interest in improving the accuracy of the annotation software itself.
+
+Each of these scenarios occurred during the course of my graduate research, in every case leading to an accumulation of distinct annotations of the same genomic sequence(s).
+More to go here.
+
+\section{iLoci: an organizational framework}
+
+To go here.
+
+\section{GeneAnnoLogy: annotation version control}
+
+To go here.
+
+\section{Dissertation Organization}
+
+This dissertation is organized into six chapters.
+Chapter 1 provides an overview of the dissertation, a motivation for the work, and a brief discussion of relevant literature.
+Chapters 2 through 5 are presented as complete manuscripts:
+chapter 2 is a research paper published in \textit{Molecular Ecology} describing the genome, transcriptome, and methylome of the paper wasp \textit{Polistes dominula}, highlighting its reduced DNA methylation system, several hundred genomic loci with caste-related differential expression, and the lack of any detectable caste-related alternative splicing in the adult organism;
+chapter 3 is a paper published in \textit{BMC Bioinformatics} describing \textit{ParsEval}, a tool for comparing two alternate sources of annotation for a genome sequence;
+chapter 4 is a methodology paper to be submitted to \textit{BMC Bioinformatics/Genomics}\footnote{Will be submitted within a couple of weeks.}, describing the use of \textit{interval loci (iLoci)} as an organizational framework for reproducible genome analysis;
+chapter 5 is a manuscript slated for submission to \textit{A Journal} describing \textit{GeneAnnoLogy}, an \textit{iLocus}-based tool for quality control and version control of genome annotations.
+Chapter 6 provides brief concluding remarks and suggestions for further research.
+
+%\noindent\rule{4in}{0.4pt}
+
+\section{Old text}
 
 My first task as a graduate student was to evaluate the performance of a new automated genome annotation workflow, involving primarily the comparison of its outputs to an existing reference annotation.
 Similar comparisons were also required in subsequent projects, particularly while re-annotating an insect genome using an improved transcriptome assembly and additional protein evidence.
@@ -80,14 +115,3 @@ However, \textit{iLoci} provide an alternative solution to these issues, and wit
 At an early stage in my training, I prototyped a tool called \textit{GeneAnnoLogy} for maintaining an annotation version history, leveraging existing version control tools to track changes to individual \textit{iLoci} over time.
 I later built in features that facilitate filtering \textit{iLoci} based on their length, nucleotide composition, annotation quality, or any number of additional characteristics that can be computed from or attached to the annotation.
 The \textit{GeneAnnoLogy} tool encapsulates the culmination of concepts and principles investigated in this dissertation.
-
-\section{Dissertation Organization}
-
-This dissertation is organized into six chapters.
-Chapter 1 provides an overview of the dissertation, a motivation for the work, and a brief discussion of relevant literature.
-Chapters 2 through 5 are presented as complete manuscripts:
-chapter 2 is a research paper published in \textit{Molecular Ecology} describing the genome, transcriptome, and methylome of the paper wasp \textit{Polistes dominula}, highlighting its reduced DNA methylation system, several hundred genomic loci with caste-related differential expression, and the lack of any detectable caste-related alternative splicing in the adult organism;
-chapter 3 is a paper published in \textit{BMC Bioinformatics} describing \textit{ParsEval}, a tool for comparing two alternative sources of annotation for a genome sequence;
-chapter 4 is a methodology to be submitted to \textit{BMC Bioinformatics/Genomics}\footnote{Will be submitted within a couple of weeks.}, describing the use of \textit{interval loci (iLoci)} as an organizational framework facilitating reproducible genome analysis;
-chapter 5 is a manuscript slated for submission to \textit{A Journal} describing \textit{GeneAnnoLogy}, an \textit{iLocus}-based tool for quality control and version control of genome annotations.
-Chapter 6 provides brief concluding remarks and suggestions for further research.
