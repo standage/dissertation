@@ -51,16 +51,25 @@ This last question led us to one of the highlight discoveries of the study: that
 But more in line with the focus of this dissertation, the \textit{Polistes dominula} genome project exposed me to the challenges of creating genomic data resources \textit{de novo} for a non-model research system, and the corresponding challenges of data quality assessment and management.
 These challenges motivated the development of methods and tools to facilitate comparison, evaluation, and analysis of genome annotations, with additional applications to studying genome organization.
 
-\section{ParsEval: comparison of annotation sources}
+\section{ParsEval: comparison of distinct annotation sources}
 
-Genome annotation workflows typically rely on integrating tools for \textit{ab initio} gene prediction, transcript and protein spliced alignment, and modeling of a gene locus.
-Each class of tools comes with a variety of parameter settings, the effect of which on the final annotation is difficult to predict.
+Automated genome annotation typically relies on integrating tools for \textit{ab initio} gene prediction, transcript and protein spliced alignment, and evaluation of support for gene structural components.
+Each class of tools comes with a variety of parameter settings, and it can be difficult to predict in advance the influence these parameters will have on the final annotation product.
+%For example, we initially used gene prediction parameters trained for \textit{Drosophila melanogaster} during the preliminary stages of the \textit{Polistes dominula} annotation.
+%After observing that these parameters produced results of inconsistent quality, we found that settings trained for \textit{Arabidopsis thaliana} performed more reliably, which in hindsight is not surprising considering that \textit{Arabidopsis} is much more similar to \textit{Polistes} than \textit{Drosophila} is in terms of nucleotide composition.
 When annotating a non-model genome \textit{de novo}, it is often necessary to refine parameter selection on a small subset of the available data before proceeding to annotate the entire genome.
-Subsequent re-annotation may also be necessary if additional data become available.
+Subsequent re-annotation is often necessary when additional data (such as ESTs or RNA-Seq reads) become available, or when improved gene prediction methods are published.
 And in some cases, the scientists annotating a particular genome have a vested interest in improving the accuracy of the annotation software itself.
+In each of these scenarios, a primary objective is to identify similarities and differences between annotations derived from different parameter settings or alternative workflows, to facilitate evaluation of the annotations.
 
-Each of these scenarios occurred during the course of my graduate research, in every case leading to an accumulation of distinct annotations of the same genomic sequence(s).
-More to go here.
+Development of the CpGAT annotation pipeline within our research group provided the initial motivation for ParsEval.
+Evaluating CpGAT's performance in comparison to a gold-standard annotation was impractical manually, and existing software tools \cite{Keibler,Wang} lacked important features such as locus-scale resolution.
+I created the ParsEval program to address the need for genome-scale evaluations with locus-scale detail.
+Later during the preliminary stages of the \textit{Polistes dominula} genome project, ParsEval proved a valuable data assessment tool as we tuned our genome annotation workflow.
+
+The ParsEval paper \cite{ParsEval} introduced a precise operational definition for a \textit{gene locus} based on the locations of annotated gene models.
+The objective was to define a parsing of the genome into distinct units that are complete and can be analyzed independently.
+Generalizing this concept and applying it as an organizational principle for genome analyses has been a major focus of this dissertation.
 
 \section{iLoci: an organizational framework}
 
@@ -84,21 +93,6 @@ Chapter 6 provides brief concluding remarks and suggestions for further research
 %\noindent\rule{4in}{0.4pt}
 
 \section{Old text}
-
-My first task as a graduate student was to evaluate the performance of a new automated genome annotation workflow, involving primarily the comparison of its outputs to an existing reference annotation.
-Similar comparisons were also required in subsequent projects, particularly while re-annotating an insect genome using an improved transcriptome assembly and additional protein evidence.
-Quantitative measures of agreement between gene predictions and a reliable reference had long been established (cite Burset/Guigo), and are easily adapted for comparison of two alternative sources of annotation of unknown relative quality.
-However, software capable of computing these accuracy/similarity statistics at the time (cite Eval, GFPE) were unsatisfactory for our needs.
-Designed more for algorithm and model refinement than for biological interpretation, these tools report a huge number of statistics aggregated over all data inputs, offering exquisite detail into overall performance but no detail at the level of individual loci.
-To address these limitations, I created the ParsEval tool to provide locus-level reports in addition to overall aggregate statistics.
-The strategy utilized by ParsEval for partitioning the genome into units that can be independently analyzed not only offered significant improvements in runtime and memory usage over previous tools, but also provided the foundation for developing a more generalized genome analysis framework.
-
-Another one of my earliest projects as a graduate student was to assist with \textit{de novo} assembly of the genome of the paper wasp \textit{Polistes dominula}.
-I subsequently ended up taking charge of the assembly effort, as well as genome annotation, transcriptome profiling, and comparative genomics analysis.
-These latter analyses get to the heart of the interest of \textit{Polistes} as a model system for studying the evolution of social organization and behavior.
-Previous to this study, no published genomic data was available for the vespid wasps, one of three major lineages of social \textit{Hymenoptera} (along with bees and ants), and accordingly we were eager to characterize the similarities and differences between the wasps and their hymenopteran relatives.
-%\footnote{Patalano \textit{et al.} was published online about 1-2 weeks before the slated submission date of our manuscript to the same journal.}
-We were also interested in what expression data from adult queens and workers could reveal about genes related to caste differentiation in \textit{Polistes}.
 
 Although our \textit{Polistes} assembly and annotation compared favorably to any other published hymenopteran genome, all the data accessible to us was subject to the same data quality inconsistencies that characterize any NGS-based genome project.
 Answering questions related to gene expression and genome composition therefore required careful consideration of, for example, how precisely to handle overlapping gene models, and how to distinguish differences rooted in biology from technical artifacts.
