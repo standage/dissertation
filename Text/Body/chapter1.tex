@@ -22,7 +22,7 @@ The focus of this dissertation has been the development of a framework---and ass
 
 My first encounter with many of these issues came from my genomics studies of the paper wasp \textit{Polistes dominula}.
 This wasp is an important model system for studying the evolution of social behavior, as it exhibits an intermediate level of social complexity, with no morphological differentiation between castes and frequent competition for reproductive opportunities within colonies \cite{JandtToth}.
-The molecular mechanisms underlying caste differentiation across all social insects are still poorly understood, although various mechanisms have been proposed to play primary roles, such as differential gene expression (citations), differential splicing (citations), DNA methylation patterns (citations), and recently emerged species- or clade-specific genes (citations).
+The molecular mechanisms underlying caste differentiation across all social insects are still poorly understood, although various mechanisms have been proposed to play primary roles, such as differential gene expression \cite{ChenDiffExp,GrozingerDiffExp,WhitfieldDiffExp,OmettoDiffExp,SimolaDiffExp,HarrisonDiffExp,PcanTrans}, differential splicing \cite{Dnmt3KD}, DNA methylation patterns \cite{Dnmt3KD,Lyko2011}, and recently emerged species- or clade-specific genes \cite{SumnerTRG,JohnsonTRG}.
 These hypotheses have been tested in bees and ants, but prior to this study no genome resources were available for any species from the major vespid wasp lineage.
 This project was funded to sequence the genome, transcriptome, and methylome of the wasp, to facilitate investigation of the molecular basis of caste differentiation in \textit{Polistes}, and to provide an additional important data source for comparative analysis of all social insects.
 
@@ -63,7 +63,7 @@ Evaluating CpGAT's performance in comparison to a gold-standard annotation was i
 I created the ParsEval program to address the need for genome-scale evaluations with locus-scale detail.
 Later during the preliminary stages of the \textit{Polistes dominula} genome project, ParsEval proved a valuable data assessment tool as we tuned our genome annotation workflow.
 
-The ParsEval paper \cite{ParsEval} introduced a precise operational definition for a \textit{gene locus} based on the locations of annotated gene models.
+The ParsEval paper introduces a precise operational definition for a \textit{gene locus} based on the locations of annotated gene models.
 The objective was to define a parsing of the genome into distinct units that are complete and can be analyzed independently.
 Generalizing this concept and applying it as an organizational principle for genome analyses has been a major focus of this dissertation.
 
@@ -75,7 +75,7 @@ Answering questions related to gene expression and genome composition therefore 
 It was in addressing these issues that we extended the \textit{gene locus} definition introduced by ParsEval and developed the \textit{interval locus (iLocus)} as a more generalized organizational framework for genome analyses.
 
 iLoci define an unambiguous parsing of an annotated genome sequence into distinct regions, each encapsulating the genomic context of a gene or intergenic space.
-This parsing provides a complete and granular representation of the genome.
+This parsing provides a complete and granular decomposition of the genome.
 In parallel with the \textit{P. dominula} genome project in which iLoci played a prominent role, we investigated general applications of iLoci.
 We discuss their utility for describing the contents of a genome and for applying quality control when calculating diagnostic characteristics of a genome.
 We investigate the utility of iLoci for characterizing genome organization, within a single genome and between multiple genomes in a clade of species.
@@ -85,10 +85,10 @@ Finally, we report the stability of iLoci across distinct assembly and annotatio
 
 Continual refinement of our genome assembly and annotation hindered progress on our \textit{P. dominula} research at times.
 This issue is certainly not unique to our work.
-For example, the honeybee \textit{Apis mellifera} (the model social insect) had three official annotation versions in concurrent use during our work on the \textit{Polistes} genome project, with some studies even making their own unpublished refinements to an annotation (citations).
+For example, the honeybee \textit{Apis mellifera} (the model social insect) had three official annotation versions in concurrent use during our work on the \textit{Polistes} genome project, with some studies even making their own unpublished refinements to an annotation \cite{Dnmt3KD,TrueSight}.
 What seemed to be lacking was a precise way to refer to a particular gene or genomic region, as annotated at a particular time, and to make statements about its expression, or conservation, or methylation status, or any number of additional characteristics.
 
-The idea of tracking annotations over time is not new \cite{Eilbeck}, and some well-supported communities provide tools for mapping annotations from an older assembly version to updated assembly (cite liftover, RATT).
+The idea of tracking annotations over time is not new \cite{Eilbeck}, and some well-supported communities provide tools for mapping annotations from an older assembly version to updated assembly \cite{liftOver,PAGIT}.
 However, iLoci provide an alternative solution to these issues and, along with the additional benefits previously described, furnish a complete framework for organization, quality control, and reproducibility for provisional genome projects.
 
 At an early stage in my training, I prototyped a tool called GeneAnnoLogy for maintaining an annotation version history, leveraging existing version control tools to track changes to individual iLoci over time.
