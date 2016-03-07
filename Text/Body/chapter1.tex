@@ -72,40 +72,36 @@ Generalizing this concept and applying it as an organizational principle for gen
 The ParsEval tool proved valuable throughout the \textit{Polistes dominula} genome project, but we subsequently encountered issues that required additional attention and development.
 Although our \textit{Polistes} assembly and annotation compared favorably to other published hymenopteran genomes, our data was subject to the same quality inconsistencies that characterize any NGS-based genome project.
 Answering questions related to gene expression and genome composition therefore required careful consideration of, for example, how precisely to handle overlapping gene models and how to distinguish differences rooted in biology from technical artifacts.
-It was in addressing these issues that we extended the \textit{gene locus} definition introduced by ParsEval and developed \textit{interval loci (iLoci)} as a more generalized organizational framework for genome analyses.
+It was in addressing these issues that we extended the \textit{gene locus} definition introduced by ParsEval and developed the \textit{interval locus (iLocus)} as a more generalized organizational framework for genome analyses.
 
 iLoci define an unambiguous parsing of an annotated genome sequence into distinct regions, each encapsulating the genomic context of a gene or intergenic space.
 This parsing provides a complete and granular representation of the genome.
-In parallel with the \textit{P. dominula} genome project, in which iLoci played a prominent role, we investigated general applications of iLoci.
+In parallel with the \textit{P. dominula} genome project in which iLoci played a prominent role, we investigated general applications of iLoci.
 We discuss their utility for describing the contents of a genome and for applying quality control when calculating diagnostic characteristics of a genome.
 We investigate the utility of iLoci for characterizing genome organization, within a single genome and between multiple genomes in a clade of species.
 Finally, we report the stability of iLoci across distinct assembly and annotation versions, highlighting their utility as reproducible units of analysis.
 
 \section{GeneAnnoLogy: annotation version control}
 
-To go here.
+Continual refinement of our genome assembly and annotation hindered progress on our \textit{P. dominula} research at times.
+This issue is certainly not unique to our work.
+For example, the honeybee \textit{Apis mellifera} (the model social insect) had three official annotation versions in concurrent use during our work on the \textit{Polistes} genome project, with some studies even making their own unpublished refinements to an annotation (citations).
+What seemed to be lacking was a precise way to refer to a particular gene or genomic region, as annotated at a particular time, and to make statements about its expression, or conservation, or methylation status, or any number of additional characteristics.
+
+The idea of tracking annotations over time is not new \cite{Eilbeck}, and some well-supported communities provide tools for mapping annotations from an older assembly version to updated assembly (cite liftover, RATT).
+However, iLoci provide an alternative solution to these issues and, along with the additional benefits previously described, furnish a complete framework for organization, quality control, and reproducibility for provisional genome projects.
+
+At an early stage in my training, I prototyped a tool called GeneAnnoLogy for maintaining an annotation version history, leveraging existing version control tools to track changes to individual iLoci over time.
+I later built in features that facilitate filtering iLoci based on their length, nucleotide composition, annotation quality, or any number of additional characteristics that can be computed from or attached to the annotation.
+The GeneAnnoLogy tool encapsulates the culmination of concepts and principles investigated in this dissertation.
 
 \section{Dissertation Organization}
 
 This dissertation is organized into six chapters.
 Chapter 1 provides an overview of the dissertation, a motivation for the work, and a brief discussion of relevant literature.
 Chapters 2 through 5 are presented as complete manuscripts:
-chapter 2 is a research paper published in \textit{Molecular Ecology} describing the genome, transcriptome, and methylome of the paper wasp \textit{Polistes dominula}, highlighting its reduced DNA methylation system, several hundred genomic loci with caste-related differential expression, and the lack of any detectable caste-related alternative splicing in the adult organism;
+chapter 2 is a research paper published in \textit{Molecular Ecology} describing the genome, transcriptome, and methylome of the paper wasp \textit{Polistes dominula}, highlighting its reduced DNA methylation system, several hundred loci with caste-related differential expression, and the lack of any detectable caste-related differential splicing in the adult organism;
 chapter 3 is a paper published in \textit{BMC Bioinformatics} describing \textit{ParsEval}, a tool for comparing two alternate sources of annotation for a genome sequence;
 chapter 4 is a methodology paper to be submitted to \textit{BMC Bioinformatics/Genomics}\footnote{Will be submitted within a couple of weeks.}, describing the use of \textit{interval loci (iLoci)} as an organizational framework for reproducible genome analysis;
 chapter 5 is a manuscript slated for submission to \textit{A Journal} describing \textit{GeneAnnoLogy}, an \textit{iLocus}-based tool for quality control and version control of genome annotations.
 Chapter 6 provides brief concluding remarks and suggestions for further research.
-
-%\noindent\rule{4in}{0.4pt}
-
-\section{Old text}
-
-One of the earliest applications of \textit{iLoci} I envisioned was as an organizational principle for version control of annotations.
-Continual refinement of our genome assembly and annotation made progress on our research more difficult at times, and this issue is certainly not unique to our work.
-The honeybee, for example, had three official annotation versions in concurrent use during our work on the \textit{Polistes} genome, with some studies even making their own unpublished refinements to an annotation (citations).
-What seemed to be lacking was a precise way to refer to a particular gene or genomic region, as annotated at a particular time, and to make statements about its expression, or conservation, or methylation status, or any number of additional characteristics.
-The idea of tracking annotations over time is not new (cite AED paper), and some well-supported communities provide tools for mapping annotations from an older assembly version to updated assembly (cite liftover, RATT).
-However, \textit{iLoci} provide an alternative solution to these issues, and with the additional benefits previously described provide a complete framework for organization, quality control, and reproducibility for provisional genome projects.
-At an early stage in my training, I prototyped a tool called \textit{GeneAnnoLogy} for maintaining an annotation version history, leveraging existing version control tools to track changes to individual \textit{iLoci} over time.
-I later built in features that facilitate filtering \textit{iLoci} based on their length, nucleotide composition, annotation quality, or any number of additional characteristics that can be computed from or attached to the annotation.
-The \textit{GeneAnnoLogy} tool encapsulates the culmination of concepts and principles investigated in this dissertation.
