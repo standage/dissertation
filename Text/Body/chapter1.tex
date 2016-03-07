@@ -33,10 +33,6 @@ How many genes does it encode?
 Are the small handful of well-known ``social behavior" genes present in the genome as expected?
 In short, is there anything that immediately distinguishes the paper wasp genome from genomes of related species?
 
-%Assembling and annotating the genome \textit{de novo} was the first step to investigating these questions, but solutions did not come easily.
-%We were initially challenged with the tasks of configuring, running, and troubleshooting assembly and annotation software written by others.
-%More important was the subsequent challenge of critically evaluating the assembly and annotation products.
-
 The next set of questions were driven by a comparative genomics perspective.
 How does the size and composition of the \textit{Polistes} genome compare to the bees and the ants?
 What proportion of annotated gene models are well-conserved within the Hymenoptera?
@@ -73,7 +69,17 @@ Generalizing this concept and applying it as an organizational principle for gen
 
 \section{iLoci: an organizational framework}
 
-To go here.
+The ParsEval tool proved valuable throughout the \textit{Polistes dominula} genome project, but we subsequently encountered issues that required additional attention and development.
+Although our \textit{Polistes} assembly and annotation compared favorably to other published hymenopteran genomes, our data was subject to the same quality inconsistencies that characterize any NGS-based genome project.
+Answering questions related to gene expression and genome composition therefore required careful consideration of, for example, how precisely to handle overlapping gene models and how to distinguish differences rooted in biology from technical artifacts.
+It was in addressing these issues that we extended the \textit{gene locus} definition introduced by ParsEval and developed \textit{interval loci (iLoci)} as a more generalized organizational framework for genome analyses.
+
+iLoci define an unambiguous parsing of an annotated genome sequence into distinct regions, each encapsulating the genomic context of a gene or intergenic space.
+This parsing provides a complete and granular representation of the genome.
+In parallel with the \textit{P. dominula} genome project, in which iLoci played a prominent role, we investigated general applications of iLoci.
+We discuss their utility for describing the contents of a genome and for applying quality control when calculating diagnostic characteristics of a genome.
+We investigate the utility of iLoci for characterizing genome organization, within a single genome and between multiple genomes in a clade of species.
+Finally, we report the stability of iLoci across distinct assembly and annotation versions, highlighting their utility as reproducible units of analysis.
 
 \section{GeneAnnoLogy: annotation version control}
 
@@ -93,12 +99,6 @@ Chapter 6 provides brief concluding remarks and suggestions for further research
 %\noindent\rule{4in}{0.4pt}
 
 \section{Old text}
-
-Although our \textit{Polistes} assembly and annotation compared favorably to any other published hymenopteran genome, all the data accessible to us was subject to the same data quality inconsistencies that characterize any NGS-based genome project.
-Answering questions related to gene expression and genome composition therefore required careful consideration of, for example, how precisely to handle overlapping gene models, and how to distinguish differences rooted in biology from technical artifacts.
-It was in addressing these issues that we extended the \textit{gene locus} concept introduced by ParsEval and developed \textit{interval loci (iLoci)} as a generalized organizational framework for genome analyses.
-\textit{iLoci} define an unambiguous parsing of an annotated genome into distinct regions, each encapsulating the genomic context of a gene or intergenic space, providing a complete and granular representation of the genome.
-Following the publication of the \textit{P. dominula} genome paper, in which \textit{iLoci} played a central role, we investigated general applications of \textit{iLoci}, describing their stability across assembly and annotation versions and their utility for characterizing genome organization, within a single genome and between multiple genomes in a clade of species.
 
 One of the earliest applications of \textit{iLoci} I envisioned was as an organizational principle for version control of annotations.
 Continual refinement of our genome assembly and annotation made progress on our research more difficult at times, and this issue is certainly not unique to our work.
