@@ -1,0 +1,1468 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\date{}
+
+\begin{document}
+
+\textbf{For Submission to \emph{Molecular Ecology}}
+
+\textbf{Title }
+
+\begin{quote}
+Genome, transcriptome, and methylome sequencing of a primitively
+eusocial wasp reveal a greatly reduced DNA methylation system in a
+social insect
+\end{quote}
+
+\textbf{Authors and author affiliations}
+
+\begin{quote}
+Daniel S. Standage\textsuperscript{a},
+\href{mailto:daniel.standage@gmail.com}{\nolinkurl{daniel.standage@gmail.com}}
+
+Ali J. Berens\textsuperscript{b},
+\href{mailto:berens.ali@gmail.com}{\nolinkurl{berens.ali@gmail.com}}
+
+Karl M. Glastad\textsuperscript{c},
+\href{mailto:karlglastad@gmail.com}{\nolinkurl{karlglastad@gmail.com}}
+
+Andrew J. Severin\textsuperscript{d,b},
+\href{mailto:severin@iastate.edu}{\nolinkurl{severin@iastate.edu}}
+
+Volker P. Brendel\textsuperscript{*,a,e},
+\href{mailto:vbrendel@indiana.edu}{\nolinkurl{vbrendel@indiana.edu}}
+
+Amy L. Toth\textsuperscript{*,b,f},
+\href{mailto:amytoth@iastate.edu}{\nolinkurl{amytoth@iastate.edu}}
+
+\textsuperscript{a}Department of Biology, Indiana University,
+Bloomington, IN 47405
+
+\textsuperscript{b}Department of Ecology, Evolution, and Organismal
+Biology, Iowa State University, Ames, IA 50011
+
+\textsuperscript{c}School of Biology, Georgia Institute of Technology,
+Atlanta, GA 30332
+
+\textsuperscript{d}Office of Biotechnology, Iowa State University, Ames,
+IA 50011
+
+\textsuperscript{e}School of Informatics and Computing, Indiana
+University, Bloomington, IN 47405
+
+\textsuperscript{f}Department of Entomology, Iowa State University,
+Ames, IA 50011
+\end{quote}
+
+\textbf{Keywords:} paper wasp; eusociality; caste; genome;
+transcriptome; methylation; \emph{Dnmt3}
+
+\textbf{\textsuperscript{*}Corresponding authors:}
+
+\begin{quote}
+Dr. Amy L. Toth
+
+Department of Ecology, Evolution, and Organismal Biology, 251 Bessey
+Hall, Iowa State University, Ames, IA 50011
+
+Tel: (515) 294-3121, Fax: (515) 294-1337, e-mail:
+\href{mailto:amytoth@iastate.edu}{\nolinkurl{amytoth@iastate.edu}}
+
+Dr. Volker P. Brendel
+
+Department of Biology and School of Informatics and Computing, Simon
+Hall 205C, Indiana University, Bloomington, IN 47405
+
+Tel: (812) 855-7074, e-mail:
+\href{mailto:vbrendel@indiana.edu}{\nolinkurl{vbrendel@indiana.edu}}
+\end{quote}
+
+\textbf{Running title}: Social wasp genome, transcriptome, methylome
+
+\textbf{ABSTRACT}
+
+Comparative genomics of social insects has been intensely pursued in
+recent years with the goal of providing insights into the evolution of
+social behavior and its underlying genomic and epigenomic basis.
+However, the comparative approach has been hampered by a paucity of data
+on some of the most informative social forms (e.g. incipiently and
+primitively social) and taxa (especially members of the paper wasp
+family Vespidae) for studying social evolution. Here we provide a draft
+genome of the primitively eusocial model insect \emph{Polistes
+dominula}, accompanied by analysis of caste-related transcriptome and
+methylome sequence data for adult queens and workers. \emph{P. dominula}
+possesses a fairly typical hymenopteran genome, but shows very low
+genome-wide GC content and some evidence of reduced genome size. We
+found numerous caste-related differences in gene expression, with
+evidence that both conserved and novel genes are related to caste
+differences. Most strikingly, these --omics data reveal a major
+reduction in one of the major epigenetic mechanisms that has been
+previously suggested to be important for caste differences in social
+insects: DNA methylation. Along with a conspicuous loss of a key gene
+associated with environmentally responsive DNA methylation (the de novo
+DNA methyltransferase \emph{Dnmt3}), these wasps have greatly reduced
+genome-wide methylation to almost zero. In addition to providing a
+valuable resource for comparative analysis of social insect evolution,
+our integrative --omics data for this important behavioral and
+evolutionary model system call into question the general importance of
+DNA methylation in caste differences and evolution in social insects.
+
+\textbf{INTRODUCTION}
+
+The rapidly increasing availability of genomic resources for
+non-traditional model organisms with well-developed social behavior has
+incited great interest in the genomic basis of complex social life, or
+sociogenomics (\protect\hyperlink{ux5fENREFux5f49}{Robinson \emph{et
+al.} 2005}). Sociogenomic studies on a variety of species, from rodents
+to fish to insects, have provided a wealth of information about the
+transcriptomic and genomic characters associated with different forms of
+derived social behavior, from affiliative behavior, to aggression, to
+division of labor within animal societies
+(\protect\hyperlink{ux5fENREFux5f48}{Robinson \emph{et al.} 2008}). To
+date, however, these studies have focused on relatively few species
+separately, and current data have not allowed a comprehensive
+comparative and phylogenetic approach to understanding the genomic
+changes that accompany the evolution of sociality. As advances in
+sequencing technology have greatly facilitated the generation of
+genome-scale data for emerging model species
+(\protect\hyperlink{ux5fENREFux5f50}{Rokas \& Abbot 2009}), it is an
+exciting time to seek integration of genomic, transcriptomic, and
+epigenomic data from species at key transitional points in the evolution
+of sociality from solitary behavior.
+
+The eusocial insects are one of the most important sociogenomic model
+groups, comprising a diverse and ecologically successful group of
+animals with a highly derived form of social behavior characterized by
+the presence of reproductive and non-reproductive castes
+(\protect\hyperlink{ux5fENREFux5f19}{Hölldobler \& Wilson 2009}).
+Eusocial insects are excellent models for understanding the evolution of
+complexity as the switch from solitary to eusocial life marks one of the
+major transitions in evolution due to the shift from individual
+selection to colony level selection
+(\protect\hyperlink{ux5fENREFux5f35}{Maynard Smith \& Szathmáry 1997}).
+Currently, published genome sequences are available for three parasitic
+\emph{Nasonia} wasps (\protect\hyperlink{ux5fENREFux5f70}{Werren
+\emph{et al.} 2010}), which provide a solitary outgroup for all of the
+social Hymenoptera species, and 20 eusocial insect genomes---ten bees
+(\protect\hyperlink{ux5fENREFux5f24}{Kapheim \emph{et al.} 2015};
+\protect\hyperlink{ux5fENREFux5f25}{Kocher \emph{et al.} 2013};
+\protect\hyperlink{ux5fENREFux5f51}{Sadd \emph{et al.} 2015};
+\protect\hyperlink{ux5fENREFux5f69}{Weinstock \emph{et al.} 2006}) and
+nine ants (\protect\hyperlink{ux5fENREFux5f5}{Bonasio \emph{et al.}
+2010}; \protect\hyperlink{ux5fENREFux5f37}{Nygaard \emph{et al.} 2011};
+\protect\hyperlink{ux5fENREFux5f40}{Oxley \emph{et al.} 2014};
+\protect\hyperlink{ux5fENREFux5f54}{Smith \emph{et al.} 2011a};
+\protect\hyperlink{ux5fENREFux5f55}{Smith \emph{et al.} 2011b};
+\protect\hyperlink{ux5fENREFux5f57}{Suen \emph{et al.} 2011};
+\protect\hyperlink{ux5fENREFux5f74}{Wurm \emph{et al.} 2011}), and very
+recently, one paper wasp (\protect\hyperlink{ux5fENREFux5f43}{Patalano
+\emph{et al.} 2015}). These studies provide important baseline data on
+genomic characters associated with eusociality.
+
+Importantly however, prior comparative sociogenomic analyses within the
+social insects have suffered from two major deficits. First, there have
+been relatively scant genomic resources available for one of the three
+major hymenopteran eusocial lineages, the paper wasp family Vespidae
+(\textbf{Figure 1A}). Although social wasps, bees, and ants evolved from
+a common ancestor over 100 million years ago, these societies have
+independently evolved many convergent features, including the presence
+of female castes in the form of queens and workers. Second, there have
+been relatively few genome sequences available for species in key
+transitional stages between solitary and eusocial forms (notably, there
+has been a large recent advance in this area
+(\protect\hyperlink{ux5fENREFux5f24}{Kapheim \emph{et al.} 2015};
+\protect\hyperlink{ux5fENREFux5f25}{Kocher \emph{et al.} 2013};
+\protect\hyperlink{ux5fENREFux5f43}{Patalano \emph{et al.} 2015};
+\protect\hyperlink{ux5fENREFux5f51}{Sadd \emph{et al.} 2015})). Here, we
+expand the potential for comparative genomics of eusocial Hymenoptera by
+describing the first complete genome sequence of \emph{Polistes
+dominula}, a behavioral model species within the family Vespidae that
+exhibits an intermediate form of social behavior, making it highly
+informative for studying the evolution of sociality
+(\protect\hyperlink{ux5fENREFux5f21}{Jandt \& Toth 2015}).
+
+\emph{Polistes} wasps form small ``primitively eusocial'' societies
+containing queens and altruistic workers, but unlike honey bees, their
+colonies are characterized by prominent conflict over reproduction
+(\protect\hyperlink{ux5fENREFux5f41}{Pardi 1948}). Queens and workers
+engage in dominance interactions and there is constant competition
+between females for reproductive opportunities. In addition,
+\emph{Polistes} have small colonies with a relatively small number of
+individuals, and colonies are started anew annually by founding queens
+(\protect\hyperlink{ux5fENREFux5f46}{Reeve 1991}). These characteristics
+have made \emph{Polistes} one of the main systems for testing hypotheses
+about the evolution of altruistic behavior
+(\protect\hyperlink{ux5fENREFux5f71}{West-Eberhard 1996}). For example,
+studies of cooperation and conflict in small groups of \emph{Polistes}
+wasps have provided some key tests of how genetic relatedness can
+facilitate cooperation (\protect\hyperlink{ux5fENREFux5f17}{Hamilton
+1964}). In addition, observations of \emph{Polistes} behavior led to new
+hypotheses about the evolution of altruistic behavior from maternal
+behavior (\protect\hyperlink{ux5fENREFux5f71}{West-Eberhard 1996}),
+which have derived some support from transcriptomic studies
+(\protect\hyperlink{ux5fENREFux5f62}{Toth \emph{et al.} 2010};
+\protect\hyperlink{ux5fENREFux5f63}{Toth \emph{et al.} 2007}). A genome
+sequence for \emph{Polistes dominula}, the best-studied member of the
+model genus \emph{Polistes,} greatly enhances our power to study the
+genetics of social behavior \emph{via} comparative genomic and
+transcriptomic analyses, allowing for the identification of protein
+coding changes, regulatory regions, and epigenetic modifications
+associated with sociality. To facilitate future comparative analyses, we
+provide a high quality draft \emph{P. dominula} genome and describe
+informative features of this genome in reference to other previously
+published bee, ant, and \emph{Nasonia} wasp genomes. Our genome sequence
+was derived from an invasive population (from Pennsylvania, USA) of
+\emph{Polistes dominula}, a temperate species that is native to Europe.
+Our genome represents the second published paper wasp genome, the first
+being the very recently published genome of the Neotropical paper wasp
+\emph{Polistes canadensis} (\protect\hyperlink{ux5fENREFux5f43}{Patalano
+\emph{et al.} 2015}). Although both species are primitively eusocial,
+they are not closely related (split between Old and New World
+\emph{Polistes} at 10-80 million years
+(\protect\hyperlink{ux5fENREFux5f9}{Ezenwa \emph{et al.} 1998})) and
+have several differences in their ecology and social biology. Thus, we
+provide comparisons between these congeners, confirming many conserved
+\emph{Polistes} genome characteristics but also highlighting some
+conspicuous differences between the two paper wasp genomes.
+
+One of the most active recent areas of research in insect sociogenomics
+centers on the role of epigenetics in the regulation and evolution of
+eusociality. Recent studies suggest epigenetic modifications to DNA are
+ubiquitous within the social Hymenoptera
+(\protect\hyperlink{ux5fENREFux5f26}{Kronforst \emph{et al.} 2008};
+\protect\hyperlink{ux5fENREFux5f67}{Weiner \emph{et al.} 2013}), and
+furthermore, various authors have suggested that differential DNA
+methylation during larval development contributes to caste differential
+gene expression and alternative splicing
+(\protect\hyperlink{ux5fENREFux5f32}{Li-Byarlay \emph{et al.} 2013};
+\protect\hyperlink{ux5fENREFux5f33}{Lyko \emph{et al.} 2010}), and
+differences in caste-related phenotypes
+(\protect\hyperlink{ux5fENREFux5f28}{Kucharski \emph{et al.} 2008}) in
+both honey bees and ants. We previously hypothesized that DNA
+methylation might also be important for caste differential expression
+and behavioral and physiological caste differences in primitively
+eusocial species such as \emph{Polistes dominula}
+(\protect\hyperlink{ux5fENREFux5f67}{Weiner \emph{et al.} 2013};
+\protect\hyperlink{ux5fENREFux5f68}{Weiner \& Toth 2012}). However,
+recent studies suggest DNA methylation may be less important for
+primitively eusocial species, including \emph{Polistes canadensis}
+(\protect\hyperlink{ux5fENREFux5f24}{Kapheim \emph{et al.} 2015};
+\protect\hyperlink{ux5fENREFux5f43}{Patalano \emph{et al.}
+2015})\emph{.} Therefore, we looked for evidence of a functional DNA
+methylation system by investigating the presence of a full complement of
+DNA methylation enzymes in the \emph{Polistes dominula} genome. In
+addition, we performed RNA-sequencing and whole genome bisulfite
+sequencing (methylome sequencing) on a set of adult queen and worker
+samples in order to examine caste-associated differential expression and
+DNA methylation in the \emph{Polistes dominula} genome. These
+experiments provide a valuable point of comparison to other social
+insects for assessing whether DNA methylation is a shared, general
+mechanism related to sociality in insects.
+
+\textbf{MATERIALS AND METHODS}
+
+Detailed protocols are provided in \textbf{SI Materials and Methods}.
+
+\textbf{Sample collection and sequencing.} Five Illumina paired-end
+whole genome shotgun libraries were prepared from a single pupal male
+collected from an invasive population in State College, Pennsylvania.
+The libraries, ranging in insert size from \textless{}200bp to 8Kbp (see
+\textbf{Table S1}), were sequenced on the Illumina HiSeq 2000 platform.
+
+Same-nest pairs of six adult workers and six egg-laying adult queens and
+from six different colonies were collected for transcriptome and
+methylome sequencing; these twelve individuals were from the same State
+College, Pennsylvania population as the pupal male used for genome
+sequencing. The head of each adult was cut in half, with RNA extracted
+from one half for transcriptome sequencing and DNA extracted from the
+other half for methylome sequencing.
+
+\textbf{Genome assembly and annotation}. Five whole genome shotgun
+libraries were assembled using the AllPaths-LG genome assembler
+(\protect\hyperlink{ux5fENREFux5f14}{Gnerre \emph{et al.} 2011}), with
+the smallest library designated as the \emph{fragment library} and the
+other four libraries designated as \emph{jumping libraries}. The
+assembled scaffolds were then screened for repetitive DNA, masked, and
+annotated by the MAKER pipeline
+(\protect\hyperlink{ux5fENREFux5f7}{Cantarel \emph{et al.} 2008}). The
+annotation workflow incorporated evidence from spliced alignments of
+transcripts from three \emph{Polistes} species, spliced alignments of
+reference proteins from \emph{Apis mellifera} and \emph{Drosophila
+melanogaster}, gene models produced by three \emph{ab initio} gene
+predictors, and manual gene annotations contributed \emph{via} the
+PdomGDB genome browser's community annotation portal.
+
+\textbf{Transcriptome assembly and annotation}. Twelve Illumina
+paired-end RNA-Seq libraries were assembled using the Trinity assembler
+(\protect\hyperlink{ux5fENREFux5f15}{Grabherr \emph{et al.} 2011}) with
+the -\/-CuffFly algorithm and the -\/-jaccard\_clip setting enabled.
+Assembled transcripts were then post-processed to discard contaminants,
+split transcript chimeras, and annotate transcript functions by
+similarity to known proteins and miRNAs. Two previously published
+\emph{Polistes} transcriptomes
+(\protect\hyperlink{ux5fENREFux5f3}{Berens \emph{et al.} 2015b};
+\protect\hyperlink{ux5fENREFux5f10}{Ferreira \emph{et al.} 2013}) were
+processed with the same procedure.
+
+\textbf{Differential expression analysis}. Twelve Illumina paired-end
+RNA-Seq libraries, six from queens and six from workers, were sequenced
+and reads were mapped individually to the genome using Bowtie
+(\protect\hyperlink{ux5fENREFux5f29}{Langmead \emph{et al.} 2009}).
+Preliminary examination of the alignments revealed an extremely wide
+dynamic range of expression values (\textless{}10 reads to millions of
+reads mapped per replicate) and in some cases considerable variation
+between replicates. To account for these observations we discarded loci
+with too many or too few reads mapped (normalized by sequence length) or
+with a high coefficient of variation.
+
+Expression was quantified using RSEM
+(\protect\hyperlink{ux5fENREFux5f31}{Li \& Dewey 2011}), and the EBSeq
+package (\protect\hyperlink{ux5fENREFux5f30}{Leng \emph{et al.} 2013})
+was used for identifying loci with caste differential expression at a
+false discovery rate of \textless{} 0.05. A complete description of the
+number of raw reads, data filtering procedure, and software parameters
+used is available in \textbf{SI Methods and Results}.
+
+\textbf{Methylome analysis}. Two DNA samples (one pooled sample from
+workers and one pooled sample from queens, derived from the same six
+individuals used for transcriptome sequencing) were subjected to
+bisulfite treatment, and each sample was used to generate separate
+Illumina libraries for sequencing. The Bismark software
+(\protect\hyperlink{ux5fENREFux5f27}{Krueger \& Andrews 2011}) was used
+for read mapping and methylation calls. Highly supported methylation
+sites were determined as sites with significant number of methylation
+calls based on a binomial probability model with Bonferroni correction
+at the 1\% significance level (assuming a 99.5\% conversion rate in the
+treatment). We also reanalyzed existing datasets from from
+\emph{Polistes canadensis} (\protect\hyperlink{ux5fENREFux5f43}{Patalano
+\emph{et al.} 2015}), honey bees
+(\protect\hyperlink{ux5fENREFux5f33}{Lyko \emph{et al.} 2010}), the ants
+\emph{Harpegnathos saltator} and \emph{Camponotus floridanus}
+(\protect\hyperlink{ux5fENREFux5f4}{Bonasio \emph{et al.} 2012}), and
+the parasitoid wasp \emph{Nasonia vitripennis}
+(\protect\hyperlink{ux5fENREFux5f65}{Wang \emph{et al.} 2013}) in order
+to compare our \emph{P. dominula} results to previously analyzed
+Hymenoptera (see \textbf{SI Methods}). Numbers of methylation sites were
+determined with the BWASP workflow
+(\url{http://brendelgroup.github.io/BWASP/}) using pooled reads from
+published data sets for each species and caste.~ In-depth descriptions
+of the comparative data, analysis pipelines, and comparative results are
+provided in a companion paper (Toth AL, Sankaranarayanan S, and Brendel
+VP, \emph{in preparation}).
+
+\textbf{Examination of interfamilial relationships \emph{via} gene tree
+analysis}. Genes with conserved single-copy orthologs in \emph{Apis
+mellifera}, \emph{Harpegnathos saltator}, \emph{Polistes dominula}, and
+\emph{Nasonia vitripennis} were identified with protein clustering (see
+\textbf{SI Methods} for clustering criteria). For each gene, a multiple
+sequence alignment of the four corresponding protein sequences was
+computed, and from that alignment a phylogenetic tree was inferred
+\emph{via} maximum likelihood. After all gene trees had been
+constructed, each tree was analyzed to note its topology and collect a
+tally of the three possible topologies observed.
+
+\textbf{RESULTS AND DISCUSSION}
+
+\textbf{Genome description and assessment of \emph{de novo} genome
+quality.} We used Illumina technology to sequence genomic DNA from a
+single, haploid pupal male \emph{P. dominula} from an invasive
+population in State College, Pennsylvania, USA. The DNA was used to
+generate five Illumina genomic DNA libraries of varying insert size
+(\textbf{Table S1}), each sequenced on a single channel on an Illumina
+HiSeq instrument. This generated a total of 78.6 Gb of raw sequence,
+which was filtered using Trimmomatic
+(\protect\hyperlink{ux5fENREFux5f1}{Bailey \emph{et al.} 2009}) to
+remove sequencing adapters and low quality base calls. The groomed data
+were assembled using AllPaths-LG
+(\protect\hyperlink{ux5fENREFux5f14}{Gnerre \emph{et al.} 2011}),
+producing 1,483 scaffolds with an N50 of 1.63 Mb and a combined length
+of approximately 208 Mb. The genomic reads provide approximately 319x
+coverage of the genome. This genome assembly compares favorably to
+Illumina- and 454-based assemblies of other social Hymenoptera, in
+particular to that of \emph{Polistes canadensis}, which despite a higher
+level of fragmentation provides a consistent estimate of the
+\emph{Polistes} genome size. \textbf{Table 1} shows \emph{P. dominula}
+in comparison to a few representative previously published paper wasp,
+bee, ant, and non-social wasp genomes (taxon selection described in
+\textbf{SI Methods}).
+
+The genome assembly appears to be quite complete, on par with other
+Illumina-based draft insect genomes
+(\protect\hyperlink{ux5fENREFux5f5}{Bonasio \emph{et al.} 2010};
+\protect\hyperlink{ux5fENREFux5f37}{Nygaard \emph{et al.} 2011}). CEGMA
+analysis (\protect\hyperlink{ux5fENREFux5f42}{Parra \emph{et al.} 2007})
+showed 246 (99.2\%) of 248 ultra-conserved core eukaryote genes to be
+present in the genome assembly. The total assembled length of the genome
+approaches both \emph{in silico} estimates of the \emph{P. dominula}
+genome size based on \emph{k}-mer distributions in the sequence data
+(246 Mb, see \textbf{SI Results}) and earlier estimates based on flow
+cytometry (300 Mb, (\protect\hyperlink{ux5fENREFux5f23}{Johnston
+\emph{et al.} 2004})). The gene space of the \emph{P. dominula} genome
+therefore appears to be almost completely represented in the assembly,
+suggesting that the unrepresented portions of the genome are likely
+highly repetitive regions that are difficult to assemble with Illumina
+technology.
+
+Automated annotation of \emph{P. dominula} genes was based on a
+specifically trained MAKER workflow
+(\protect\hyperlink{ux5fENREFux5f6}{Campbell \emph{et al.} 2014}) and
+incorporated protein evidence from \emph{Apis mellifera} (NCBI release
+102 and OGS 3.2) and \emph{Drosophila} \emph{melanogaster} (FlyBase
+r5.55) and transcript data from \emph{P. dominula} (described below),
+\emph{P. metricus} (\protect\hyperlink{ux5fENREFux5f2}{Berens \emph{et
+al.} 2015a}), and \emph{P. canadensis}
+(\protect\hyperlink{ux5fENREFux5f10}{Ferreira \emph{et al.} 2013}). Also
+integrated into the annotation were 180 gene models that, during
+preliminary stages of annotation, were manually curated and refined
+using the yrGATE portal (\protect\hyperlink{ux5fENREFux5f73}{Wilkerson
+\emph{et al.} 2006}). This resulted in 11,819 predicted gene models,
+designated as release 1.2 (see \textbf{DATA ACCESIBILITY}). Similarity
+searches using BLAST revealed most of these predicted genes---10,755 out
+of 11,819 (91\%)---have hits to the NCBI non-redundant database, whereas
+1,064 show no significant similarity to known proteins. Of the genes
+with predicted homologs, most (10,504, or 98\%) have best hits to other
+Hymenoptera annotated proteins (\textbf{Figure S3}). These gene models
+represent the first whole-genome annotation of a vespid wasp, and
+include thousands of high-quality conserved genes enabling more detailed
+comparative analysis of hymenopteran genomes, as well as many
+species-specific gene models with which to investigate for evidence of
+novel clade-specific genes.
+
+\textbf{Composition of \emph{P. dominula} genome shows a combination of
+typical hymenopteran as well as unique features.} Comparisons of the
+\emph{P. dominula} genome assembly to those of other Hymenoptera
+revealed the assembled genome size and proportion of the genome occupied
+by transposable elements to be within the range of the other species.
+Published hymenopteran genomes show variety in the types and amounts of
+transposable element (TE) and other repetitive content, with \emph{Apis
+mellifera} harboring almost exclusively a small number of \emph{mariner}
+class transposons, and \emph{Nasonia vitripennis} on the other hand
+harboring diverse repetitive elements constituting approximately a
+quarter of its genome (\protect\hyperlink{ux5fENREFux5f20}{Honeybee
+Genome Sequencing Consortium 2006};
+\protect\hyperlink{ux5fENREFux5f70}{Werren \emph{et al.} 2010}). The
+\emph{Polistes dominula} and \emph{P. canadensis} genomes contain a
+fairly low level of repetitive DNA; 11-14\% of the genome assemblies
+(24-30 Mb) are estimated to be repetitive, the majority of which
+represents simple repeats and low complexity sequence. The two
+\emph{Polistes} genomes harbor a very similar cohort of TEs, dominated
+in both genomes primarily by L2/CR1/Rex and R1/LOA/Jockey LINEs,
+Gypsy/DIRS1 LTRs, and Tc1-IS630-Pogo DNA elements (\textbf{Table S4}).
+
+Characteristics of genome structure were further investigated by parsing
+the \emph{P. dominula} genome into 17,888 \emph{interval loci} (iLoci),
+each iLocus capturing the local genomic context of a single gene (11,713
+iLoci), a cluster of overlapping genes (205 iLoci), or an intergenic
+region (5,970 iLoci; see \textbf{SI Methods}). In order to compare a set
+of comparable genes across species and rule out differences due to
+annotation artifacts, homologous iLoci were determined by computing
+iLoci for several additional insect species and clustering their protein
+products. A comprehensive comparison included 17 hymenopteran species in
+total, but for illustrative purposes, seven representative species
+(\emph{P. dominula}, \emph{P. canadensis}, two bees, two ants, and a
+non-aculelate, non-social hymenopteran outgroup to the social insects,
+\emph{Nasonia vitripennis}) are shown for comparison in this and
+subsequent analyses; see \textbf{SI Methods}.
+
+At 11,918, the number of protein-coding iLoci (genes or gene clusters)
+in the \emph{P. dominula} genome is well within the range observed in
+other Hymenoptera (see \textbf{Figure S5}). However, gene iLoci occupy
+only 73.0 Mb (35.1\%) of the \emph{P. dominula} genome (and a similar
+proportion was found in \emph{P. canadensis}); this is much less
+compared to other species of Hymenoptera in which genes occupy between
+140-160 Mb (and 50-65\%) of the assembled genome (\textbf{Figure 1B}).
+This difference is due primarily to the annotation of fewer long genes,
+and in particular, long introns: while other Hymenoptera have 600-700
+gene iLoci 50 kb in length or greater, \emph{P. dominula} has only 84
+(see \textbf{Figure 1B}). Further comparative genomic analyses can help
+resolve whether this observed reduction in long introns in the \emph{P.
+dominula} genome is a truly unique characteristic of the genome
+sequence, or whether it stems from differences in annotation workflows.
+
+The \emph{Polistes dominula} genome is also characterized by an
+extremely biased nucleotide composition (\textbf{Figure 1C}). With a
+genome-wide GC content of 30.8\%, the \emph{P. dominula} genome is the
+most biased genome yet reported in Hymenoptera
+(\protect\hyperlink{ux5fENREFux5f5}{Bonasio \emph{et al.} 2010};
+\protect\hyperlink{ux5fENREFux5f37}{Nygaard \emph{et al.} 2011};
+\protect\hyperlink{ux5fENREFux5f54}{Smith \emph{et al.} 2011a};
+\protect\hyperlink{ux5fENREFux5f55}{Smith \emph{et al.} 2011b};
+\protect\hyperlink{ux5fENREFux5f57}{Suen \emph{et al.} 2011};
+\protect\hyperlink{ux5fENREFux5f69}{Weinstock \emph{et al.} 2006};
+\protect\hyperlink{ux5fENREFux5f70}{Werren \emph{et al.} 2010}) and one
+of the most biased known in any animal
+(\url{http://www.ncbi.nlm.nih.gov/genome/browse/}). At the resolution of
+individual gene loci, however, \emph{P. dominula} is not as GC-poor as
+\emph{Apis mellifera} (29.0\% and 24.7\% median GC content,
+respectively), the primary factor being the extreme bias of introns in
+\emph{A. mellifera} (21.3\% median GC content for \emph{P. dominula}
+versus 17.3\% median GC content for \emph{A. mellifera}; the
+distribution of intron length is nearly identical for \emph{P. dominula}
+and \emph{A. mellifera}). The composition of the \emph{P. canadensis}
+genome is slightly less biased than \emph{P. dominula} at all levels of
+resolution, but all trends in comparison to \emph{A. mellifera} are
+consistent (see \textbf{SI Results}). The biased composition of
+\emph{Polistes} genomes raises some compelling questions about the
+evolution of genome composition and potential contributing factors such
+as bias in DNA mismatch repair and other genome maintenance mechanisms,
+as well as the possibility of historically high levels of CpG
+methylation and cytosine deamination.
+
+\textbf{Caste-related transcriptome reveals differentially expressed
+conserved and novel genes.} Distinct queen and worker castes arise from
+the same genome, a phenomenon known as caste polyphenism that is
+characteristic of many social insects
+(\protect\hyperlink{ux5fENREFux5f56}{Smith \emph{et al.} 2008}).
+Differences in gene expression and alternative splicing between castes
+has been a topic of intense research interest because it provides a
+striking example of environmentally-induced phenotypic plasticity.
+Caste-differential expression has been widely investigated in advanced
+eusocial honey bees (\protect\hyperlink{ux5fENREFux5f8}{Chen \emph{et
+al.} 2012}; \protect\hyperlink{ux5fENREFux5f16}{Grozinger \emph{et al.}
+2007}; \protect\hyperlink{ux5fENREFux5f72}{Whitfield \emph{et al.}
+2003}) and ants (\protect\hyperlink{ux5fENREFux5f39}{Ometto \emph{et
+al.} 2011}; \protect\hyperlink{ux5fENREFux5f52}{Simola \emph{et al.}
+2013a}). More recently, high-throughput RNA sequencing technology
+(RNA-Seq) has been applied to profile expression in species representing
+a wider array of insect sociality, including an incipiently social small
+carpenter bee, an intermediately social bumble bee
+(\protect\hyperlink{ux5fENREFux5f18}{Harrison \emph{et al.} 2015}) and
+two primitively eusocial species of \emph{Polistes} wasps
+(\protect\hyperlink{ux5fENREFux5f3}{Berens \emph{et al.} 2015b};
+\protect\hyperlink{ux5fENREFux5f10}{Ferreira \emph{et al.} 2013}). New
+RNA-Seq data described in this study represent transcriptome data for a
+third \emph{Polistes} species, facilitating the discovery not only of
+caste-differentially expressed genes in \emph{P. dominula}, but also of
+conserved \emph{Polistes}-specific genes.
+
+We performed two lanes of Illumina paired-end RNA-Seq on mRNA isolated
+from heads of individual adult workers and active egg-laying queens (six
+replicates per group, from the same population as the male used for
+genomic DNA sequencing). The RNA-Seq reads were then mapped to 17,888
+iLoci using Bowtie (\protect\hyperlink{ux5fENREFux5f29}{Langmead
+\emph{et al.} 2009}), with most libraries mapping at an efficiency of
+80\%, after which iLocus abundances were estimated using RSEM
+(\protect\hyperlink{ux5fENREFux5f31}{Li \& Dewey 2011}) and tested for
+differential expression using EBSeq
+(\protect\hyperlink{ux5fENREFux5f30}{Leng \emph{et al.} 2013}) (methods
+and quality control described in detail in \textbf{SI Methods}). We
+identified 381 iLoci differentially expressed between queens and workers
+(\textbf{Figure 2A}), 100 lacking annotated gene models, 276 containing
+a single annotated gene, and 5 containing multiple genes. The majority
+of the 381 differentially expressed iLoci (231; 60\%) are up-regulated
+in workers. Other reports that also focused on head or brain gene
+expression from \emph{Polistes}
+(\protect\hyperlink{ux5fENREFux5f3}{Berens \emph{et al.} 2015b};
+\protect\hyperlink{ux5fENREFux5f10}{Ferreira \emph{et al.} 2013}) and
+honey bees (\protect\hyperlink{ux5fENREFux5f16}{Grozinger \emph{et al.}
+2007}) also found the majority of genes are worker-biased in expression.
+The skew towards worker-biased expression could reflect differences in
+behavioral flexibility and/or cognitive demands of workers compared to
+egg-laying queens (\protect\hyperlink{ux5fENREFux5f38}{O'Donnell
+\emph{et al.} 2011}).
+
+Differentially expressed iLoci are significantly enriched for Gene
+Ontology functions in fatty acid metabolism, neurotransmitter activity,
+and amino acid metabolism when compared to the background set of all
+\emph{P. dominula} gene models (\textbf{Figure 2B}). Previous studies on
+caste-related gene expression in other \emph{Polistes} species have also
+identified consistent differences in the expression of genes related to
+lipid metabolism (\protect\hyperlink{ux5fENREFux5f3}{Berens \emph{et
+al.} 2015b}; \protect\hyperlink{ux5fENREFux5f59}{Sumner \emph{et al.}
+2006}; \protect\hyperlink{ux5fENREFux5f62}{Toth \emph{et al.} 2010}).
+These data contribute to a growing base of information suggesting the
+expression of deeply conserved genes (i.e. a ``genetic toolkit'')
+related to metabolism is related to caste differences and may play a key
+role in the evolution of caste-containing insect societies
+(\protect\hyperlink{ux5fENREFux5f61}{Toth \& Robinson 2007}).
+
+All previously examined insects show evidence of large amounts of
+alternative splicing, including other social insect genomes
+(\protect\hyperlink{ux5fENREFux5f11}{Flores \emph{et al.} 2012};
+\protect\hyperlink{ux5fENREFux5f32}{Li-Byarlay \emph{et al.} 2013}). As
+expected, we found evidence for alternative splicing in 1,743 of the
+\emph{P. dominula} gene models. In particular, \emph{via} transcript
+mapping and scanning for the two major types of alternative splicing
+(intron retention and exon skipping, see \textbf{SI Methods}) we
+uncovered 1,616 intron retention events in 1,135 genes and 1,720 exon
+skipping events in 884 genes (see \textbf{SI Results}). 859 genes show
+only intron retention, 608 genes show only exon skipping, and 276 genes
+show both. However, analysis with Cufflinks and Cuffdiff \{Trapnell,
+2013 \#520\}(\protect\hyperlink{ux5fENREFux5f64}{Trapnell \emph{et al.}
+2013}) reported no cases of caste differential splicing, suggesting
+alternative splicing is not related to adult caste differences, at least
+in heads, of \emph{P. dominula.}
+
+Recently, there has been growing interest in the potential for
+``novel'', or taxonomically restricted genes in the evolution of novel
+phenotypes and in particular, eusociality
+(\protect\hyperlink{ux5fENREFux5f58}{Sumner 2014}). We also used our
+transcriptome data, in conjunction with previously published data for
+other \emph{Polistes} species, to search for well-supported
+\emph{Polistes-}specific genes. Our data represent the third published
+transcriptome dataset for a \emph{Polistes} species, together with the
+transcriptomes of two New World species, \emph{Polistes metricus}
+(\protect\hyperlink{ux5fENREFux5f3}{Berens \emph{et al.} 2015b}) and the
+Neotropical \emph{Polistes canadensis}
+(\protect\hyperlink{ux5fENREFux5f10}{Ferreira \emph{et al.} 2013}). In
+the \emph{Polistes canadensis} study, the authors identified a large
+number of novel transcripts (approximately 50\% of sequenced
+transcripts) with no similarity to any known sequence and suggest that
+novel genes may be related to the evolution of caste differences in
+social insects (\protect\hyperlink{ux5fENREFux5f58}{Sumner 2014}). We
+performed a more in-depth exploration of the three transcriptomes in
+order to identify \emph{Polistes}-specific transcripts that were shared
+by all three species. Such transcripts are much more likely to represent
+true protein-coding genes because they are conserved across species and
+there is evidence of their expression in multiple species. Considering
+\emph{P. dominula} transcripts with an open reading frame of at least 80
+aa, we found 19,173 transcripts with no significant similarity to
+Hexapoda sequences. Only 144 of these transcripts have translation
+products that are conserved between all three \emph{Polistes}
+transcriptomes. Of the 144 conserved shared transcripts, 118 are found
+in the annotated genome assembly, aligning to 93 different iLoci
+(\textbf{Figure 2C}). Only 10 of these 93 iLoci also have evidence of
+\emph{Polistes}-specific genes from the genome annotation (in the form
+of gene models without matches to protein databases), and even in these
+10 cases there is little agreement between transcript alignment
+structure and predicted gene structure (\textbf{Table S11}). These
+results suggest that while single lines of evidence may offer hints of
+clade-specific genes, very few cases are well supported when subjected
+to multiple lines of inquiry. This confirms a recent study in ants that
+uncovered evidence for very few shared, genus-specific genes and more
+unique species-specific gene, some of which are likely bioinformatics
+artifacts (\protect\hyperlink{ux5fENREFux5f52}{Simola \emph{et al.}
+2013a}).
+
+There are conflicting reports on the association of novel transcripts in
+caste differences in \emph{Polistes}. Transcriptomic comparisons from
+\emph{P. canadensis} adults suggested novel transcripts are more likely
+to be caste-biased in expression
+(\protect\hyperlink{ux5fENREFux5f10}{Ferreira \emph{et al.} 2013}),
+whereas novel transcripts from \emph{P. metricus} larvae did not show
+this caste-bias (\protect\hyperlink{ux5fENREFux5f3}{Berens \emph{et al.}
+2015b}). In the current study, we found that 77 out of 93 iLoci (83\%)
+associated with the 144 well-supported \emph{Polistes-}specific
+transcripts are caste differentially expressed (significantly
+overrepresented, Fisher's Exact Test p \textless{} 2.2e-16), 34 of which
+(44\%) are up-regulated in workers. In addition, eight of the 10 iLoci
+containing both unmatched transcripts and unmatched gene models are
+caste differentially expressed, with 4/8 up-regulated in workers. These
+results are consistent with data from \emph{P. canadensis}
+(\protect\hyperlink{ux5fENREFux5f10}{Ferreira \emph{et al.} 2013})
+suggesting novel genes are more likely to be caste-biased in expression
+in adults. The fact that a similar relationship between caste-biased
+expression and novel genes was not found in \emph{P. metricus} larvae
+suggests there could be different functions for novel genes across
+species and/or life stages.
+
+\textbf{DNA methylation system is greatly reduced in \emph{P.
+dominula}.} There has been great interest in the role of epigenetics in
+eusociality, and data from honey bees has generated considerable
+interest in the potential role of DNA methylation in the regulation of
+gene expression during the development of queen and worker castes
+(\protect\hyperlink{ux5fENREFux5f34}{Lyko \& Maleszka 2011}). We used
+the aforementioned genome and transcriptome data from \emph{P.
+dominula}, along with newly generated whole genome bisulfite sequencing
+(methylome) data, to probe the presence and extent of caste-association
+of DNA methylation in the independently evolved social paper wasps.
+
+A full complement of DNA methyltransferases, \emph{Dnmt1, 2,} and
+\emph{3,} is considered to be necessary for a fully functional DNA
+methylation system (\protect\hyperlink{ux5fENREFux5f34}{Lyko \& Maleszka
+2011}). \emph{Dnmt1} is typically considered as the ``maintenance''
+methyltransferase involved in maintaining consistent methylation across
+cell divisions and generations (\protect\hyperlink{ux5fENREFux5f34}{Lyko
+\& Maleszka 2011}). \emph{Dnmt2} is thought to be involved mainly in the
+methylation of transfer RNAs. \emph{Dnmt3} is the ``de novo''
+methyltransferase, and has been suggested to be related more to
+environmentally-responsive DNA methylation that occurs within the
+lifetime of an individual (\protect\hyperlink{ux5fENREFux5f34}{Lyko \&
+Maleszka 2011}). Other canonical methylation-related proteins include
+MBD (Methyl-CpG-binding domain protein) and the demethylation enzyme TET
+(Ten-eleven translocation methylcytosine dioxygenase)
+(\protect\hyperlink{ux5fENREFux5f34}{Lyko \& Maleszka 2011}). We used
+BLAST to identify sets of homologs for each of these genes and subjected
+these sets of sequences to molecular phylogeny analysis to determine
+copy numbers of each of these five major DNA methylation related genes.
+
+All previously sequenced Hymenoptera possess a full complement of DNA
+methyltransferases (\protect\hyperlink{ux5fENREFux5f75}{Yan \emph{et
+al.} 2015}), except the recently sequenced \emph{Polistes canadensis}
+which lacks \emph{Dnmt3} (\protect\hyperlink{ux5fENREFux5f43}{Patalano
+\emph{et al.} 2015}). Our MAKER annotation workflow (augmented by manual
+annotations as well as low stringency similarity searches for
+potentially incomplete or highly diverged homologs) also uncovered no
+\emph{Dnmt3} gene, but did identify one \emph{Dnmt1} gene (as in ants
+(\protect\hyperlink{ux5fENREFux5f5}{Bonasio \emph{et al.} 2010}), as
+opposed to two in honey bees (\protect\hyperlink{ux5fENREFux5f66}{Wang
+\emph{et al.} 2006})) and one \emph{Dnmt2} gene, as well as genes
+encoding MBD and TET homologs (summarized in \textbf{Figure 3A}). To
+further investigate whether the absence of a \emph{Dnmt3} gene model
+might represent a gene loss, we examined available Hymenoptera genomes
+for shared synteny in the region harboring \emph{Dnmt3} in \emph{Apis
+mellifera}. Results show that the \emph{Dnmt3} locus is within a
+syntenic block encompassing at least an additional two genes upstream
+and two genes downstream, conserved in bee and ant genomes. Synteny
+analyses were conducted with the SynFind and associated tools within the
+CoGe platform (\url{https://genomevolution.org/coge/};
+\protect\hyperlink{ux5fENREFux5f60}{Tang \emph{et al.} (2015)}). Sample
+genome alignments are shown in \textbf{Figure 3B}. The first upstream
+and the two downstream genes co-localize in a 90kb region on
+scaffold0086 of our \emph{P. dominula} assembly, preserving the syntenic
+block (the leftmost gene of the bee-ant syntenic block is preserved on
+scaffold0049 but would be at least 235 kb away if this scaffold were to
+align upstream of scaffold0086). However, there is a conspicuous absence
+of any similarity to \emph{Dnmt3} in the syntenic region of the \emph{P.
+dominula} genome (\textbf{Figure 3B}). Intriguingly, across the
+remaining Hymenoptera species, the region upstream of the annotated
+\emph{Dnmt3} genes encoding the conserved C-terminus of the
+methyltransferase is highly variable in size and gene structure
+annotation is unclear (including annotation of the possibly overlapping
+upstream gene). The \emph{Nasonia vitripennis} \emph{Dnmt3} protein is
+highly diverged at the N-terminus, and although the other genes of the
+bee-ant syntenic block are highly conserved in \emph{Nasonia}, they are
+widely spread in the genome. These results suggest that the \emph{Dnmt3}
+locus, and by extension, perhaps some functional aspects of DNA
+methylation systems in general, are not highly conserved in different
+lineages of Hymenoptera.
+
+In addition to the lack of genome sequence evidence for a functional
+\emph{Dnmt3} gene in \emph{Polistes dominula}, we found no significant
+similarity between Hymenoptera \emph{Dnmt3} sequences and transcripts
+from any of the three \emph{Polistes} species' transcriptomes
+(\protect\hyperlink{ux5fENREFux5f3}{Berens \emph{et al.} 2015b};
+\protect\hyperlink{ux5fENREFux5f10}{Ferreira \emph{et al.} 2013})
+(tblastn search with -evalue 1e-8). The lack of any \emph{Dnmt3}
+transcripts in the three congeners strongly suggests this gene has
+indeed been lost across the genus \emph{Polistes.} Further work on
+additional species will be necessary to determine whether this loss is
+common to the entire paper wasp family Vespidae.
+
+Along with the loss of \emph{Dnmt3,} whole genome bisulfite sequencing
+of one pool of queen and one pool of worker heads revealed a dramatic
+reduction in DNA methylation in \emph{P. dominula} compared to other
+Hymenoptera. This is in contrast to previous reports suggesting the
+presence of typical amounts of DNA methylation in \emph{P. dominula},
+but these reports used a less reliable method for estimating DNA
+methylation based on a methylation-sensitive restriction enzyme assay
+(\protect\hyperlink{ux5fENREFux5f26}{Kronforst \emph{et al.} 2008};
+\protect\hyperlink{ux5fENREFux5f67}{Weiner \emph{et al.} 2013}). Through
+a complete and uniform reanalysis of previously published Hymenoptera
+bisulfite sequencing data (from honey bees, two ant species,
+\emph{Polistes canadensis,} and \emph{Nasonia vitripennis}) we were able
+to make a reliable comparison of DNA methylation levels in \emph{P.
+dominula} to those of other Hymenoptera (described in \textbf{SI
+Methods}). Overall, levels of DNA methylation in \emph{P. dominula} are
+more than two orders of magnitude lower than in other Hymenoptera. This
+includes the congeneric \emph{Polistes canadensis}, which, although
+showing lower levels of methylation than ants and bees, still has two
+orders of magnitude more methylated CpG sites than \emph{P. dominula}
+(\textbf{Figure 3C}, \textbf{SI Results})\emph{.} We uncovered only 124
+and 158 CpG methylated sites, respectively in the queen and worker
+samples; this is in stark contrast to tens of thousands of sites
+uncovered in all of the other Hymenoptera species (\textbf{Figure 3C}).
+Similar to other insects (\protect\hyperlink{ux5fENREFux5f45}{Rasmussen
+\& Amdam 2015}), most methylated sites were found within genes (74 and
+89 sites in queen and worker samples, respectively); see \textbf{SI
+Results}. Strikingly, methylation was targeted to the same seven genes
+in both queen and worker samples (\textbf{Figure 3D}), and several of
+these have putative functions related to DNA binding. Thus, there were
+zero caste differentially methylated genes, and great similarity between
+castes, even at the level of which cytosines within the seven genes were
+methylated. Of the 101 total methylated cytosines within the seven
+genes, 62 (61\%) of the same methylated cytosines were shared between
+both castes (\textbf{Figure 3D}). This result is again in contrast to
+studies from both bees (\protect\hyperlink{ux5fENREFux5f33}{Lyko
+\emph{et al.} 2010}) and ants
+(\protect\hyperlink{ux5fENREFux5f4}{Bonasio \emph{et al.} 2012}), which
+reported hundreds of caste differentially methylated genes between queen
+and worker castes. The fact that nearly identical methylation patterns
+were found in just a few genes, but consistently across castes, suggests
+the extremely low level of DNA methylation we describe in \emph{P.
+dominula} is real and may be of some functional significance. We suggest
+that, despite a massive reduction in \emph{de novo} methylation in paper
+wasps, there may have been selection to retain ``maintenance
+methylation'', likely \emph{via} the action of of \emph{Dnmt1,} for a
+few key genes. This idea is supported by the observation that five out
+of the seven \emph{P. dominula} methylated genes also showed strong
+methylation in \emph{P. canadensis} (\textbf{SI Results}), and homologs
+of three of these seven genes in \emph{Apis mellifera} are methylated
+consistently across multiple independently published experiments.
+
+Our methylome data from \emph{P. dominula} also suggest no clear
+connection to dynamic gene expression patterns: none of the seven
+methylated genes is differentially expressed between castes; two out of
+the seven show some evidence of alternative splicing, but not caste
+differential splicing (PdomGENEr1.2-09385 and PdomGENEr1.2-09184).
+Although \emph{P. canadensis} also shows some evidence of a reduced
+methylation system (loss of \emph{Dnmt3} and fewer methylated CpG sites
+and methylated genes than bees and ants
+(\protect\hyperlink{ux5fENREFux5f43}{Patalano \emph{et al.} 2015})), the
+reduction in \emph{P. dominula} is much more striking. This suggests
+reduced DNA methylation systems may be a general characteristic of paper
+wasps, but that there has been even further reduction of these systems
+in the \emph{P. dominula} lineage relative to some of its congeners.
+
+These data raise intriguing questions about the importance and function
+of DNA methylation in insects. DNA methylation systems have also been
+dramatically reduced in other insect lineages (e.g. \emph{Drosophila}
+flies and \emph{Tribolium} beetles), the shared feature being a loss of
+\emph{Dnmt3} and large reduction in overall levels of DNA methylation
+(\protect\hyperlink{ux5fENREFux5f13}{Glastad \emph{et al.} 2011}).
+Furthermore, there are other insects where \emph{Dnmt3} is not present,
+but moderate levels of DNA methylation remain
+(\protect\hyperlink{ux5fENREFux5f36}{Mita \emph{et al.} 2004};
+\protect\hyperlink{ux5fENREFux5f43}{Patalano \emph{et al.}
+2015})\emph{.} Thus, DNA methylation is not clearly related to gene
+regulation in some insects (\protect\hyperlink{ux5fENREFux5f12}{Glastad
+\emph{et al.} 2014}) and even some social insects, suggesting other
+types of epigenetic mechanisms such as histone modifications
+(\protect\hyperlink{ux5fENREFux5f53}{Simola \emph{et al.} 2013b}) or
+microRNAs may be more important. Our data also highlight the surprising
+lability of epigenetic mechanisms even within an insect lineage
+(Hymenoptera) and do not support the idea that phenotypic plasticity
+afforded by DNA methylation is required for the evolution of castes in
+social insects (\protect\hyperlink{ux5fENREFux5f68}{Weiner \& Toth
+2012}).
+
+We also examined patterns of occurrence of CpG dinucleotides in the
+\emph{P. dominula} genome, because segmental ratios of observed to
+expected (o/e) CpG frequency have been used as an indicator of regional
+DNA methylation status, based on the assumption that highly methylated
+regions are characterized by mutational loss of methylated cytosines
+(\protect\hyperlink{ux5fENREFux5f76}{Yi \& Goodisman 2009}). The
+distribution of CpG o/e in \emph{P. dominula} is similarly broad as that
+of other Hymenoptera, but lacking the bimodal distribution
+characteristic of the measure in bee coding regions (\textbf{Figure
+S8}). Use of this measure as an indicator of methylation status in
+\emph{P. dominula} would have incorrectly inferred the presence of
+numerous methylated genes. Thus, the CpG o/e measure does not accurately
+reflect the true methylation status of the \emph{P. dominula} genome
+based on bisulfite sequencing, a much more direct and sensitive method
+for detecting actual site-specific methylation. It is conceivable that
+CpG depletion is still correlated with historical (not modern) patterns
+of DNA methylation, and this is reflected in the fairly typical CpG o/e
+distribution in \emph{P. dominula} (\textbf{Figure S8})\emph{.} Because
+appreciable levels of DNA methylation are found in a wide variety of
+other Hymenoptera (\textbf{Figure 3A}), it is likely that reduced DNA
+methylation is a derived condition in \emph{Polistes}, but more data on
+additional species are needed to understand when and why reduced DNA
+methylation evolved in vespid wasps.
+
+\textbf{Aculeate Phylogeny.} The genome of \emph{Polistes dominula}
+provides a beneficial complement to the genomes of several species of
+aculeate Hymenoptera already published. Together, these genomes are a
+powerful comparative genomics resource for identifying what is conserved
+and what is unique among the primary aculeate lineages. A delineation of
+the phylogenetic relationships between these lineages is a fundamental
+component for analysis and interpretation of evolved traits, and yet
+consensus regarding the phylogeny of Aculeata remains elusive
+(\protect\hyperlink{ux5fENREFux5f22}{Johnson \emph{et al.} 2013};
+\protect\hyperlink{ux5fENREFux5f44}{Pilgrim \emph{et al.} 2008}). A
+study using molecular data from 4 loci in 64 taxa placed bees
+(superfamily Apoidea) as sister to scoliid and bradynobaenid wasps
+(\protect\hyperlink{ux5fENREFux5f44}{Pilgrim \emph{et al.} 2008}), while
+a more recent study involving analysis of 308 genes from 19 taxa found
+ants (family Formicidae) to be sister to bees
+(\protect\hyperlink{ux5fENREFux5f22}{Johnson \emph{et al.} 2013}).
+
+Because our current work describes the one of the first published
+complete genomes of a vespid wasp, we sought to use these data to
+investigate the phylogenetic grouping of \emph{Polistes} proteins
+relative to orthologs in bees, ants, and the non-aculeate wasp
+\emph{Nasonia} as an outgroup. Using conserved single-copy orthologs
+present in \emph{Apis mellifera} (bee), \emph{Harpegnathos saltator}
+(ant), \emph{Polistes dominula} (paper wasp), and \emph{Nasonia
+vitripennis} (non-aculeate outgroup), we inferred a phylogenetic tree
+for each gene using these four representative protein sequences (see
+\textbf{SI Methods}). We observed all possible topologies in the 2,077
+gene trees: bees and ants as closest neighbors in 889 trees (43\%),
+\emph{Polistes} and bees as closest in 696 trees (34\%), and
+\emph{Polistes} and ants as closest in 492 trees (24\%). Although the
+most common topology (bees and ants as closest) agrees with the results
+of the most recent, transcriptome-based phylogenetic analysis of
+aculeates (45), there was definitely not a clear consensus from our
+data. Based on our analysis, the protein-coding genomes of the published
+Hymenoptera do not yet provide a definitive answer to the question of
+the phylogenetic relationship of bees, ants, and vespid wasps.
+Additional aculeate genomes, including more representatives of the
+Vespidae (\protect\hyperlink{ux5fENREFux5f21}{Jandt \& Toth 2015}) and
+other wasp families, may help to better resolve aculeate relationships
+in the future.
+
+\textbf{CONCLUSIONS}
+
+This paper provides valuable and comprehensive genomic resources for one
+of the major lineages of eusocial insects, the vespid wasps, represented
+by the behavioral model species \emph{Polistes dominula}. The \emph{P.
+dominula} genome is a relatively compact (250Mb) genome with little
+repetitive DNA, as well as low GC content, in comparison to other
+Hymenoptera. Transcriptomic analyses revealed several hundred genes with
+caste-related expression, with functions related to fatty acid and amino
+acid metabolism and neurotransmitter activity. In addition, we
+identified several \emph{Polistes-}specific genes, several of which also
+show differential expression between queen and worker castes. Together,
+these data provide some support for the roles of both conserved genes
+and novel genes in the evolution and maintenance of caste differences in
+social wasps (\protect\hyperlink{ux5fENREFux5f58}{Sumner 2014};
+\protect\hyperlink{ux5fENREFux5f61}{Toth \& Robinson 2007}). The most
+surprising finding from our \emph{P. dominula} --omics data was clear
+evidence of a striking reduction in the DNA methylation system. \emph{P.
+dominula} have a reduced complement of DNA methylation enzymes,
+including a loss of the \emph{de novo} methyltransferase \emph{Dnmt3},
+as well as extremely reduced levels of DNA methylation in the
+genome---with evidence for just over 100 methylated sites in only seven
+genes. In addition, there was no relationship between DNA methylation
+and caste- related gene expression, methylation, nor alternative
+splicing. There has been great interest and research activity related to
+the potential role of DNA methylation in the regulation of caste
+differences and caste evolution in eusocial insects
+(\protect\hyperlink{ux5fENREFux5f28}{Kucharski \emph{et al.} 2008};
+\protect\hyperlink{ux5fENREFux5f68}{Weiner \& Toth 2012}). Our data are
+novel in that they suggest \emph{P. dominula} possesses the most reduced
+DNA methylation system known for any eusocial insect, but there are
+other examples of non-social insects with similarly reduced methylation
+systems, including \emph{Drosophila}. These data add to growing evidence
+for a surprising amount of lability of epigenetic mechanisms in insects,
+and suggest DNA methylation \emph{per se} is not generally related to
+the evolution of castes in social insects. These genomic,
+transcriptomic, and epigenomic data on a primitively eusocial vespid
+wasp open up exciting new possibilities for comparative genomics of
+social evolution. Comparisons both across eusocial lineages and within
+lineages have the potential to provide new insights into the roles of
+conserved genes and pathways, novel genes, and epigenetic mechanisms in
+social evolution (\protect\hyperlink{ux5fENREFux5f47}{Rehan \& Toth
+2015}).
+
+\textbf{ACKNOWLEDGMENTS}
+
+This work was supported in part by the U.S.A. National Science
+Foundation grant NSF-IOS-1311512 and a grant from the Iowa State
+University Center for Integrated Animal Genomics, both awarded to AT. DS
+was supported in part by NSF award \#1221984 to VB.
+
+The authors would like to thank Amy Geffre for assistance with DNA and
+RNA extractions, Susan Weiner for preliminary work on DNA
+methyltransferase genes, and members of the Toth lab for reviewing the
+manuscript. We also thank Michael Goodisman and Brendan Hunt for
+discussions about methylome sequencing and DNA methylation patterns. We
+also thank Christina Grozinger, Stefano Turillazzi, Gene Robinson, and
+Joan Strassmann for helpful discussions and support in planning stages
+of this project, and GR and JS for comments on the manuscript. We also
+thank our manual annotation team: Arian Avalos, Seth Barribeau,
+Katherine Noble, Sandra Rehan, Fabio Manfredini, Griffin Smith, Amy
+Geffre, Adam Dolezal, Jimena Carrillo-Tripp, Alexander Walton, and
+Jennifer Jandt for submitting manual gene annotations; and Jon Duvick
+for reviewing and curating annotation submissions.
+
+\textbf{REFERENCES}
+
+\protect\hypertarget{ux5fENREFux5f1}{}{}Bailey TL, Boden M, Buske
+FA\emph{, et al.} (2009) MEME SUITE: tools for motif discovery and
+searching. \emph{Nucleic Acids Res} \textbf{37}, W202-208.
+
+\protect\hypertarget{ux5fENREFux5f2}{}{}Berens AJ, Hunt JH, Toth AL
+(2015a) Comparative Transcriptomics of Convergent Evolution: Different
+Genes but Conserved Pathways Underlie Caste Phenotypes across Lineages
+of Eusocial Insects. \emph{Molecular Biology and Evolution} \textbf{32},
+690-703.
+
+\protect\hypertarget{ux5fENREFux5f3}{}{}Berens AJ, Hunt JH, Toth AL
+(2015b) Comparative Transcriptomics of Convergent Evolution: Different
+Genes but Conserved Pathways Underlie Caste Phenotypes across Lineages
+of Eusocial Insects. \emph{Mol Biol Evol} \textbf{32}, 690-703.
+
+\protect\hypertarget{ux5fENREFux5f4}{}{}Bonasio R, Li Q, Lian J\emph{,
+et al.} (2012) Genome-wide and caste-specific DNA methylomes of the ants
+Camponotus floridanus and Harpegnathos saltator. \emph{Curr Biol}
+\textbf{22}, 1755-1764.
+
+\protect\hypertarget{ux5fENREFux5f5}{}{}Bonasio R, Zhang G, Ye C\emph{,
+et al.} (2010) Genomic comparison of the ants Camponotus floridanus and
+Harpegnathos saltator. \emph{Science} \textbf{329}, 1068-1071.
+
+\protect\hypertarget{ux5fENREFux5f6}{}{}Campbell MS, Law M, Holt
+C\emph{, et al.} (2014) MAKER-P: a tool kit for the rapid creation,
+management, and quality control of plant genome annotations. \emph{Plant
+Physiol} \textbf{164}, 513-524.
+
+\protect\hypertarget{ux5fENREFux5f7}{}{}Cantarel BL, Korf I, Robb
+SM\emph{, et al.} (2008) MAKER: an easy-to-use annotation pipeline
+designed for emerging model organism genomes. \emph{Genome Res}
+\textbf{18}, 188-196.
+
+\protect\hypertarget{ux5fENREFux5f8}{}{}Chen X, Hu Y, Zheng H\emph{, et
+al.} (2012) Transcriptome comparison between honey bee queen- and
+worker-destined larvae. \emph{Insect Biochemistry and Molecular Biology}
+\textbf{42}, 665-673.
+
+\protect\hypertarget{ux5fENREFux5f9}{}{}Ezenwa VO, Peters JM, Zhu
+Y\emph{, et al.} (1998) Ancient Conservation of Trinucleotide
+Microsatellite Loci in Polistine Wasps. \emph{Molecular Phylogenetics
+and Evolution} \textbf{10}, 168-177.
+
+\protect\hypertarget{ux5fENREFux5f10}{}{}Ferreira PG, Patalano S,
+Chauhan R\emph{, et al.} (2013) Transcriptome analyses of primitively
+eusocial wasps reveal novel insights into the evolution of sociality and
+the origin of alternative phenotypes. \emph{Genome Biol} \textbf{14},
+R20.
+
+\protect\hypertarget{ux5fENREFux5f11}{}{}Flores K, Wolschin F,
+Corneveaux J\emph{, et al.} (2012) Genome-wide association between DNA
+methylation and alternative splicing in an invertebrate. \emph{BMC
+Genomics} \textbf{13}, 480.
+
+\protect\hypertarget{ux5fENREFux5f12}{}{}Glastad KM, Hunt BG, Goodisman
+MAD (2014) Evolutionary insights into DNA methylation in insects.
+\emph{Current Opinion in Insect Science} \textbf{1}, 25-30.
+
+\protect\hypertarget{ux5fENREFux5f13}{}{}Glastad KM, Hunt BG, Yi SV,
+Goodisman MAD (2011) DNA methylation in insects: on the brink of the
+epigenomic era. \emph{Insect Mol Biol} \textbf{20}, 553-565.
+
+\protect\hypertarget{ux5fENREFux5f14}{}{}Gnerre S, MacCallum I,
+Przybylski D\emph{, et al.} (2011) High-quality draft assemblies of
+mammalian genomes from massively parallel sequence data.
+\emph{Proceedings of the National Academy of Sciences} \textbf{108},
+1513-1518.
+
+\protect\hypertarget{ux5fENREFux5f15}{}{}Grabherr MG, Haas BJ, Yassour
+M\emph{, et al.} (2011) Full-length transcriptome assembly from RNA-Seq
+data without a reference genome. \emph{Nat Biotech} \textbf{29},
+644-652.
+
+\protect\hypertarget{ux5fENREFux5f16}{}{}Grozinger CM, Fan YL, Hoover
+SER, Winston ML (2007) Genome-wide analysis reveals differences in brain
+gene expression patterns associated with caste and reproductive status
+in honey bees (Apis mellifera). \emph{Molecular Ecology} \textbf{16},
+4837-4848.
+
+\protect\hypertarget{ux5fENREFux5f17}{}{}Hamilton WD (1964) The
+genetical evolution of social behaviour. I. \emph{Journal of Theoretical
+Biology} \textbf{7}, 1-16.
+
+\protect\hypertarget{ux5fENREFux5f18}{}{}Harrison MC, Hammond RL, Mallon
+EB (2015) Reproductive workers show queenlike gene expression in an
+intermediately eusocial insect, the buff-tailed bumble bee Bombus
+terrestris. \emph{Molecular Ecology} \textbf{24}, 3043-3063.
+
+\protect\hypertarget{ux5fENREFux5f19}{}{}Hölldobler B, Wilson EO (2009)
+\emph{The superorganism : the beauty, elegance, and strangeness of
+insect societies}, 1st edn. W.W. Norton \& Company, New York.
+
+\protect\hypertarget{ux5fENREFux5f20}{}{}Honeybee Genome Sequencing
+Consortium (2006) Insights into social insects from the genome of the
+honeybee Apis mellifera. \emph{Nature} \textbf{443}, 931-949.
+
+\protect\hypertarget{ux5fENREFux5f21}{}{}Jandt JM, Toth AL (2015)
+Chapter Three - Physiological and Genomic Mechanisms of Social
+Organization in Wasps (Family: Vespidae). In: \emph{Advances in Insect
+Physiology} (eds. Amro Z, Clement FK), pp. 95-130. Academic Press.
+
+\protect\hypertarget{ux5fENREFux5f22}{}{}Johnson Brian~R, Borowiec
+Marek~L, Chiu Joanna~C\emph{, et al.} (2013) Phylogenomics Resolves
+Evolutionary Relationships among Ants, Bees, and Wasps. \emph{Current
+Biology} \textbf{23}, 2058-2062.
+
+\protect\hypertarget{ux5fENREFux5f23}{}{}Johnston JS, Ross LD, Beani L,
+Hughes DP, Kathirithamby J (2004) Tiny genomes and endoreduplication in
+Strepsiptera. \emph{Insect Mol Biol} \textbf{13}, 581-585.
+
+\protect\hypertarget{ux5fENREFux5f24}{}{}Kapheim KM, Pan H, Li C\emph{,
+et al.} (2015) Genomic signatures of evolutionary transitions from
+solitary to group living. \emph{Science} \textbf{348}, 1139-1143.
+
+\protect\hypertarget{ux5fENREFux5f25}{}{}Kocher SD, Li C, Yang W\emph{,
+et al.} (2013) The draft genome of a socially polymorphic halictid bee,
+Lasioglossum albipes. \emph{Genome Biol} \textbf{14}.
+
+\protect\hypertarget{ux5fENREFux5f26}{}{}Kronforst MR, Gilley DC,
+Strassmann JE, Queller DC (2008) DNA methylation is widespread across
+social Hymenoptera. \emph{Current Biology} \textbf{18}, R287-R288.
+
+\protect\hypertarget{ux5fENREFux5f27}{}{}Krueger F, Andrews SR (2011)
+Bismark: a flexible aligner and methylation caller for Bisulfite-Seq
+applications. \emph{Bioinformatics} \textbf{27}, 1571-1572.
+
+\protect\hypertarget{ux5fENREFux5f28}{}{}Kucharski R, Maleszka J, Foret
+S, Maleszka R (2008) Nutritional control of reproductive status in
+honeybees via DNA methylation. \emph{Science} \textbf{319}, 1827-1830.
+
+\protect\hypertarget{ux5fENREFux5f29}{}{}Langmead B, Trapnell C, Pop M,
+Salzberg SL, others (2009) Ultrafast and memory-efficient alignment of
+short DNA sequences to the human genome. \emph{Genome Biol} \textbf{10},
+R25-R25.
+
+\protect\hypertarget{ux5fENREFux5f30}{}{}Leng N, Dawson JA, Thomson
+JA\emph{, et al.} (2013) EBSeq: an empirical Bayes hierarchical model
+for inference in RNA-seq experiments. \emph{Bioinformatics} \textbf{29},
+1035-1043.
+
+\protect\hypertarget{ux5fENREFux5f31}{}{}Li B, Dewey CN (2011) RSEM:
+accurate transcript quantification from RNA-Seq data with or without a
+reference genome. \emph{BMC Bioinformatics} \textbf{12}, 323.
+
+\protect\hypertarget{ux5fENREFux5f32}{}{}Li-Byarlay H, Li Y, Stroud
+H\emph{, et al.} (2013) RNA interference knockdown of DNA
+methyl-transferase 3 affects gene alternative splicing in the honey bee.
+\emph{Proc Natl Acad Sci U S A} \textbf{110}, 12750-12755.
+
+\protect\hypertarget{ux5fENREFux5f33}{}{}Lyko F, Foret S, Kucharski
+R\emph{, et al.} (2010) The Honey Bee Epigenomes: Differential
+Methylation of Brain DNA in Queens and Workers. \emph{Plos Biology}
+\textbf{8}.
+
+\protect\hypertarget{ux5fENREFux5f34}{}{}Lyko F, Maleszka R (2011)
+Insects as innovative models for functional studies of DNA methylation.
+\emph{Trends in Genetics} \textbf{27}, 127-131.
+
+\protect\hypertarget{ux5fENREFux5f35}{}{}Maynard Smith J, Szathmáry E
+(1997) \emph{The major transitions in evolution} Oxford University
+Press, Oxford ; New York.
+
+\protect\hypertarget{ux5fENREFux5f36}{}{}Mita K, Kasahara M, Sasaki
+S\emph{, et al.} (2004) The Genome Sequence of Silkworm, Bombyx mori.
+\emph{DNA Research} \textbf{11}, 27-35.
+
+\protect\hypertarget{ux5fENREFux5f37}{}{}Nygaard S, Zhang G, Schiott
+M\emph{, et al.} (2011) The genome of the leaf-cutting ant Acromyrmex
+echinatior suggests key adaptations to advanced social life and fungus
+farming. \emph{Genome Res}.
+
+\protect\hypertarget{ux5fENREFux5f38}{}{}O'Donnell S, Clifford M, Molina
+Y (2011) Comparative analysis of constraints and caste differences in
+brain investment among social paper wasps. \emph{Proceedings of the
+National Academy of Sciences} \textbf{108}, 7107-7112.
+
+\protect\hypertarget{ux5fENREFux5f39}{}{}Ometto L, Shoemaker D, Ross KG,
+Keller L (2011) Evolution of Gene Expression in Fire Ants: The Effects
+of Developmental Stage, Caste, and Species. \emph{Molecular Biology and
+Evolution} \textbf{28}, 1381-1392.
+
+\protect\hypertarget{ux5fENREFux5f40}{}{}Oxley Peter~R, Ji L,
+Fetter-Pruneda I\emph{, et al.} (2014) The Genome of the Clonal Raider
+Ant Cerapachys biroi. \emph{Current Biology} \textbf{24}, 451-458.
+
+\protect\hypertarget{ux5fENREFux5f41}{}{}Pardi L (1948) Dominance Order
+in Polistes Wasps. \emph{Physiological Zoology} \textbf{21}, 1-13.
+
+\protect\hypertarget{ux5fENREFux5f42}{}{}Parra G, Bradnam K, Korf I
+(2007) CEGMA: a pipeline to accurately annotate core genes in eukaryotic
+genomes. \emph{Bioinformatics} \textbf{23}, 1061-1067.
+
+\protect\hypertarget{ux5fENREFux5f43}{}{}Patalano S, Vlasova A, Wyatt
+C\emph{, et al.} (2015) Molecular signatures of plastic phenotypes in
+two eusocial insect species with simple societies. \emph{Proc Natl Acad
+Sci U S A} \textbf{112}, 13970-13975.
+
+\protect\hypertarget{ux5fENREFux5f44}{}{}Pilgrim EM, Von Dohlen CD,
+Pitts JP (2008) Molecular phylogenetics of Vespoidea indicate paraphyly
+of the superfamily and novel relationships of its component families and
+subfamilies. \emph{Zoologica Scripta} \textbf{37}, 539-560.
+
+\protect\hypertarget{ux5fENREFux5f45}{}{}Rasmussen EMK, Amdam GV (2015)
+Cytosine modifications in the honey bee (Apis mellifera) worker genome.
+\emph{Frontiers in Genetics} \textbf{6}.
+
+\protect\hypertarget{ux5fENREFux5f46}{}{}Reeve HK (1991) Polistes. In:
+\emph{The Social Biology of Wasps} (ed. Ross KGaM, Robert W.), pp.
+99-148. Cornell University Press, Ithaca, NY, USA.
+
+\protect\hypertarget{ux5fENREFux5f47}{}{}Rehan SM, Toth AL (2015)
+Climbing the social ladder: the molecular evolution of sociality.
+\emph{Trends in Ecology \& Evolution} \textbf{30}, 426-433.
+
+\protect\hypertarget{ux5fENREFux5f48}{}{}Robinson GE, Fernald RD,
+Clayton DF (2008) Genes and social behavior. \emph{Science}
+\textbf{322}, 896-900.
+
+\protect\hypertarget{ux5fENREFux5f49}{}{}Robinson GE, Grozinger CM,
+Whitfield CW (2005) Sociogenomics: social life in molecular terms.
+\emph{Nature reviews. Genetics} \textbf{6}, 257-270.
+
+\protect\hypertarget{ux5fENREFux5f50}{}{}Rokas A, Abbot P (2009)
+Harnessing genomics for evolutionary insights. \emph{Trends in Ecology
+\& Evolution} \textbf{24}, 192-200.
+
+\protect\hypertarget{ux5fENREFux5f51}{}{}Sadd BM, Barribeau SM, Bloch
+G\emph{, et al.} (2015) The genomes of two key bumblebee species with
+primitive eusocial organization. \emph{Genome Biology} \textbf{16},
+1-32.
+
+\protect\hypertarget{ux5fENREFux5f52}{}{}Simola DF, Wissler L, Donahue
+G\emph{, et al.} (2013a) Social insect genomes exhibit dramatic
+evolution in gene composition and regulation while preserving regulatory
+features linked to sociality. \emph{Genome Res} \textbf{23}, 1235-1247.
+
+\protect\hypertarget{ux5fENREFux5f53}{}{}Simola DF, Ye C, Mutti
+NS\emph{, et al.} (2013b) A chromatin link to caste identity in the
+carpenter ant Camponotus floridanus. \emph{Genome Res} \textbf{23},
+486-496.
+
+\protect\hypertarget{ux5fENREFux5f54}{}{}Smith CD, Zimin A, Holt
+C\emph{, et al.} (2011a) Draft genome of the globally widespread and
+invasive Argentine ant (Linepithema humile). \emph{Proc Natl Acad Sci U
+S A} \textbf{108}, 5673-5678.
+
+\protect\hypertarget{ux5fENREFux5f55}{}{}Smith CR, Smith CD, Robertson
+HM\emph{, et al.} (2011b) Draft genome of the red harvester ant
+Pogonomyrmex barbatus. \emph{Proc Natl Acad Sci U S A} \textbf{108},
+5667-5672.
+
+\protect\hypertarget{ux5fENREFux5f56}{}{}Smith CR, Toth AL, Suarez AV,
+Robinson GE (2008) Genetic and genomic analyses of the division of
+labour in insect societies. \emph{Nat Rev Genet} \textbf{9}, 735-748.
+
+\protect\hypertarget{ux5fENREFux5f57}{}{}Suen G, Teiling C, Li L\emph{,
+et al.} (2011) The genome sequence of the leaf-cutter ant Atta
+cephalotes reveals insights into its obligate symbiotic lifestyle.
+\emph{PLoS Genet} \textbf{7}, e1002007.
+
+\protect\hypertarget{ux5fENREFux5f58}{}{}Sumner S (2014) The importance
+of genomic novelty in social evolution. \emph{Molecular Ecology}
+\textbf{23}, 26-28.
+
+\protect\hypertarget{ux5fENREFux5f59}{}{}Sumner S, Pereboom JJ, Jordan
+WC (2006) Differential gene expression and phenotypic plasticity in
+behavioural castes of the primitively eusocial wasp, Polistes
+canadensis. \emph{Proc Biol Sci} \textbf{273}, 19-26.
+
+\protect\hypertarget{ux5fENREFux5f60}{}{}Tang H, Bomhoff MD, Briones
+E\emph{, et al.} (2015) SynFind: Compiling Syntenic Regions across Any
+Set of Genomes on Demand. \emph{Genome Biol Evol} \textbf{7}, 3286-3298.
+
+\protect\hypertarget{ux5fENREFux5f61}{}{}Toth AL, Robinson GE (2007)
+Evo-devo and the evolution of social behavior. \emph{Trends in Genetics}
+\textbf{23}, 334-341.
+
+\protect\hypertarget{ux5fENREFux5f62}{}{}Toth AL, Varala K, Henshaw
+MT\emph{, et al.} (2010) Brain transcriptomic analysis in paper wasps
+identifies genes associated with behaviour across social insect
+lineages. \emph{Proceedings of the Royal Society B-Biological Sciences}
+\textbf{277}, 2139-2148.
+
+\protect\hypertarget{ux5fENREFux5f63}{}{}Toth AL, Varala K, Newman
+TC\emph{, et al.} (2007) Wasp gene expression supports an evolutionary
+link between maternal behavior and eusociality. \emph{Science}
+\textbf{318}, 441-444.
+
+\protect\hypertarget{ux5fENREFux5f64}{}{}Trapnell C, Hendrickson DG,
+Sauvageau M\emph{, et al.} (2013) Differential analysis of gene
+regulation at transcript resolution with RNA-seq. \emph{Nat Biotech}
+\textbf{31}, 46-53.
+
+\protect\hypertarget{ux5fENREFux5f65}{}{}Wang X, Wheeler D, Avery
+A\emph{, et al.} (2013) Function and Evolution of DNA Methylation in
+\emph{Nasonia vitripennis}. \emph{PLoS Genet} \textbf{9}, e1003872.
+
+\protect\hypertarget{ux5fENREFux5f66}{}{}Wang Y, Jorda M, Jones
+PL\emph{, et al.} (2006) Functional CpG methylation system in a social
+insect. \emph{Science} \textbf{314}, 645-647.
+
+\protect\hypertarget{ux5fENREFux5f67}{}{}Weiner SA, Galbraith DA, Adams
+DC\emph{, et al.} (2013) A survey of DNA methylation across social
+insect species, life stages, and castes reveals abundant and
+caste-associated methylation in a primitively social wasp.
+\emph{Naturwissenschaften} \textbf{100}, 795-799.
+
+\protect\hypertarget{ux5fENREFux5f68}{}{}Weiner SA, Toth AL (2012)
+Epigenetics in social insects: a new direction for understanding the
+evolution of castes. \emph{Genet Res Int} \textbf{2012}, 609810.
+
+\protect\hypertarget{ux5fENREFux5f69}{}{}Weinstock GM, Robinson GE,
+Gibbs RA\emph{, et al.} (2006) Insights into social insects from the
+genome of the honeybee Apis mellifera. \emph{Nature} \textbf{443},
+931-949.
+
+\protect\hypertarget{ux5fENREFux5f70}{}{}Werren JH, Richards S,
+Desjardins CA\emph{, et al.} (2010) Functional and evolutionary insights
+from the genomes of three parasitoid Nasonia species. \emph{Science}
+\textbf{327}, 343-348.
+
+\protect\hypertarget{ux5fENREFux5f71}{}{}West-Eberhard MJT, S. (1996)
+\emph{Natural History and Evolution of Paper-Wasps} Oxford University
+Press, Oxford, England.
+
+\protect\hypertarget{ux5fENREFux5f72}{}{}Whitfield CW, Cziko AM,
+Robinson GE (2003) Gene expression profiles in the brain predict
+behavior in individual honey bees. \emph{Science} \textbf{302}, 296-299.
+
+\protect\hypertarget{ux5fENREFux5f73}{}{}Wilkerson MD, Schlueter SD,
+Brendel V (2006) yrGATE: a web-based gene-structure annotation tool for
+the identification and dissemination of eukaryotic genes. \emph{Genome
+Biol} \textbf{7}, R58.
+
+\protect\hypertarget{ux5fENREFux5f74}{}{}Wurm Y, Wang J, Riba-Grognuz
+O\emph{, et al.} (2011) The genome of the fire ant Solenopsis invicta.
+\emph{Proc Natl Acad Sci U S A} \textbf{108}, 5679-5684.
+
+\protect\hypertarget{ux5fENREFux5f75}{}{}Yan H, Bonasio R, Simola
+DF\emph{, et al.} (2015) DNA Methylation in Social Insects: How
+Epigenetics Can Control Behavior and Longevity. \emph{Annual Review of
+Entomology} \textbf{60}, 435-452.
+
+\protect\hypertarget{ux5fENREFux5f76}{}{}Yi SV, Goodisman MAD (2009)
+Computational approaches for understanding the evolution of DNA
+methylation in animals. \emph{Epigenetics} \textbf{4}, 551-556.
+
+\textbf{DATA ACCESSIBILITY}
+
+Raw Illumina sequences are available from the NCBI Short Read Archive
+under the following accessions: accession SAMN02584905 for whole genome
+shotgun reads; accessions SAMN03940809-SAMN03940820 for RNA sequence
+reads; and accessions SAMN03946123 and SAMN03946134 for bisulfite
+sequence reads. The genome assembly is available from GenBank under the
+accession GCA\_001465965.1, and the transcriptome shotgun assembly is
+available from GenBank under the accession GEDB00000000.1.
+
+Additional supporting data, analysis documentation, and supporting code
+have been deposited in the fig\textbf{share} archive and in several
+GitHub repositories, as described at
+\url{https://pdomgenomeproject.github.io/}.
+
+Sequences, annotations, and alignments are also available through
+PdomGDB, an integrated data resource including a genome browser, a BLAST
+server, and a community annotation portal (see
+\url{http://goblinx.soic.indiana.edu/PdomGDB}).
+
+\textbf{AUTHOR CONTRIBUTIONS}
+
+All computational analyses of the data were done by DS and VB at Indiana
+University.~ AB assisted with the assembly of the \emph{P. dominula}
+transcriptome and with differential expression analysis.~~AS contributed
+to preliminary identification of transposable and repetitive elements,
+and to analysis of telomere-related genes and sequence motifs.~~KG
+contributed template Perl code for preliminary analyses of CpG o/e.~ AT
+conceived of and oversaw the project, interpreted results, and collected
+and processed wasp samples.~ DS, VB, and AT wrote the manuscript.
+
+\textbf{AUTHOR INFORMATION}
+
+DS is currently a Ph.D. candidate in Iowa State University's
+Bioinformatics and Computational Biology graduate program, in residence
+at (and supported by) Indiana University in the research group of his
+advisor VB, who heads a computational genomics research program. AB is
+currently a postdoctoral fellow at the Georgia Institute of Technology.
+KG is currently a Ph.D. candidate at Georgia Institute of Technology.
+
+\textbf{TABLES AND FIGURES}
+
+\textbf{Figure 1}. \textbf{A}. Best supported molecular phylogeny of the
+eusocial aculeate Hymenoptera based on recent transcriptome studies and
+analysis of 2,077 conserved genes reported in this study. \textbf{B}.
+Stacked bar plot showing genome content of \emph{Polistes dominula}
+broken down by the proportion occupied by various categories of gene
+content and conservation, compared to another paper wasp (green labels),
+two bees (black labels), two ants (red labels), and the outgroup
+\emph{Nasonia vitripennis}. See also \textbf{Figure S5}. \textbf{C}.
+Stacked rug plot showing nucleotide composition of long genomic
+sequences from 3 bees (in black), 2 ants (in red)\emph{,} the outgroup
+\emph{Nasonia vitripennis} (in blue)\emph{,} and 2 paper wasps (in
+green). Each vertical bar represents a chromosome, linkage group, or
+scaffold at least 1 Mb in length. Photo credits: \emph{N. vitripennis}
+by E. Cash and J. Gibson; \emph{P. dominula} by S. McCann; \emph{S.
+invicta} and \emph{A. mellifera} by A. Wild.
+
+\textbf{Figure 2}. \textbf{A}. Heatmap of expression values of 367
+differentially expressed interval loci (iLoci). The blue color indicates
+overexpression, while the yellow indicates underexpression. 212 iLoci
+(58\%) of the differentially expressed iLoci are overexpressed in
+workers. \textbf{B}. Bar chart showing the representation of eight GO
+functional categories as a proportion of differentially expressed iLoci
+(blue bars) versus all iLoci (red bars), determined by an enrichment
+analysis to be overrepresented in differentially expressed iLoci.
+\textbf{C}. Putative \emph{Polistes-}specific genes, defined as
+unmatched transcripts with significant pairwise protein-level similarity
+among three Polistes species (Pd for \emph{P. dominula}, Pc for \emph{P.
+canadensis}, and Pm for \emph{P. metricus}). Because of variation in
+gene copy number and number of alternative transcript isoforms, the
+number of transcripts in each intersection of the diagram is different
+for each species, and only the smallest number is shown. For example,
+the 3-species intersection consists of 144 transcripts from \emph{P.
+dominula}, 136 transcripts from \emph{P. canadensis}, and 95 transcripts
+from \emph{P. metricus}.
+
+\textbf{Figure 3}. \textbf{A}. Copy number of five methylation-related
+genes in the primary Hymenoptera lineages. \textbf{B}. Evidence for
+shared synteny around the \emph{Dnmt3} locus in bee, paper wasp, and ant
+genomes. Colored bars represent conserved coding regions between
+\emph{Polistes dominula} (top track) and \emph{Apis mellifera} (black
+blocks), \emph{Bombus terrestris} (grey blocks), and \emph{Camponotus
+floridanus} (red blocks). Regions of similarity are largely collinear
+(shown for the \emph{Apis mellifera} to \emph{Camponotus floridanus}
+comparison by the blue lines connecting the similar blocks). Gene models
+are shown by arrow structures with coding exons in green, UTRs in blue,
+and introns as thin lines. Each gene is denoted by a numbered box as
+follows: 1) GenBank protein entries XP\_006568814 (26S proteasome
+non-ATP regulatory subunit 6-like), 2) XP\_006568813 (uncharacterized),
+XP\_00658716 (Dnmt3), 4) XP\_006568806 (polynucleotide
+5'-hydroxyl-kinase NOL9-like), and 5) XP\_0065688112 (histone lysine
+demethylase PHF8-like) in \emph{A. mellifera} (linkage group LG2,
+GenBank NC\_007071), from left to right. The lack of similarity blocks
+around 50K on the \emph{P. dominula} scale demonstrates the postulated
+loss of \emph{Dnmt3} in this species. \textbf{C}. Bar chart showing the
+number of CpGs with a high level of support for methylation from
+bisulfite sequence data. The number of highly supported methylation
+sites for each species is based on pooled reads for all available
+samples, and is shown for one bee (black), two ants (red, note that
+``worker'' refers to ``minor workers'' in \emph{C. floridanus}), two
+paper wasps (green), and \emph{N. vitripennis} (blue). \textbf{D.} Gene
+models for the 7 \emph{P. dominula} methylated genes (with corresponding
+Gene ID numbers and putative annotations based on best BLAST hits).
+Approximate locations of each of the 124 highly supported methylation
+sites within each gene are indicated with a line-dot symbol, with sites
+methylated in both queen and worker samples (n=76) indicated in black,
+sites methylated in just the queen sample in green (n=18), and sites
+methylated in just the worker sample (n=30) in orange.
+
+\textbf{Table 1.} Genome assembly summary for \emph{Polistes dominula}
+and six related Hymenoptera.
+
+\end{document}
