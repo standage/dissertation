@@ -41,6 +41,19 @@ Although genome browsers have had a huge impact by making gene annotations acces
 Large genome sequencing projects and centers have certainly developed in-house scripts and pipelines over the years to address this need.
 However, these pipelines are typically not standardized, not openly shared, and do not migrate well.
 
+\begin{table}
+\caption{Annotation Comparison Methods}
+\label{Table:AnnotationComparisonMethods}
+\begin{tabular}{lll}
+\hline
+Method   & Pros        & Cons         \\ \hline
+asdf     & asdf        &              \\
+asdf     & asdf        &              \\
+asdf     & asdf        &              \\
+asdf     & asdf        &              \\ \hline
+\end{tabular}
+\end{table}
+
 Tools such as the Eval package \citep{Keibler} and the GFPE program \citep{Wang} represent some of the earliest efforts to provide a reusable, easy-to-use annotation comparison tool to the community.
 Eval in particular stands out based on the amount of detail provided by its reported comparison statistics and by the ability to visualize the distributions of these statistics.
 Eval takes as input annotation files in Gene Transfer Format (GTF) and calculates a rich set of descriptive statistics summarizing the differences between the annotations.
@@ -70,7 +83,7 @@ Finally, ParsEval generates reports providing a detailed readout of these statis
 
 Implemented in ANSI C, ParsEval is fast, memory efficient, and portable, designed to run on all POSIX-compliant UNIX systems (Linux, Mac OS X, Cygwin, Solaris, etc.).
 Most of the analysis code is implemented with shared memory parallelization, providing additional performance gains when running on multicore processors that are becoming increasingly common in commodity hardware.
-ParsEval's only external dependency is the GenomeTools library \citep{genometools}, which provides an API for generating annotation graphics with AnnotationSketch \citep{Steinbiss}, as well as implementations of a variety of data parsers and dynamic data structures.
+ParsEval's only external dependency is the GenomeTools library \citep{GenomeToolsWebsite}, which provides an API for generating annotation graphics with AnnotationSketch \citep{Steinbiss}, as well as implementations of a variety of data parsers and dynamic data structures.
 
 \subsection{Gene locus identification}
 Comparative analysis of two sets of gene annotations requires determining how annotations from one set correspond to annotations from the other, as well as the genomic coordinates (the \emph{gene locus}) that should be considered in each comparison.
@@ -284,7 +297,7 @@ We anticipate that ParsEval will enable a wide variety of biologists to more ful
 \section{Availability and requirements}
 Source code for ParsEval is available at \url{http://parseval.sourceforge.net} under an ISC license.
 ParsEval is implemented in ANSI C and is designed to run on all POSIX-compliant UNIX systems (Linux, Mac OS X, Cygwin, Solaris, etc.).
-Aside from a C compiler with OpenMP support (such as GCC 4.2 or higher), ParsEval's only external dependency is the GenomeTools library \citep{genometools}.
+Aside from a C compiler with OpenMP support (such as GCC 4.2 or higher), ParsEval's only external dependency is the GenomeTools library \citep{GenomeToolsWebsite}.
 
 
 \section{Authors contributions}
