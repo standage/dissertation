@@ -35,23 +35,29 @@ Community groups providing annotation for species- or clade-specific genomes typ
 Affordable transcriptome sequencing provides individual labs with data to specifically improve annotations for particular genes of interest, for example with respect to alternative splicing.
 In each of these scenarios, multiple annotations associated with a common set of genomic sequences require comparative assessment.
 
-A variety of comparison methods exist, but none can fully address the growing needs of the community (see Table 1).
+A variety of comparison methods exist, but none can fully address the growing needs of the community (see Table \ref{Table:AnnotCompareMethods}).
 Manual comparison approaches can trivially be ruled out as slow, tedious, error prone, and hopelessly unscalable.
 Although genome browsers have had a huge impact by making gene annotations accessible to a wide variety of scientists, they likewise do little to provide the automation and precision needed in whole-genome annotation comparisons.
 Large genome sequencing projects and centers have certainly developed in-house scripts and pipelines over the years to address this need.
 However, these pipelines are typically not standardized, not openly shared, and do not migrate well.
 
 \begin{table}
+\scriptsize
 \caption{Annotation Comparison Methods}
 \label{Table:AnnotationComparisonMethods}
-\begin{tabular}{lll}
+\begin{tabularx}{\textwidth}{lp{6cm}p{6cm}}
 \hline
-Method   & Pros        & Cons         \\ \hline
-asdf     & asdf        &              \\
-asdf     & asdf        &              \\
-asdf     & asdf        &              \\
-asdf     & asdf        &              \\ \hline
-\end{tabular}
+Method                & Pros        & Cons         \\ \hline
+Manual comparison     & minimal overhead        & extremely tedious; error prone; unscalable             \\
+Genome browser        & intuitive interface; visual assessment of individual loci        &  visual assessments imprecise; extensive overhead; little or no automation            \\
+Eval                  & detailed statistics; visual assessment of statistic distributions; scales fairly well for large data sets; can compare multiple predictions to a single reference        & older software; relatively slow; only summary statistics are reported, while stats for individual loci are discarded             \\
+ParsEval              & detailed statistics provided, not only as a summary but for individual loci as well; scales well for large data sets; fast, efficient, and portable        &  only capable of comparing a single pair of annotations            \\ \hline
+\end{tabularx}
+\label{Table:AnnotCompareMethods}
+\raggedright
+{\scriptsize
+Various approaches to comparing alternative sources of gene structure annotations, with a brief description of the associated pros and cons.
+}
 \end{table}
 
 Tools such as the Eval package \citep{Keibler} and the GFPE program \citep{Wang} represent some of the earliest efforts to provide a reusable, easy-to-use annotation comparison tool to the community.
@@ -92,7 +98,7 @@ However, in most cases this task is complicated a variety of factors.
 For example, a single gene prediction workflow may annotate multiple genes at a single location, so one must determine how to associate these annotations with corresponding annotations from an alternative source.
 Furthermore, when one or more gene annotations from one source overlap with multiple annotations from another source, one must determine how to compare these gene annotations and which coordinates to include in the comparison.
 
-One common approach involves designating one set of annotations as the \emph{reference} set and then using the coordinates of each reference gene annotation to define a distinct gene locus to serve as the basis for subsequent comparison (see Figure 1).
+One common approach involves designating one set of annotations as the \emph{reference} set and then using the coordinates of each reference gene annotation to define a distinct gene locus to serve as the basis for subsequent comparison (see Figure \ref{Fig:ParsEval1}).
 However, this approach is unfavorable for several related reasons.
 First, reference gene annotations that overlap are handled separately, when it makes more sense to associate them with the same locus and handle them together.
 Second, it forces a quality judgment between the two sets of annotations when their relative quality is often unknown.
@@ -101,7 +107,7 @@ Third, relevant information from predicted gene models that extend beyond the bo
 
 Although ParsEval uses the terms \emph{reference} and \emph{prediction} to distinguish between the two sets of annotations, both are considered equally when identifying gene loci.
 Each gene annotation corresponds to a node in an interval graph $G$.
-There is an edge between two nodes $G_i$ and $G_j$ if the corresponding gene annotations overlap (see Figure 2).
+There is an edge between two nodes $G_i$ and $G_j$ if the corresponding gene annotations overlap (see Figure \ref{Fig:ParsEval2}).
 Each connected component in $G$ then corresponds to a distinct gene locus, which we define as the smallest genomic region containing every gene annotation associated with the corresponding subgraph.
 Defining a gene locus in this way makes no assumptions as to the relative quality of the two sets of annotations, and ensures that no potentially relevant data are discarded.
 Furthermore, according to this definition each gene locus is independent, enabling the subsequent comparative analysis tasks to run in parallel.
@@ -175,7 +181,7 @@ No comparisons are performed for loci that are filtered out, and thus do not con
 
 To facilitate integration of comparison reports with popular genome browsers such as GBrowse  \citep{GBrowse} and PlantGDB  \citep{Duvick}, ParsEval can generate an additional output file (in GFF3 format) containing the coordinates of each gene locus.
 These genome browsers commonly allow users to anonymously create private custom tracks with uploaded data, which provides the quickest mechanism for integration.
-Once a track is populated with the uploaded locus data, the user can configure the track configuration so that each locus feature in the track is hyperlinked to the corresponding ParsEval report stored, for example, on that user's local machine (see Figure 3).
+Once a track is populated with the uploaded locus data, the user can configure the track configuration so that each locus feature in the track is hyperlinked to the corresponding ParsEval report stored, for example, on that user's local machine (see Figure \ref{Fig:ParsEval3}).
 Alternatively, if a more permanent and public solution is desired, a user with administrative privileges for the genome browser can follow standard procedures for populating a new track with the GFF3 data, and then configure the track so that locus features are linked to network-accessible ParsEval reports.
 
 
@@ -203,9 +209,35 @@ We then used the latest version of AUGUSTUS (2.5.5) to generate gene predictions
 The data files were reformatted and then compared using ParsEval.
 Running on a desktop computer, ParsEval generated graphical reports in less than a minute.
 The summary report provided immediate access to a variety of similarity metrics, including those reported in the original assessment.
-The sensitivity and specificity values reported by ParsEval are comparable to those reported in the original AUGUSTUS manuscript (see Table 2).
+The sensitivity and specificity values reported by ParsEval are comparable to those reported in the original AUGUSTUS manuscript (see Table \ref{Table:AugustusUseCase}).
 Differences in the comparison metrics can likely be explained by improvements to the AUGUSTUS program since publication, although the exact reason is elusive since the original AUGUSTUS software is no longer accessible.
 
+\begin{table}
+\caption{Use case: prediction vs. gold standard}
+\begin{tabularx}{\textwidth}{lcc}
+\hline
+  Statistic                     & AUGUSTUS manuscript & ParsEval comparison \\ \hline
+  Coding nucleotide sensitivity & 0.93                & 0.94                \\
+  Coding nucleotide specificity & 0.90                & 0.99                \\
+  Exon sensitivity              & 0.80                & 0.81                \\
+  Exon specificity              & 0.81                & 0.86                \\
+  Gene sensitivity              & 0.48                & 0.43                \\
+  Gene specificity              & 0.47                & 0.46                \\ \hline
+\end{tabularx}
+\label{Table:AugustusUseCase}
+\raggedright
+{\scriptsize
+Sensitivity and specificity scores for AUGUSTUS gene predictions in comparison
+to corresponding gene annotations from EMBL database release 50. The first
+column shows scores as reported in the original AUGUSTUS manuscript. The
+second column shows scores as computed by ParsEval using predictions from
+the latest version of AUGUSTUS (2.5.5). Summary reports from ParsEval provide
+immediate access to a wide variety of similarity statistics, including the ones
+reported in this table. Differences between the scores reported by the
+AUGUSTUS authors and the ParsEval authors are likely due to subsequent
+updates of the AUGUSTUS program since its publication.
+}
+\end{table}
 
 \subsection{Use case: two sets of annotations}
 When working with genome annotations, there is an increasing variety of cases in which no gold standard is available for comparison.
@@ -217,13 +249,40 @@ An additional example relates to the increased affordability of genome sequencin
 Gene annotation software is based on complex statistical models containing many parameters, and it is not always initially clear which parameter values to use up front.
 Therefore, when annotating a newly sequenced genome, it is common to extract a subset of the genome on which to perform repeated optimization runs to determine the parameter values that should be used subsequently to annotate the entire genome.
 
+\begin{table}
+\caption{Use case: two sets of annotations}
+\begin{tabularx}{\textwidth}{p{7cm}p{5cm}l}
+\hline
+  Perfect matches         &  22,333  &  94.7\%  \\
+  CDS structure matches   &  0       &  0.0\%   \\
+  Exon structure matches  &  0       &  0.0\%   \\
+  UTR structure matches   &  83      &  0.4\%   \\
+  Non-matches             &  1,174   &  5.0\%   \\ \hline
+  \textbf{Total}          &  23,590  & 100.0\%  \\ \hline
+\end{tabularx}
+\label{Table:UseCaseTwoAnnotations}
+\raggedright
+{\scriptsize
+Results from a ParsEval comparison of gene annotations for
+\textit{Mus musculus} from
+two recent releases of the Ensembl database (releases 64 and 65). Release 64
+contains 22,507 gene annotations, while release 65 contains 14,486 gene
+annotations. ParsEval identified 20,362 gene loci using these two data sets, 6,725
+of which contained only annotations from release 64. For the 13,637 gene loci
+for which both release 64 and 65 have annotations, 23,590 comparisons were
+performed. Each of these comparisons was classified according to how well the
+annotations from the two releases agreed. This table shows a breakdown of
+these results.
+}
+\end{table}
+
 In each of these scenarios, multiple annotation sets must be compared, despite having no intuition as to the relative quality of the respective annotations.
 ParsEval was designed precisely for this type of analysis.
 Reports from ParsEval provide both an overall summary and locus-level detail, enabling the user to make informed decisions about annotations for individual loci, as well as for annotation sets as a whole.
 
 As a demonstration of ParsEval's capability in this context, we downloaded two recent gene annotation releases (releases 64 and 65) for \textit{Mus musculus} from the Ensembl database \citep{ensembl}.
 We compared these annotations using ParsEval, which required approximately 3 minutes of runtime on a desktop computer.
-A brief review of ParsEval's summary report shows that a total of 20,362 gene loci were identified using these annotations (see Table 3 for a complete breakdown).
+A brief review of ParsEval's summary report shows that a total of 20,362 gene loci were identified using these annotations (see Table \ref{Table:UseCaseTwoAnnotations} for a complete breakdown).
 Of these gene loci, 6,725 had only annotations from release 64.
 
 23,590 comparisons were performed by ParsEval, of which 22,333 (94.7\%) were perfect matches between releases 64 and 65.
@@ -238,9 +297,47 @@ This breadth and detail of information is of great benefit to a wide variety of 
 
 
 \subsection{Benchmarks}
-To demonstrate its speed, scalability, and efficiency, we benchmarked ParsEval by analyzing pairs of whole-genome gene structure annotations for four common model organisms representing a wide range of eukaryotic diversity: \textit{Arabidopsis thaliana} (thale cress), \textit{Drosophila melanogaster} (fruit fly), \textit{Glycine max} (soybean), and \textit{Homo sapiens} (human) (see Table 4).
+To demonstrate its speed, scalability, and efficiency, we benchmarked ParsEval by analyzing pairs of whole-genome gene structure annotations for four common model organisms representing a wide range of eukaryotic diversity: \textit{Arabidopsis thaliana} (thale cress), \textit{Drosophila melanogaster} (fruit fly), \textit{Glycine max} (soybean), and \textit{Homo sapiens} (human) (see Table \ref{Table:ParsEvalBenchmarks}).
 To give a detailed demonstration of its performance, ParsEval was run 24 times for each species---3 technical replicates while varying the output mode (text and HTML/PNG) and the number of dedicated processors (1, 2, 4, and 8).
 Reported runtimes were obtained by taking the mean of the 3 corresponding replicates.
+
+\begin{sidewaystable}
+\caption{Benchmarks}
+\begin{tabularx}{\textwidth}{rc cc cc cc c}
+\hline
+  & \multicolumn{2}{c}{\textit{A. thaliana}} & \multicolumn{2}{c}{\textit{D. melanogaster}} & \multicolumn{2}{c}{\textit{G. max}} & \multicolumn{2}{c}{\textit{H. sapiens}} \\ \hline
+ \textbf{Reference annotations} & \multicolumn{2}{c}{TAIR9} & \multicolumn{2}{c}{FlyBase 5.39} & \multicolumn{2}{c}{NCBI Entrez} & \multicolumn{2}{c}{UCSC knownGene (hg19)} \\
+ \textbf{Prediction annotations} & \multicolumn{2}{c}{TAIR10} & \multicolumn{2}{c}{Ensembl r65} & \multicolumn{2}{c}{JGI / Phytozome} & \multicolumn{2}{c}{Ensembl r65} \\ \hline
+ \multicolumn{9}{c}{} \\ \hline
+ \textbf{Average runtime (sec)} & \textbf{Text} & \textbf{HTML} & \textbf{Text} & \textbf{HTML} & \textbf{Text} & \textbf{HTML} & \textbf{Text} & \textbf{HTML} \\ \hline
+ {\scriptsize $n=1$} & {\scriptsize 36.3} & {\scriptsize 859.4} & {\scriptsize 91.1} & {\scriptsize 1,350.5} & {\scriptsize 85.3} & {\scriptsize 1,461.1} & {\scriptsize 294.3} & {\scriptsize 6,422.0} \\
+ {\scriptsize $n=2$} & {\scriptsize 32.8} & {\scriptsize 449.2} & {\scriptsize 56.6} & {\scriptsize 859.5} & {\scriptsize 79.4} & {\scriptsize 768.4} & {\scriptsize 181.3} & {\scriptsize 4,089.5}     \\
+ {\scriptsize $n=4$} & {\scriptsize 30.7} & {\scriptsize 246.5} & {\scriptsize 39.2} & {\scriptsize 633.7} & {\scriptsize 76.5} & {\scriptsize 439.9} & {\scriptsize 130.1} & {\scriptsize 2,751.2}     \\
+ {\scriptsize $n=8$} & {\scriptsize 29.8} & {\scriptsize 168.7} & {\scriptsize 32.4} & {\scriptsize 546.6} & {\scriptsize 76.3} & {\scriptsize 330.5} & {\scriptsize 108.0} & {\scriptsize 2,323.3}     \\ \hline
+ \multicolumn{9}{c}{} \\ \hline
+ \textbf{Gene loci} & \multicolumn{2}{c}{24,728} & \multicolumn{2}{c}{10,976} & \multicolumn{2}{c}{47,877} & \multicolumn{2}{c}{17,865} \\ \hline
+ {\scriptsize \textbf{shared}} & \multicolumn{2}{c}{{\scriptsize 24,460}} & \multicolumn{2}{c}{{\scriptsize 10,944}} & \multicolumn{2}{c}{{\scriptsize 37,942}} & \multicolumn{2}{c}{{\scriptsize 7,779}} \\
+ {\scriptsize \textbf{unique to reference}} & \multicolumn{2}{c}{{\scriptsize 112}} & \multicolumn{2}{c}{{\scriptsize 32}} & \multicolumn{2}{c}{{\scriptsize 3,363}} & \multicolumn{2}{c}{{\scriptsize 9,569}} \\
+ {\scriptsize \textbf{unique to prediction}} & \multicolumn{2}{c}{{\scriptsize 156}} & \multicolumn{2}{c}{{\scriptsize 0}} & \multicolumn{2}{c}{{\scriptsize 6,572}} & \multicolumn{2}{c}{\scriptsize {517}} \\ \hline
+ \multicolumn{9}{c}{} \\ \hline
+ \textbf{Comparisons} & \multicolumn{2}{c}{31,635} & \multicolumn{2}{c}{22,474} & \multicolumn{2}{c}{38,734} & \multicolumn{2}{c}{16,168} \\ \hline
+ {\scriptsize \textbf{perfect matches}} & {\scriptsize 30,638} & {\scriptsize 96.8\%} & {\scriptsize 0} & {\scriptsize 0.0\%} & {\scriptsize 2,489} & {\scriptsize 6.4\%} & {\scriptsize 2,517} & {\scriptsize 15.6\% } \\
+ {\scriptsize \textbf{CDS structure matches}} & {\scriptsize 339} & {\scriptsize 1.1\%} & {\scriptsize 0} & {\scriptsize 0.0\%} & {\scriptsize 17,450} & {\scriptsize 45.1\%} & {\scriptsize 8,269} & {\scriptsize 51.1\% } \\
+ {\scriptsize \textbf{exon structure matches}} & {\scriptsize 7} & {\scriptsize 0.0\%} & {\scriptsize 22,464} & {\scriptsize 100.0\%} & {\scriptsize 26} & {\scriptsize 0.1\%} & {\scriptsize 27} & {\scriptsize 0.2\% } \\
+ {\scriptsize \textbf{UTR structure matches}} & {\scriptsize 115} & {\scriptsize 0.4\%} & {\scriptsize 0} & {\scriptsize 0.0\%} & {\scriptsize 647} & {\scriptsize 1.7\%} & {\scriptsize 58} & {\scriptsize 0.4\% } \\
+ {\scriptsize \textbf{non-matches}} & {\scriptsize 536} & {\scriptsize 1.7\%} & {\scriptsize 7} & {\scriptsize 0.0\%} & {\scriptsize 18,122} & {\scriptsize 46.8\%} & {\scriptsize 5,297} & {\scriptsize 32.8\% } \\ \hline
+\end{tabularx}
+\label{Table:ParsEvalBenchmarks}
+\raggedright
+{\scriptsize
+As a demonstration of ParsEval's speed and scalability, we obtained pairs of whole-genome annotations for \textit{Arabidopsis thaliana} (thale cress), \textit{Drosophila melanogaster} (fruit fly), \textit{Glycine max} (soybean), and \textit{Homo sapiens} (human).
+For each organism, we used ParsEval to compare the two corresponding sets of annotations.
+Runtimes are shown for both text and HTML/PNG output modes, using 1, 2, 4, and 8 processors.
+For each organism, we also show the number of gene loci identified, how many were shared between the two sets of annotations, and how many are unique to one set.
+Finally, we show the number of reported comparisons for each organism and how many were perfect gene structure matches, how many were CDS structure matches, and how many were non-matches.
+All of the results shown in this table were easily obtained from the summary reports generated by ParsEval.
+}
+\end{sidewaystable}
 
 
 \subsubsection{Performance in text output mode}
@@ -310,3 +407,41 @@ Both authors conceived the project, edited the manuscript, and approved the fina
 The authors would like to thank the developers of the GenomeTools software for helpful feedback regarding integration of AnnotationSketch, and our colleagues Carolyn Lawrence and Amy Toth as well as anonymous reviewers whose suggestions were a valuable contribution to this manuscript.
 
 \emph{Funding}: This work was supported in part by the U.S.A. National Science Foundation Plant Genome Research Program grant ISO\#1126267 to V.B..
+
+\newpage
+
+\section{Figures}
+
+\begin{figure}[h]
+\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-1.png}
+\caption{\textbf{Associating Annotations with Gene Loci}.
+The black bar provides a scale corresponding to a genomic region for which two sets of
+annotations are available. Reference annotations for gene structure are represented with red glyphs, while prediction annotations are shown with
+blue glyphs. Arrows indicate the strand of the gene annotation, and different levels of shading correspond to different gene structure features: dark
+shading for coding sequence, medium shading for UTRs, and light shading for introns. Green brackets denote gene loci as determined by the
+common practice of using only the genomic coordinates from reference gene annotations.Orange brackets denote gene loci as determined by
+ParsEval, which takes into account both reference and prediction annotations when selecting distinct loci for comparison.}
+\label{Fig:ParsEval1}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-2.png}
+\caption{\textbf{Locus Identification Using a Gene Interval Graph}.
+Red and blue nodes in this interval graph correspond to reference and prediction
+gene annotations (respectively) as shown in Figure \ref{Fig:ParsEval1}. Two nodes are connected by an edge if the corresponding gene annotations overlap. Each
+connected component in the graph represents a distinct
+gene locus, defined as the smallest genomic region containing every gene annotation
+associated with the corresponding subgraph. In this example, nodes representing five reference annotations and four prediction annotations are
+shown. The four connected components in the graph correspond to four gene loci, for which precise genomic coordinates can be determined from
+the associated genes (shown in orange brackets in Figure \ref{Fig:ParsEval1}).}
+\label{Fig:ParsEval2}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-3.png}
+\caption{\textbf{Integrating ParsEval Reports with a Genome Browser}.
+Screenshot of the \textit{Arabidopsis thaliana} genome browser at Phytozome (http://phytozome.net/), with a custom anonymous user track populated by ParsEval output. Boxes in this custom track represent loci identified by ParsEval
+and are color-coded according to the level of agreement between the two sets of annotations compared (dark red and pastel blue glyphs,
+respectively). This custom track can easily be configured so that features are hyperlinked to ParsEval reports containing detailed comparison statistics.}
+\label{Fig:ParsEval3}
+\end{figure}
