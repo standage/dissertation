@@ -350,7 +350,7 @@ iLoci with a BLASTP match against another species (\texttt{-evalue 1e-10}) were 
 }
 \end{table}
 
-\begin{table}[b]
+\begin{table}[h]
 \caption{Summary of piLoci from genomes of ten model organisms and three additional species.}
 \label{Table:piLocusSingleGeneFraction}
 \begin{tabularx}{\textwidth}{lrrr}
@@ -407,15 +407,15 @@ Only one genome from these ten species, that of \textit{Medicago truncatula}, ha
 
 \subsection*{Gene clustering is abundant in eukaryotic genomes}
 
-\begin{table}
+\begin{table}[h]
 \caption{Summary of miLoci from genomes of ten model organisms and three additional species.}
 \label{Table:miLocusSummaryModOrg}
-\begin{tabularx}{\textwidth}{lrrrr}
+\begin{tabularx}{\textwidth}{p{4cm}rrrr}
 \hline
                             Species &               miLoci & Occupancy\textsuperscript{1} & Gene Count\textsuperscript{2} & Singletons\textsuperscript{3}  \\ \hline
-\textit{Saccharomyces cerevisiae}   &                  240 &             11.4 Mb (95.0\%) &                     4, 15, 35 &                    65 (1.1\%)  \\
-\textit{Caenorhabditis elegans}     &                5,178 &             70.4 Mb (70.2\%) &                       3, 4, 7 &                 2,611 (6.6\%)  \\
-\textit{Chlamydomonas reinhardtii}  &                3,042 &             54.9 Mb (50.5\%) &                       2, 3, 4 &                3,753 (26.3\%)  \\
+\textit{Saccharomyces \mbox{cerevisiae}}   &                  240 &             11.4 Mb (95.0\%) &                     4, 15, 35 &                    65 (1.1\%)  \\
+\textit{Caenorhabditis \mbox{elegans}}     &                5,178 &             70.4 Mb (70.2\%) &                       3, 4, 7 &                 2,611 (6.6\%)  \\
+\textit{Chlamydomonas \mbox{reinhardtii}}  &                3,042 &             54.9 Mb (50.5\%) &                       2, 3, 4 &                3,753 (26.3\%)  \\
 \textit{Medicago truncatula}        &                9,799 &             81.2 Mb (20.3\%) &                       2, 2, 3 &               27,702 (53.8\%)  \\
 \textit{Anopheles gambiae}          &                2,198 &             33.9 Mb (14.5\%) &                       2, 2, 4 &                5,962 (46.1\%)  \\
 \textit{Drosophila melanogaster}    &                1,867 &             88.3 Mb (65.0\%) &                      2, 4, 11 &                 1,621 (9.7\%)  \\
@@ -431,7 +431,7 @@ Only one genome from these ten species, that of \textit{Medicago truncatula}, ha
 {\scriptsize
 \textsuperscript{1}Total number of nucleotides occupied by miLoci, and the corresponding fraction of effective genome size. \\
 \textsuperscript{2}Quartiles of the distribution of gene count per miLocus. \\
-\textsuperscript{3}Total number of giLoci not contained in a miLocus, and corresponding fraction of all giLoci.
+\textsuperscript{3}Total number of giLoci not contained in a miLocus, and corresponding fraction of all giLoci. \\
 }
 \end{table}
 
@@ -488,7 +488,7 @@ Those with $\phi > 0.8$ and $\sigma < 0.3$ appear to be outliers within genomes 
 The framework provided by miLoci for investigating genome organization enables us to investigate whether the amount of clustering observed in a particular genome assembly/annotation pair is more or less than would be expected by chance.
 For long chromosome and scaffold sequences ($\geq$ 1Mb) in ten model organisms, we computed random spatial arrangements of the genes on each sequence and then re-computed iLoci and associated summary statistics for comparison with the observed annotation.
 
-\begin{table}[h]
+\begin{table}[t]
 \caption{Summary of miLoci computed on randomly positioned genes.}
 \label{Table:miLocusSummaryShuffled}
 \begin{tabularx}{\textwidth}{lrrrr}
@@ -557,10 +557,10 @@ To assess the stability of iLoci in genome projects over time, we selected two m
 The 2005 TAIR6 release was the first annotation of the \textit{A. thaliana} genome managed by The Arabidopsis Information Resource \cite{TAIR}, while the 2010 TAIR10 release integrates TAIR's latest improvements to both the reference genome assembly and annotation \cite{TAIR10}.
 Between TAIR6 and TAIR10, changes to the genome sequence were quite limited and were accompanied by a relatively small increase in the number of annotated gene models (see \textbf{Table \ref{Table:AthaAmelSummary}}).
 
-\begin{table}[b]
+\begin{table}[h]
 \caption{Descriptive summary of annotated genome assemblies for \textit{A. thaliana} and \textit{A. mellifera}.}
 \label{Table:AthaAmelSummary}
-\begin{tabularx}{\textwidth}{lrrrr}
+\begin{tabularx}{\textwidth}{lR{2.5cm}R{2.5cm}R{2.5cm}R{2.5cm}}
 \hline
 ~                          & TAIR6  & TAIR10 & OGSv1.0\textsuperscript{1} & OGSv3.2\textsuperscript{2} \\ \hline
 Assembly size (Mb)         & 119.2  & 119.1  & 228.6          & 234.1          \\
@@ -579,7 +579,7 @@ Total iLoci                & 37,299 & 37,669 & 22,784         & 26,251         \
 \raggedright
 {\scriptsize
 \textsuperscript{1}Corresponds to assembly Amel\_2.0. \\
-\textsuperscript{2}Corresponds to assembly Amel\_4.5.
+\textsuperscript{2}Corresponds to assembly Amel\_4.5. \\
 }
 \end{table}
 
@@ -603,10 +603,10 @@ We see very little change in iLocus classification among stable iLoci (see \text
 For example, the majority of siLoci remain siLoci: that is, at stable loci a protein-coding gene annotation is rarely replaced with a non-coding gene annotation or no annotation at all.
 The only minor exception to note is the conversion of 285 fiLoci in OGSv1.0 to siLoci in OGSv3.2 with the addition of new gene models to previously unannotated ends of assembly scaffolds.
 
-\begin{table}[t]
+\begin{table}[h]
 \caption{A breakdown of stable iLoci by type.}
 \label{Table:AthaAmelStableMatrix}
-\begin{tabularx}{\textwidth}{lrrrrr}
+\begin{tabularx}{\textwidth}{lR{2cm}R{2cm}R{2cm}R{2cm}R{2cm}}
 \multicolumn{6}{c}{\textit{Arabidopsis thaliana} (TAIR6 $\rightarrow$ TAIR10)} \\ \hline
           & siLocus  & ciLocus  & niLocus  & iiLocus  & fiLocus  \\ \hline
 siLocus   & 22,717   & 24       & 5        & 3        & 0        \\
@@ -616,7 +616,7 @@ iiLocus   & 21       & 1        & 0        & 5,366    & 0        \\
 fiLocus   & 0        & 0        & 0        & 0        & 4        \\ \hline
 \multicolumn{6}{c}{ } \\
 \end{tabularx}
-\begin{tabularx}{\textwidth}{lrrrrr}
+\begin{tabularx}{\textwidth}{lR{2cm}R{2cm}R{2cm}R{2cm}R{2cm}}
 \multicolumn{6}{c}{\textit{Apis mellifera} (OGSv1.0 $\rightarrow$ OGSv3.2)} \\ \hline
           & siLocus  & ciLocus  & niLocus  & iiLocus  & fiLocus  \\ \hline
 siLocus   & 2,659    & 15       & 0        & 0        & 23       \\
@@ -692,15 +692,15 @@ Finally, iLoci provide a way to break down the entire genome into distinct block
 \newpage
 \section*{Figures} % To be commented out and submitted separately
 
-\begin{figure}[!bht]
-\includegraphics[scale=0.5]{Assets/Graphics/iLoci/ilocus-designations.png}
-\caption{Designation of iLocus types shown in green, with classification logic described in blue.}
-\label{Fig:iLocusDesignations}
-\end{figure}
+\subsection*{Figure \ref{Fig:iLocusDesignations}}
 
-\begin{figure}[!bht]
-\includegraphics[scale=0.6]{Assets/Graphics/iLoci/ilocus-demo.pdf}
-\caption{Parsing an annotated genome sequence into iLoci.
+\noindent
+Designation of iLocus types shown in green, with classification logic described in blue.
+
+\subsection*{Figure \ref{Fig:iLoci}}
+
+\noindent
+Parsing an annotated genome sequence into iLoci.
 The letters A to J indicate 10 adjacent iLoci on the genomic sequence (central horizontal line), separated by the long vertical bars.
 Gene annotations are shown underneath the genome sequence.
 Exons are schematized by horizontal lines, introns by the triangular thin lines below.
@@ -710,7 +710,54 @@ iLoci B, H, and I contain a single gene annotation each.
 iLocus D shows alternative transcripts.
 iLocus F displays three distinct, but overlapping genes.
 The boundaries of the gene-containing iLoci (giLoci) are derived from the annotation ends, extended in each direction by $\delta$.
-An exception occurs between iLoci H and I, where the extension would result in an iiLocus shorter than $\delta$: in this case, the bordering iLoci (H and I) are extended towards each other to fill the entire space.}
+An exception occurs between iLoci H and I, where the extension would result in an iiLocus shorter than $\delta$: in this case, the bordering iLoci (H and I) are extended towards each other to fill the entire space.
+
+\subsection*{Figure \ref{Fig:CompactnessModel}}
+
+\noindent
+Theoretical values of $\sigma$ (the proportion of genome sequence occupied by miLoci) plotted as a function of $\phi$ (the proportion of giLoci merged into miLoci) at different values of $\rho$ (the ratio of iiLocus length to giLocus length).
+
+\subsection*{Figure \ref{Fig:ModOrgCompactness}}
+
+\noindent
+The genomic compactness of ten model organisms, as measured on long ($\geq$ 1 Mb) chromosome or scaffold sequences.
+
+\subsection*{Figure \ref{Fig:CompactnessShuffled}}
+
+\noindent
+Genomic compactness as measured on genomic sequences with random giLocus positioning.
+
+\subsection*{Figure \ref{Fig:iLociStable}}
+
+\noindent
+A breakdown of iLoci from two species by stability and classification.
+
+\subsection*{Figure \ref{Fig:iLociStableScatter}}
+
+\noindent
+Scatter plot showing the length and nucleotide composition of iLoci from \textit{Arabidopsis thaliana} (top) and \textit{Apis mellifera} (bottom). iLoci that are stable between two assembly/annotation versions are represented by red marks, while unstable iLoci are represented by blue and green marks. siLoci are shown on the left, and iiLoci are shown on the right.
+
+\subsection*{Figure \ref{Fig:GreenAlgaeBreakdown}}
+
+\noindent
+Counts and genomic space occupied of iLoci from 9 species of green algae, categorized according to gene content and homology status.
+
+\subsection*{Figure \ref{Fig:CreiBreakdownScatter}}
+
+\noindent
+Plot of length and nucleotide composition for piLoci from the \textit{Chlamydomonas reinhardtii} genome. Blue point represent \textit{highly conserved piLoci}, green represent \textit{conserved piLoci}, and red represent \textit{orphan piLoci}.
+
+\begin{figure}[!bht]
+\includegraphics[width=6in]{Assets/Graphics/iLoci/ilocus-designations.png}
+\centering
+\caption{~}
+\label{Fig:iLocusDesignations}
+\end{figure}
+
+\begin{figure}[!bht]
+\includegraphics[width=6in]{Assets/Graphics/iLoci/ilocus-demo.pdf}
+\centering
+\caption{~}
 \label{Fig:iLoci}
 \end{figure}
 
@@ -721,24 +768,23 @@ An exception occurs between iLoci H and I, where the extension would result in a
 %\end{figure}
 
 \begin{figure}[h]
-\includegraphics[scale=0.45]{Assets/Graphics/iLoci/compactness-theoretical.png}
-\caption{Theoretical values of $\sigma$ (the proportion of genome sequence occupied by miLoci) plotted as a function of $\phi$ (the proportion of giLoci merged into miLoci) at different values of $\rho$ (the ratio of iiLocus length to giLocus length).}
+\includegraphics[width=6in]{Assets/Graphics/iLoci/compactness-theoretical.png}
+\centering
+\caption{~}
 \label{Fig:CompactnessModel}
 \end{figure}
 
-\clearpage
-
 \begin{figure}[h]
-\includegraphics[scale=0.45]{Assets/Graphics/iLoci/modorg-compactness.png}
-\caption{The genomic compactness of ten model organisms, as measured on long ($\geq$ 1 Mb) chromosome or scaffold sequences.}
+\includegraphics[width=6in]{Assets/Graphics/iLoci/modorg-compactness.png}
+\centering
+\caption{~}
 \label{Fig:ModOrgCompactness}
 \end{figure}
 
-\clearpage
-
 \begin{figure}[h]
-\includegraphics[scale=0.45]{Assets/Graphics/iLoci/compactness-shuffled.png}
-\caption{Genomic compactness as measured on genomic sequences with random giLocus positioning.}
+\includegraphics[width=6in]{Assets/Graphics/iLoci/compactness-shuffled.png}
+\centering
+\caption{~}
 \label{Fig:CompactnessShuffled}
 \end{figure}
 
@@ -751,37 +797,39 @@ An exception occurs between iLoci H and I, where the extension would result in a
 %\end{figure}
 
 \begin{figure}[h]
-\includegraphics[scale=0.35]{Assets/Graphics/iLoci/atha-stable.png} \par
+\centering
+\includegraphics[width=6in]{Assets/Graphics/iLoci/atha-stable.png} \par
 \vspace{50px}
-\includegraphics[scale=0.35]{Assets/Graphics/iLoci/amel-stable.png}
-\caption{A breakdown of iLoci from two species by stability and classification.}
+\includegraphics[width=6in]{Assets/Graphics/iLoci/amel-stable.png}
+\caption{~}
 \label{Fig:iLociStable}
 \end{figure}
 
-\clearpage
-
 \begin{figure}[h]
-\includegraphics[scale=0.35]{Assets/Graphics/iLoci/atha-stable-scatter.png}
-\includegraphics[scale=0.35]{Assets/Graphics/iLoci/amel-stable-scatter.png}
-\caption{Scatter plot showing the length and nucleotide composition of iLoci from \textit{Arabidopsis thaliana} (top) and \textit{Apis mellifera} (bottom). iLoci that are stable between two assembly/annotation versions are represented by red marks, while unstable iLoci are represented by blue and green marks. siLoci are shown on the left, and iiLoci are shown on the right.}
+\centering
+\includegraphics[width=6in]{Assets/Graphics/iLoci/atha-stable-scatter.png}
+\includegraphics[width=6in]{Assets/Graphics/iLoci/amel-stable-scatter.png}
+\caption{~}
 \label{Fig:iLociStableScatter}
 \end{figure}
 
 \clearpage
 
 \begin{figure}[h]
-\includegraphics[scale=0.35]{Assets/Graphics/iLoci/algae-bd-counts.png} \par
+\centering
+\includegraphics[width=6in]{Assets/Graphics/iLoci/algae-bd-counts.png} \par
 \vspace{50px}
-\includegraphics[scale=0.35]{Assets/Graphics/iLoci/algae-bd-bp.png}
-\caption{Counts and genomic space occupied of iLoci from 9 species of green algae, categorized according to gene content and homology status.}
+\includegraphics[width=6in]{Assets/Graphics/iLoci/algae-bd-bp.png}
+\caption{~}
 \label{Fig:GreenAlgaeBreakdown}
 \end{figure}
 
 \clearpage
 
 \begin{figure}[h]
-\includegraphics[scale=0.4]{Assets/Graphics/iLoci/crei-breakdown-scatter.png} \par
-\caption{Plot of length and nucleotide composition for piLoci from the \textit{Chlamydomonas reinhardtii} genome. Blue point represent \textit{highly conserved piLoci}, green represent \textit{conserved piLoci}, and red represent \textit{orphan piLoci}.}
+\includegraphics[width=6in]{Assets/Graphics/iLoci/crei-breakdown-scatter.png}
+\centering
+\caption{~}
 \label{Fig:CreiBreakdownScatter}
 \end{figure}
 

@@ -7,6 +7,7 @@
 
 \documentclass[12pt]{Assets/isuthesis}
 
+\usepackage{array}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 \usepackage{tabularx}
@@ -15,6 +16,8 @@
 \usepackage{Assets/Styles/rotating}
 \usepackage[numbers]{Assets/Styles/natbib}
 \bibliographystyle{Assets/BibStyles/pnas}
+
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 \chaptertitle
 \alternate
