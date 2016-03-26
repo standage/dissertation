@@ -45,10 +45,8 @@
 %\addcontentsline{toc}{chapter}{LIST OF FIGURES}
 %\listoffigures
 \addtocontents{toc}{\def\protect\@chapapp{CHAPTER\ }}
-\cleardoublepage \phantomsection  %Optional Acknowledgements
-\include{Text/Preface/acknowl}    %Optional Acknowledgements
-\cleardoublepage \phantomsection  %Optional thesis abstract
-\include{Text/Preface/abstract}   %Optional thesis abstract
+%\cleardoublepage \phantomsection  %Optional thesis abstract
+%\include{Text/Preface/abstract}   %Optional thesis abstract
 \newpage
 \pagenumbering{arabic}
 
@@ -64,4 +62,6 @@
 %\include{Text/Appendix/appendix1}
 %\include{Text/Appendix/appendix2}
 \include{Reference/bibtex}
+\cleardoublepage \phantomsection  %Optional Acknowledgements
+\include{Text/Preface/acknowl}    %Optional Acknowledgements
 \end{document}
