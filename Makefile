@@ -9,8 +9,7 @@ Chapters=Text/Body/chapter1.tex \
          Text/Body/chapter2.tex \
          Text/Body/chapter3.tex \
          Text/Body/chapter4.tex \
-         Text/Body/chapter5.tex \
-         Text/Body/chapter6.tex
+         Text/Body/chapter5.tex
 
 Appendices=Text/Appendix/appendix1.tex \
            Text/Appendix/appendix2.tex
