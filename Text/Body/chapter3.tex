@@ -412,36 +412,54 @@ The authors would like to thank the developers of the GenomeTools software for h
 
 \section{Figures}
 
-\begin{figure}[h]
-\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-1.png}
-\caption{\textbf{Associating Annotations with Gene Loci}.
+\subsection*{Figure \ref{Fig:ParsEval1}}
+
+\noindent
+\textbf{Associating Annotations with Gene Loci}.
 The black bar provides a scale corresponding to a genomic region for which two sets of
 annotations are available. Reference annotations for gene structure are represented with red glyphs, while prediction annotations are shown with
 blue glyphs. Arrows indicate the strand of the gene annotation, and different levels of shading correspond to different gene structure features: dark
 shading for coding sequence, medium shading for UTRs, and light shading for introns. Green brackets denote gene loci as determined by the
 common practice of using only the genomic coordinates from reference gene annotations.Orange brackets denote gene loci as determined by
-ParsEval, which takes into account both reference and prediction annotations when selecting distinct loci for comparison.}
-\label{Fig:ParsEval1}
-\end{figure}
+ParsEval, which takes into account both reference and prediction annotations when selecting distinct loci for comparison.
 
-\begin{figure}[h]
-\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-2.png}
-\caption{\textbf{Locus Identification Using a Gene Interval Graph}.
+\subsection*{Figure \ref{Fig:ParsEval2}}
+
+\noindent
+\textbf{Locus Identification Using a Gene Interval Graph}.
 Red and blue nodes in this interval graph correspond to reference and prediction
 gene annotations (respectively) as shown in Figure \ref{Fig:ParsEval1}. Two nodes are connected by an edge if the corresponding gene annotations overlap. Each
 connected component in the graph represents a distinct
 gene locus, defined as the smallest genomic region containing every gene annotation
 associated with the corresponding subgraph. In this example, nodes representing five reference annotations and four prediction annotations are
 shown. The four connected components in the graph correspond to four gene loci, for which precise genomic coordinates can be determined from
-the associated genes (shown in orange brackets in Figure \ref{Fig:ParsEval1}).}
+the associated genes (shown in orange brackets in Figure \ref{Fig:ParsEval1}).
+
+\subsection*{Figure \ref{Fig:ParsEval3}}
+
+\noindent
+\textbf{Integrating ParsEval Reports with a Genome Browser}.
+Screenshot of the \textit{Arabidopsis thaliana} genome browser at Phytozome (http://phytozome.net/), with a custom anonymous user track populated by ParsEval output. Boxes in this custom track represent loci identified by ParsEval
+and are color-coded according to the level of agreement between the two sets of annotations compared (dark red and pastel blue glyphs,
+respectively). This custom track can easily be configured so that features are hyperlinked to ParsEval reports containing detailed comparison statistics.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-1.png}
+\caption{~}
+\label{Fig:ParsEval1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-2.png}
+\caption{~}
 \label{Fig:ParsEval2}
 \end{figure}
 
 \begin{figure}[h]
+\centering
 \includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-3.png}
-\caption{\textbf{Integrating ParsEval Reports with a Genome Browser}.
-Screenshot of the \textit{Arabidopsis thaliana} genome browser at Phytozome (http://phytozome.net/), with a custom anonymous user track populated by ParsEval output. Boxes in this custom track represent loci identified by ParsEval
-and are color-coded according to the level of agreement between the two sets of annotations compared (dark red and pastel blue glyphs,
-respectively). This custom track can easily be configured so that features are hyperlinked to ParsEval reports containing detailed comparison statistics.}
+\caption{~}
 \label{Fig:ParsEval3}
 \end{figure}
