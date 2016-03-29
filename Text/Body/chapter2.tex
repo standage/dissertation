@@ -157,7 +157,7 @@ mechanism related to sociality in insects.
 
 Detailed protocols are provided in \textbf{SI Materials and Methods}.
 
-\subsection{Sample collection and sequencing.} Five Illumina paired-end
+\subsection{Sample collection and sequencing} Five Illumina paired-end
 whole genome shotgun libraries were prepared from a single pupal male
 collected from an invasive population in State College, Pennsylvania.
 The libraries, ranging in insert size from \textless{}200bp to 8Kbp (see
@@ -171,14 +171,12 @@ sequencing. The head of each adult was cut in half, with RNA extracted
 from one half for transcriptome sequencing and DNA extracted from the
 other half for methylome sequencing.
 
-\subsection{Genome assembly and annotation}. Five whole genome shotgun
-libraries were assembled using the AllPaths-LG genome assembler
-(\protect\hyperlink{ux5fENREFux5f14}{Gnerre \textit{et al.} 2011}), with
+\subsection{Genome assembly and annotation} Five whole genome shotgun
+libraries were assembled using the AllPaths-LG genome assembler \cite{AllPathsLG}, with
 the smallest library designated as the \textit{fragment library} and the
 other four libraries designated as \textit{jumping libraries}. The
 assembled scaffolds were then screened for repetitive DNA, masked, and
-annotated by the MAKER pipeline
-(\protect\hyperlink{ux5fENREFux5f7}{Cantarel \textit{et al.} 2008}). The
+annotated by the MAKER pipeline \cite{Maker}. The
 annotation workflow incorporated evidence from spliced alignments of
 transcripts from three \textit{Polistes} species, spliced alignments of
 reference proteins from \textit{Apis mellifera} and \textit{Drosophila
@@ -186,22 +184,18 @@ melanogaster}, gene models produced by three \textit{ab initio} gene
 predictors, and manual gene annotations contributed \textit{via} the
 PdomGDB genome browser's community annotation portal.
 
-\subsection{Transcriptome assembly and annotation}. Twelve Illumina
-paired-end RNA-Seq libraries were assembled using the Trinity assembler
-(\protect\hyperlink{ux5fENREFux5f15}{Grabherr \textit{et al.} 2011}) with
-the -\/-CuffFly algorithm and the -\/-jaccard\_clip setting enabled.
+\subsection{Transcriptome assembly and annotation} Twelve Illumina
+paired-end RNA-Seq libraries were assembled using the Trinity assembler \cite{Trinity} with
+the \texttt{-\/-CuffFly} algorithm and the \texttt{-\/-jaccard\_clip} settings enabled.
 Assembled transcripts were then post-processed to discard contaminants,
 split transcript chimeras, and annotate transcript functions by
 similarity to known proteins and miRNAs. Two previously published
-\textit{Polistes} transcriptomes
-(\protect\hyperlink{ux5fENREFux5f3}{Berens \textit{et al.} 2015b};
-\protect\hyperlink{ux5fENREFux5f10}{Ferreira \textit{et al.} 2013}) were
+\textit{Polistes} transcriptomes \cite{Berens2015,PcanTrans} were
 processed with the same procedure.
 
-\subsection{Differential expression analysis}. Twelve Illumina paired-end
+\subsection{Differential expression analysis} Twelve Illumina paired-end
 RNA-Seq libraries, six from queens and six from workers, were sequenced
-and reads were mapped individually to the genome using Bowtie
-(\protect\hyperlink{ux5fENREFux5f29}{Langmead \textit{et al.} 2009}).
+and reads were mapped individually to the genome using Bowtie \cite{Bowtie}.
 Preliminary examination of the alignments revealed an extremely wide
 dynamic range of expression values (\textless{}10 reads to millions of
 reads mapped per replicate) and in some cases considerable variation
@@ -209,43 +203,38 @@ between replicates. To account for these observations we discarded loci
 with too many or too few reads mapped (normalized by sequence length) or
 with a high coefficient of variation.
 
-Expression was quantified using RSEM
-(\protect\hyperlink{ux5fENREFux5f31}{Li \& Dewey 2011}), and the EBSeq
-package (\protect\hyperlink{ux5fENREFux5f30}{Leng \textit{et al.} 2013})
+Expression was quantified using RSEM \cite{RSEM}, and the EBSeq
+package \cite{EBSeq}
 was used for identifying loci with caste differential expression at a
 false discovery rate of \textless{} 0.05. A complete description of the
 number of raw reads, data filtering procedure, and software parameters
 used is available in \textbf{SI Methods and Results}.
 
-\subsection{Methylome analysis}. Two DNA samples (one pooled sample from
+\subsection{Methylome analysis} Two DNA samples (one pooled sample from
 workers and one pooled sample from queens, derived from the same six
 individuals used for transcriptome sequencing) were subjected to
 bisulfite treatment, and each sample was used to generate separate
-Illumina libraries for sequencing. The Bismark software
-(\protect\hyperlink{ux5fENREFux5f27}{Krueger \& Andrews 2011}) was used
+Illumina libraries for sequencing. The Bismark software \cite{Bismark} was used
 for read mapping and methylation calls. Highly supported methylation
 sites were determined as sites with significant number of methylation
 calls based on a binomial probability model with Bonferroni correction
 at the 1\% significance level (assuming a 99.5\% conversion rate in the
 treatment). We also reanalyzed existing datasets from from
-\textit{Polistes canadensis} (\protect\hyperlink{ux5fENREFux5f43}{Patalano
-\textit{et al.} 2015}), honey bees
-(\protect\hyperlink{ux5fENREFux5f33}{Lyko \textit{et al.} 2010}), the ants
-\textit{Harpegnathos saltator} and \textit{Camponotus floridanus}
-(\protect\hyperlink{ux5fENREFux5f4}{Bonasio \textit{et al.} 2012}), and
-the parasitoid wasp \textit{Nasonia vitripennis}
-(\protect\hyperlink{ux5fENREFux5f65}{Wang \textit{et al.} 2013}) in order
+\textit{Polistes canadensis} \cite{PcanGenome}, honey bees \cite{Lyko2010},
+the ants \textit{Harpegnathos saltator} and \textit{Camponotus floridanus}
+\cite{Bonasio2012}, and the parasitoid wasp \textit{Nasonia vitripennis}
+\cite{NvitMethyl} in order
 to compare our \textit{P. dominula} results to previously analyzed
 Hymenoptera (see \textbf{SI Methods}). Numbers of methylation sites were
 determined with the BWASP workflow
 (\url{http://brendelgroup.github.io/BWASP/}) using pooled reads from
-published data sets for each species and caste.~ In-depth descriptions
+published data sets for each species and caste. In-depth descriptions
 of the comparative data, analysis pipelines, and comparative results are
 provided in a companion paper (Toth AL, Sankaranarayanan S, and Brendel
 VP, \textit{in preparation}).
 
 \subsection{Examination of interfamilial relationships \textit{via} gene tree
-analysis}. Genes with conserved single-copy orthologs in \textit{Apis
+analysis} Genes with conserved single-copy orthologs in \textit{Apis
 mellifera}, \textit{Harpegnathos saltator}, \textit{Polistes dominula}, and
 \textit{Nasonia vitripennis} were identified with protein clustering (see
 \textbf{SI Methods} for clustering criteria). For each gene, a multiple
