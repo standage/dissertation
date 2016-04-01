@@ -253,11 +253,9 @@ population in State College, Pennsylvania, USA. The DNA was used to
 generate five Illumina genomic DNA libraries of varying insert size
 (\textbf{Table S1}), each sequenced on a single channel on an Illumina
 HiSeq instrument. This generated a total of 78.6 Gb of raw sequence,
-which was filtered using Trimmomatic
-(\protect\hyperlink{ux5fENREFux5f1}{Bailey \textit{et al.} 2009}) to
+which was filtered using Trimmomatic \cite{Trimmomatic} to
 remove sequencing adapters and low quality base calls. The groomed data
-were assembled using AllPaths-LG
-(\protect\hyperlink{ux5fENREFux5f14}{Gnerre \textit{et al.} 2011}),
+were assembled using AllPaths-LG \cite{AllPathsLG},
 producing 1,483 scaffolds with an N50 of 1.63 Mb and a combined length
 of approximately 208 Mb. The genomic reads provide approximately 319x
 coverage of the genome. This genome assembly compares favorably to
@@ -289,35 +287,29 @@ bee, ant, and non-social wasp genomes (taxon selection described in
 \end{table}
 
 The genome assembly appears to be quite complete, on par with other
-Illumina-based draft insect genomes
-(\protect\hyperlink{ux5fENREFux5f5}{Bonasio \textit{et al.} 2010};
-\protect\hyperlink{ux5fENREFux5f37}{Nygaard \textit{et al.} 2011}). CEGMA
-analysis (\protect\hyperlink{ux5fENREFux5f42}{Parra \textit{et al.} 2007})
+Illumina-based draft insect genomes \cite{Bonasio2010,Nygaard2011}. CEGMA
+analysis \cite{CEGMA}
 showed 246 (99.2\%) of 248 ultra-conserved core eukaryote genes to be
 present in the genome assembly. The total assembled length of the genome
 approaches both \textit{in silico} estimates of the \textit{P. dominula}
 genome size based on \textit{k}-mer distributions in the sequence data
 (246 Mb, see \textbf{SI Results}) and earlier estimates based on flow
-cytometry (300 Mb, (\protect\hyperlink{ux5fENREFux5f23}{Johnston
-\textit{et al.} 2004})). The gene space of the \textit{P. dominula} genome
+cytometry (300 Mb, \cite{Johnston2004}). The gene space of the \textit{P. dominula} genome
 therefore appears to be almost completely represented in the assembly,
 suggesting that the unrepresented portions of the genome are likely
 highly repetitive regions that are difficult to assemble with Illumina
 technology.
 
 Automated annotation of \textit{P. dominula} genes was based on a
-specifically trained MAKER workflow
-(\protect\hyperlink{ux5fENREFux5f6}{Campbell \textit{et al.} 2014}) and
+specifically trained MAKER workflow \cite{Maker} and
 incorporated protein evidence from \textit{Apis mellifera} (NCBI release
 102 and OGS 3.2) and \textit{Drosophila} \textit{melanogaster} (FlyBase
 r5.55) and transcript data from \textit{P. dominula} (described below),
-\textit{P. metricus} (\protect\hyperlink{ux5fENREFux5f2}{Berens \textit{et
-al.} 2015a}), and \textit{P. canadensis}
-(\protect\hyperlink{ux5fENREFux5f10}{Ferreira \textit{et al.} 2013}). Also
+\textit{P. metricus} \cite{Berens2015}, and \textit{P. canadensis}
+\cite{PcanTrans}. Also
 integrated into the annotation were 180 gene models that, during
 preliminary stages of annotation, were manually curated and refined
-using the yrGATE portal (\protect\hyperlink{ux5fENREFux5f73}{Wilkerson
-\textit{et al.} 2006}). This resulted in 11,819 predicted gene models,
+using the yrGATE portal \cite{yrGATE}. This resulted in 11,819 predicted gene models,
 designated as release 1.2 (see \textbf{DATA ACCESIBILITY}). Similarity
 searches using BLAST revealed most of these predicted genes---10,755 out
 of 11,819 (91\%)---have hits to the NCBI non-redundant database, whereas
