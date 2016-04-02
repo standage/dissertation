@@ -12,7 +12,7 @@ The availability of high-quality model reference genomes has changed very little
 And as newly acquired data continues to flood into public databases, many scientists struggle to effectively manage the data and critically evaluate downstream research products.
 The proliferation of new algorithms and software tools for analyzing NGS data is a mixed blessing for scientists who now have both the flexibility and the burden of selecting suitable tool(s) for a particular analysis.
 
-The complexity and difficulty of genome assembly \cite{Assemblathon1,Assemblathon2,GAGE,QUAST}, annotation \cite{EGASP,Eilbeck,DentonFly}, and analysis \cite{PigWatson,RnaSeqTrim,RnaSeqTrim2} has been reported in various recent studies and community projects.
+The complexity and difficulty of genome assembly \cite{Assemblathon1,Assemblathon2,GAGE,QUAST}, annotation \cite{EGASP,AED,DentonFly}, and analysis \cite{PigWatson,RnaSeqTrim,RnaSeqTrim2} has been reported in various recent studies and community projects.
 The consistent, resounding message from this growing body of work is that genomics data quality varies considerably across data sets (and even within a single data set), and that the performance of state-of-the-art algorithms is difficult to predict on new data.
 Without a well-funded and well-staffed research consortium to manage the painstaking work of gap-filling each new genome assembly and carefully curating its contents, the new reality is that most reference genome assemblies will remain fragmented and unfinished, and that provisionally annotated genome features will fall on a wide spectrum of reliability.
 Doing principled and reproducible science in this setting requires disciplined quality control and data evaluation.
@@ -82,15 +82,15 @@ We demonstrate the utility of iLoci for characterizing genome organization, with
 Finally, we report the stability of iLoci across distinct assembly and annotation versions, highlighting their utility as reproducible units of analysis.
 
 % \section{GeneAnnoLogy: annotation version control}
-% 
+%
 % Continual refinement of our genome assembly and annotation hindered progress on our \textit{P. dominula} research at times.
 % This issue is certainly not unique to our work.
 % For example, the honeybee \textit{Apis mellifera} (the model social insect) had three official annotation versions in concurrent use during our work on the \textit{Polistes} genome project, with some studies even making their own unpublished refinements to an annotation \cite{Dnmt3KD,TrueSight}.
 % What seemed to be lacking was a precise way to refer to a particular gene or genomic region, as annotated at a particular time, and to make statements about its expression, or conservation, or methylation status, or any number of additional characteristics.
-% 
+%
 % The idea of tracking annotations over time is not new \cite{Eilbeck}, and some well-supported communities provide tools for mapping annotations from an older assembly version to updated assembly \cite{liftOver,PAGIT}.
 % However, iLoci provide an alternative solution to these issues and, along with the additional benefits previously described, furnish a complete framework for organization, quality control, and reproducibility for provisional genome projects.
-% 
+%
 % At an early stage in my training, I prototyped a tool called GeneAnnoLogy for maintaining an annotation version history, leveraging existing version control tools to track changes to individual iLoci over time.
 % I later built in features that facilitate filtering iLoci based on their length, nucleotide composition, annotation quality, or any number of additional characteristics that can be computed from or attached to the annotation.
 % The GeneAnnoLogy tool encapsulates the culmination of concepts and principles investigated in this dissertation.
