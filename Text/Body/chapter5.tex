@@ -1,33 +1,34 @@
 \chapter{CONCLUSIONS}
 
-A draft genome assembly and corresponding anntotation are important data resources for any genome project, and provide the coordinate systems and catalogs of functional elements upon which genomics studies rely.
+A draft genome assembly and corresponding annotation are important data resources for any genome project, and provide the coordinate systems and catalogs of functional elements upon which genomics studies rely.
 At the same time, it is widely acknowledged that genome assembly and annotation are complex and difficult with current nucleotide sequencing technologies, requiring close collaboration between domain experts and bioinformaticians.
-Single-molecule long-read sequencing platforms promise exciting improvements genome and transcriptome assembly, and within a few years could facilitate a much more direct path to production of high-quality reference genome sequences.
+Single-molecule long-read sequencing platforms promise exciting improvements in genome assembly, and within a few years could facilitate a much more direct path to production of high-quality reference genome sequences.
 As the cost and effort corresponding to genome-scale sequencing continues to drop, the demands imposed on domain experts to interpret genome-scale data will only continue to increase.
 The focus of this dissertation has been the development of tools and methodologies that enable reproducible analysis of annotated genomes, as motivated by challenges encountered in assembling, annotating, and analyzing the genome of the paper wasp \textit{Polistes dominula}.
 
 \textit{Polistes} is an important model for the study of social behavior and its evolution.
-The genome of \texit{Polistes} is similar to other social insects in many characteristic features, and shows a slight reduction in others, such as intron length and genome size \cite{PdomGenome}.
-The nucleotide composition of \textit{Polistes dominula} is the most AT-rich of any social insect studied, raising compelling questions about the molecular evolution of the genome and possible contributions of biased repair/mutation mechanisms or historically elevated levels of DNA methylation.
-Most striking in terms of genome content is the conspicious absence of the DNA methyltransferase \textit{Dnmt3}, recently and independently confirmed as missing in another \textit{Polistes} genome \cite{PcanGenome}.
-Previously thought to be a hallmark signature of social behavior \cite{Glastad2011}, \textit{Polistes} is the first social insect known to lack a complete complement of DNA methylation enzymes.
-We also found diffexp.
+The genome of \textit{Polistes} is similar to other social insects in many characteristic features, and shows a slight reduction in others, such as intron length and genome size \cite{PdomGenome}.
+The nucleotide composition of \textit{Polistes dominula} is the most AT-rich of any social insect studied, raising compelling questions about the molecular evolution of the genome and possible contributions of biased repair/mutation mechanisms or historically elevated levels of DNA methylation and deamination.
+Analysis of gene expression in queen and worker wasps identified 367 caste differentially expressed loci, with functions enriched for metabolism and neurotransmitter activity, but did not discover any caste bias in alternate splicing.
+Most striking in terms of genome content is the conspicious absence of the DNA methyltransferase \textit{Dnmt3} (recently and independently confirmed as missing in another \textit{Polistes} genome \cite{PcanGenome}) and essentially zero DNA methylation genome-wide.
+Previously thought to be a hallmark signature of social behavior \cite{Glastad2011}, \textit{Polistes} is the first social insect known to lack genome-wide DNA methylation a complete complement of DNA methylation enzymes.
 
-The challenges of this particular project are easily generalized, and I therefore sought to create tools that could be applied generally to address common questions about genome composition and organization.
-Foremost, researchers need to be able to scan newly produced genomes for genes of interest---for example, established ``social behavior" genes or DNA methylation related enzymes in \textit{Polistes}.
+While intriguing in the context of insect sociogenomics, the challenges I encountered in this project are common challenges in the wider context of genome biology.
+I therefore sought to create tools that could be applied generally to address common questions about genome composition and organization.
+Foremost, researchers need to be able to scan newly produced genomes for genes of interest---for example, established ``social behavior" genes or DNA methylation related enzymes, as in \textit{Polistes}.
 Researchers must also be able to compare different sources of annotation for the genome, and assess these in the context of available expression data and other evidence.
 There must be a way for researchers to refine annotations at loci of interest as needed, and to track changes to the annotation over time, providing complete providence for each data point included in an analysis.
 And finally, researchers need to be able to select subsets of data with which to reliably describe characteristics of the genome, such as (for example) intron length or codon usage.
 
 The framework provided by \textit{interval loci (iLoci)} and related tools is designed to provide precise solutions to these challenges.
-iLoci furnish a ``parts list" of a genome, a representation of the genome that is granular, complete, and that captures the genomic context of each genic or intergenic region.
+iLoci furnish a ``parts list" of the genome, a representation of the genome that is granular, complete, and that captures the genomic context of each genic or intergenic region.
 The ParsEval tool \cite{ParsEval} identifies the extent to which alternative sources of annotation for the genome differ, and in concert with community annotation tools (such as those provided by xGDBvm \cite{xGDBvm}) facilitates targeted evaluation and refinement of genes of interest.
-iLocus statistics produced by GenHub \cite{GenHub} enable filtering of iLoci based on their length, nucleotide composition, and gene content.
+iLocus statistics produced by GenHub programs \cite{GenHub} enable filtering of iLoci based on their length, nucleotide composition, and gene content.
 A prototype of a related tool, GeneAnnoLogy, implements a version control system to track changes in annotations over time, and could be extended with more flexible and comprehensive iLocus filtering mechanisms.
 
 The tools described in this dissertation are designed to calculate and present characteristics of genome composition quickly and easily for a new genome, and to facilitate uniform re-analysis of related data sets for comparison.
 Accordingly, care was taken to ensure that the tools support standard data formats, and to reduce the friction involved in installing and executing the software.
-These practical concerns, while largely orthogonal to the science, can nevertheless make ``quick and easy" processing and---ultimately---interpretation prohibitively difficult.
+These practical concerns, while largely orthogonal to the science, can nevertheless make ``quick and easy" processing and---ultimately---interpretation of genome data prohibitively difficult.
 Just as improvements in DNA sequencing technology have democratized genome sequencing, making these tools accessible and compatible with well-defined standard data formats puts the power of genome analysis directly in the hands of domain experts.
 Rapid assessment of new genome assemblies and annotations in the context of related genomes will help researchers distinguish between genomic features that are broadly conserved and those that appear to be unique, warranting additional attention and scrutiny.
 
