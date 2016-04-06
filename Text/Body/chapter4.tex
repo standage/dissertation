@@ -6,6 +6,7 @@ A paper to be submitted to \textit{Genome Biology}.
 
 Standage DS, Brendel VP
 
+
 \section{Background}
 
 The ready availability of Next-Generation Sequencing (NGS) technologies has resulted in genome data for thousands of species, with no slowing down of data accumulation in sight.
@@ -14,17 +15,17 @@ The conventional paradigm for that task from a few years ago is outdated.
 At that time one could expect community groups to carefully assemble and annotate the genomes of their expertise, resulting over a period of time in gap-filled assemblies and refined documentation of genome content in terms of protein-coding genes, non-coding RNA genes, transposable elements, repetitive sequences, and so forth.
 Such time-consuming and expensive efforts are impractical for the organisms currently being sequenced with NGS technologies.
 
-Out of necessity, the old paradigm has for the most part been replaced by an implicit new standard:  genome data are presented as massive short read  collections available from databases like the NCBI Sequence Read Archive~ \cite{SRA} and in processed form as sets of assembled and computationally annotated scaffolds.
+Out of necessity, the old paradigm has for the most part been replaced by an implicit new standard:  genome data are presented as massive short read  collections available from databases like the NCBI Sequence Read Archive \cite{SRA} and in processed form as sets of assembled and computationally annotated scaffolds.
 Concomitantly, downstream analyses of these data have to be adjusted to  scope and quality limitations intrinsic to the new data production process.
 First, assembly completeness will vary depending on the degree of read coverage and genome complexity (size and repetitiveness).
 Typically, assemblies will consist of tens to hundreds of large scaffolds, which in the best case can be ordered into linkage groups that approach pseudo-chromosomes; and in addition, manifold more short scaffolds, typically unplaced relative to any linkage groups.
-Second, annotation will commonly not have been expertly curated, but rather have resulted from first-pass outputs of annotation workflows such as AUGUSTUS~ \cite{AUGUSTUS}, MAKER-P~ \cite{MAKERP}, BRAKER1~ \cite{BRAKER1}, or NCBI Gnomon~ \cite{Gnomon}.
+Second, annotation will commonly not have been expertly curated, but rather have resulted from first-pass outputs of annotation workflows such as AUGUSTUS \cite{AUGUSTUS}, MAKER-P \cite{MAKERP}, BRAKER1 \cite{BRAKER1}, or NCBI Gnomon \cite{Gnomon}.
 
 Another challenge can be the more temporary nature of the data.
 As additional sequences can often be acquired cheaply and easily for a species (for example, genomic DNA reads for libraries of different insert sizes; RNA-Seq reads from transcriptome studies under various conditions; or spliced alignments of protein sequences from a newly annotated, closely related species), both the species' genome assembly and its genome annotation may change.
 However, in the common scenario laid out above, the additional analyses will typically come without the community support to carefully sort out and document all the changes.
 Thus, over a short span of several years, there may be several annotation versions even for a single stable genome assembly, and it becomes difficult to track references to particular genes and genome features.
-A pertinent example from our experience is provided by the number of concurrent annotations in recent use for the honey bee (\textit{Apis mellifera}) genome~ \cite{OGS1.0, OGS3.2, NCBIAm102}.
+A pertinent example from our experience is provided by the number of concurrent annotations in recent use for the honey bee (\textit{Apis mellifera}) genome \cite{OGS1.0, OGS3.2, NCBIAm102}.
 
 How then should one compare results of a study on a current genome assembly and annotation version with previous results in the literature that used a prior
 assembly/annotation pair?
@@ -45,9 +46,9 @@ Applications to genome project data for various plant and animal species demonst
 \section{Methods}
 
 \subsection{Toolkit design}
-Motivated by the challenges of present day genome data reviewed in the \textbf{Background} section, we have developed a toolkit for the \textbf{A}nalysis and \textbf{E}valuation of \textbf{Ge}nome \textbf{An}notations (\textbf{AEGeAn}~ \cite{AEGeAn}).
-The design of the toolkit followed general principles to achieve reproducible and scalable applications that are easy to use, available as open source code, and integrated with existing tools such as GenomeTools~ \cite{GenomeTools, GenomeToolsWebsite}.
-From a user perspective, the toolkit is meant to work with well-defined inputs consisting of one or more genome sequences paired with associated genome annotation, provided in multi-FASTA and GFF3~ \cite{GFF3} formats, respectively.
+Motivated by the challenges of present day genome data reviewed in the \textbf{Background} section, we have developed a toolkit for the \textbf{A}nalysis and \textbf{E}valuation of \textbf{Ge}nome \textbf{An}notations (\textbf{AEGeAn} \cite{AEGeAn}).
+The design of the toolkit followed general principles to achieve reproducible and scalable applications that are easy to use, available as open source code, and integrated with existing tools such as GenomeTools \cite{GenomeTools, GenomeToolsWebsite}.
+From a user perspective, the toolkit is meant to work with well-defined inputs consisting of one or more genome sequences paired with associated genome annotation, provided in multi-FASTA and GFF3 \cite{GFF3} formats, respectively.
 As discussed in the \textbf{Background} section, an input pair can represent a mature model organism genome/annotation version or an incomplete assembly with preliminary annotation.
 Either way, the toolkit will allow the user to probe genome assembly content and organization, with results reflecting both underlying genome features and the degree of assembly/annotation completeness and accuracy.
 We show how comparison of different data sets suggests interpretation of results that distinguishes the two possibilities.
@@ -74,10 +75,10 @@ More generally, how is the intergenic space organized?
 
 Lastly, all of the above questions are of interest in a comparative genomics context.
 To what extent are genomes within a clade of species similarly organized?
-And, maybe even more intriguingly, to what extent is genome organization functionally important?%\volker[*]{Make sure that we address all these nice questions from the last three paragraphs in the applications!}
+And, maybe even more intriguingly, to what extent is genome organization functionally important?
+
 
 \subsection{Conceptual definition of interval loci}
-
 To address the toolkit design prescriptions, we introduce a precise parsing of an assembly/annotation pair into smaller units, termed \textit{interval loci}, that provide a robust, granular, and dynamic data set for answering the biological questions posed above.
 Each interval locus (or \textit{iLocus}) is intended to capture the local genomic context of a genic or intergenic space, providing an alternative coordinate system to the conventional scaffold-based system that is robust to changes in assemblies and annotations.
 Conceptually, an iLocus is a genomic interval, the boundaries of which are computed from annotated gene models, with an extension to include probable adjacent \textit{cis}-regulatory regions.
@@ -90,14 +91,13 @@ iLoci containing no gene models are designated as intergenic (\textit{iiLoci}) i
 
 To illustrate these concepts, \textbf{Figure \ref{Fig:iLoci}} shows the parsing of a hypothetical scaffold into its constituent iLoci.
 The parsing captures an intuitive and practical decomposition of the genome.
-The piLoci (siLoci and ciLoci, collectively) provide a suitable proxy for genes when reporting gene number or calculating descriptive statistics on gene features.
-The siLoci in particular are going to be a nice set of gene models to work with, a subset of which will be well supported, while others can be flagged for more scrutiny.
+The piLoci comprise a superset of protein-coding genes when reporting gene number or calculating descriptive statistics on gene features.
+However, more reliable results would be expected from the siLoci, or even better a subset of the siLoci with well supported gene models.
 The ciLoci will typically require a whole lot more attention to establish whether the overlapping gene models reflect observed transcription or are artifacts of unresolved annotation conflicts.
 
-\subsection{Operational definition of interval loci}
 
-\subsubsection{Basic procedure}
-
+\subsection{Operational definition of iLoci}
+%\subsubsection*{Basic procedure}
 Computing iLoci for a genomic sequence $S$ depends on a set of intervals $G$ (corresponding to gene models annotated on $S$) and an extension parameter $\delta$.
 The basic procedure is described in \textbf{Algorithms \ref{Alg:ComputeiLoci}} and \textbf{\ref{Alg:ExtendIntervals}}.
 In brief, the $\textsc{ComputeLoci}$ algorithm computes a new set of intervals $L$ such that any two overlapping elements $g_m, g_n \in G$ are bounded by the same interval $loc \in L$.
@@ -106,6 +106,7 @@ The $\textsc{ExtendIntervals}$ algorithm then assesses each pair of adjacent int
 if the distance between the two intervals $dist(loc_m, loc_n) > 3 \delta$ nucleotides, then $loc_m$ and $loc_n$ will be extended toward each other by $\delta$ nucleotides, each designated as a giLocus, and the remaining space between them will be designated as an iiLocus;
 if $2\delta < dist(loc_m, loc_n) \leq 3\delta$, then $loc_m$ and $loc_n$ are extended toward each other equally until they meet, with extensions marginally longer than $\delta$ so as to avoid creating an extremely short iiLocus;
 if $dist(loc_m, loc_n) \leq 2\delta$, $loc_m$ and $loc_n$ will each be extended by $\delta$ resulting in overlapping iLoci.
+In the two latter cases the toolkit records a zero-length iLoci (\textit{ziLocus}) between the adjacent giLoci for consistency and calculation of cumulative statistics described below.
 
 \begin{algorithm}
 \caption{Compute giLocus boundaries}
@@ -164,25 +165,25 @@ if $dist(loc_m, loc_n) \leq 2\delta$, $loc_m$ and $loc_n$ will each be extended 
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Post-processing to refine iLoci}
-
+%\subsubsection*{Post-processing to refine iLoci}
 The iLocus parsing procedure is designed with the canonical case of gene organization in mind: a single gene model flanked on both sides by hundreds or thousands of nucleotides of intergenic space.
 All eukaryotic genomes have exceptions to this case, some to a greater extent than others.
 The basic parsing procedure can handle some exceptions, such as genes separated by very little intergenic space, but there are additional exceptions that occur frequently enough to merit additional post-processing and refinement.
 
 The basic procedure places two gene models in the same iLocus if their gene bodies have any overlap.
-While this is intended to capture gene models that may be conflicting, misannotated, or in need of additional attention, an unintended consequence is the occasional grouping of genes with a trivial amount of incidental overlap.
+While this is intended to capture gene models that may be conflicting or misannotated and in need of additional attention to resolve coordinates, an unintended consequence is the occasional grouping of genes with a trivial amount of incidental overlap.
 For example, if two genes---each a few kilobases in length---happen to have 10-20 nucleotides of overlap in their UTRs, they should be separated and handled as distinct loci.
 In post-processing, we enable splitting of such trivially overlapping iLoci by introducing two additional parameters: $\omega$, the number of nucleotides that two gene models must overlap to remain in the same iLocus, and $\kappa$ indicating whether that overlap is calculated using entire gene bodies ($\kappa = 0$) or just the coding sequences ($\kappa = 1$).
 
 Another exception occurs when a gene resides completely within a single intron of another gene.
 These genes are placed in the same iLocus during the initial parsing procedure, but can be separated into distinct iLoci during post-processing.
 
+
 \subsection{Implementation}
-In keeping with the conventions implemented by the GenomeTools library \cite{GenomeTools}, most of the core functionality of the AEGeAn Toolkit is implemented by means of \textit{node streams} for sequential processing of genome features that are represented as \textit{feature graphs}.
+In keeping with the conventions implemented by the GenomeTools library \cite{GenomeTools}, most of the core functionality of the AEGeAn Toolkit \cite{AEGeAn} is implemented by means of \textit{node streams} for sequential processing of genome features that are represented as \textit{feature graphs}.
 In brief, genome features such as genes, exons, UTRs, and coding sequences are represented as nodes in a directed acyclic graph, and parent/child relationships between features, denoted by \textit{ID} and \textit{Parent} attributes in GFF3, are represented as edges in the graph.
 Each connected component (CC) in the graph, typically corresponding to a gene and its subfeatures, is then processed sequentially by one or more node streams, each designed for a specific annotation processing task.
-One advantage of this approach is its low memory footprint, as only a single CC (or a fixed small number of CCs) need be loaded into memory at any given moment.
+One advantage of this approach is its low memory footprint, as at most only a small number of CCs need be loaded into memory at any given moment.
 
 The \textit{AgnLocusStream} module in the AEGeAn Toolkit implements a node stream for computing iLocus boundaries.
 This node stream expects as input gene annotations (CCs with a gene feature as the root node) sorted by genomic position, but it is designed to work with arbitrary feature types.
@@ -208,14 +209,12 @@ GenHub also includes modules and configurations for retrieving data deposited at
 The \textit{genhub-build.py} script provides the main interface for GenHub's data processing features, which are grouped into a small number of high-level tasks.
 For example, invoking the \textit{download}, \textit{format}, and \textit{prepare} tasks on one or more user-specified genomes will download the corresponding sequences and annotations, perform any pre-processing necessary to get all input data into a consistent format, and compute iLoci and collate associated features.
 
-\subsection{Assessment}
 
-\subsubsection{Descriptive statistics}
-
+\subsection{Genome content statistics}
 As discussed in the \textbf{Background} section, describing genome characteristics and comparing across species requires selection of reliable subsets of data for analysis.
 The precise selection criteria used will depend on the questions being asked, but commonly involve a small set of descriptive statistics that can easily be computed from the iLocus sequence and/or associated annotation.
 These include the length and nucleotide composition of the iLocus itself, as well as the count, length, and composition of corresponding features such as genes, RNAs, exons, introns, and coding sequences.
-Statistics are computed by invoking the \textit{stats} task of the \textit{genhub-build.py} script and stored in tab-separated plain text (.tsv) files to facilitate importing into popular statistical computing packages.
+Statistics are computed by invoking the \textit{stats} task of the \textit{genhub-build.py} script and are stored in tab-separated plain text (.tsv) files to facilitate importing into popular statistical computing packages.
 
 Additional characteristics, such as the quality and homology status of gene models, are not always readily accessible from the iLocus sequence or annotation but can be computed and attached to an iLocus annotation using key-value pairs in GFF3's \textbf{attribute} column.
 Annotation quality can be measured with statistics such as Maker's \textit{annotation edit distance} \cite{AED} or the GAEVAL \textit{integrity score} \cite{GAEVAL}, and  homology status can be determined via BLAST search or clustering of iLocus protein products.
@@ -225,35 +224,37 @@ Descriptive statistics are reported only for a single annotated transcript at ea
 The reported transcript is selected according to the amino acid length of its translation product: the transcript with the longest product is reported.
 In cases where multiple transcripts have translation products of identical length, the transcript with the lexicographically smallest \textbf{ID} attribute is reported, ensuring reproducible and deterministic reporting.
 
-\subsubsection{Neighbor statistics}
+Cumulative lengths of different iLocus types are calculated by the \textit{genhub-build.py} script after proper accounting of any iLocus overlaps to ensure each nucleotide in the genome is counted only once.
+When reported as a fraction of the entire genome, the genomic space occupied for different iLocus categories is calculated as a fraction of \textit{effective genome size}---the total number of nucleotides in the genome that do not reside within fiLoci---to mitigate potentially confounding inflation of genome size by many short unannotated sequences or sequence fragments.
 
-To facilitate study of genome organization, several additional statistics describing the genomic context of each iLocus are reported.
-For each iiLocus, the orientation of flanking giLoci is reported as FF (forward $>>$), RR (reverse $<<$), RF (outward $<>$), or FR (inward $><$).
-For each giLocus, the lengths of the flanking iiLoci are reported as the \textit{liil} and \textit{riil} attributes, corresponding to the \textit{left iiLocus length} and \textit{right iiLocus length}, respectively.
-In cases where a giLocus abuts or overlaps with another giLocus, the corresponding iiLocus length is reported as 0 while the number of overlapping nucleotides is reported using the \textit{left\_overlap} and \textit{right\_overlap} attributes.
-An \textit{effective length} is also reported for each iLocus, which subtracts \textit{right\_overlap} from the total iLocus length to ensure each nucleotide in the genome is counted only once when, for example, determining the proportion of the genome occupied by each iLocus type.
+\subsection{Genome organization statistics}
+Beyond genome content, the iLocus framework also allows to systematically study different aspects of genome organization.
+Here we focus on gene orientation and spacing: are there species-specific patterns of gene arrangements, and how do natural genomes differ in these respects from statistical expectation?
+Because of the flexible design of the code base described in the \textbf{Implementation} section, these questions can easily be generalized and extended, for example with respect to selection of subtypes of genic loci.
 
-Overlapping or abutting giLoci can furthermore be collapsed into \textit{merged iLoci (miLoci)} with a trivial amount of post-processing.
-These miLoci represent regions of the genome with high gene density and, along with iiLoci, provide a framework for investigating the spatial organization of genes at the whole-genome scale.
-For instance, iiLoci can be sorted by length to identify the largest unannotated regions of the genome, and miLoci can be sorted by length or gene count to identify the regions of the genome with highest gene density.
+To study gene orientation, the \textit{genhub-build.py} script reports for each iiLocus the orientation of the flanking giLoci as FF (forward $>>$), RR (reverse $<<$), RF (outward $<>$), or FR (inward $><$).
+That data is used to identify the longest stretches of genes all on the forward strand, all on the reverse strand, or periodically alternating between strands.
+Differences in occurrence numbers and lengths of outward and inward iiLoci are also determined for possible interpretation in terms of promoter architecture.
 
-\subsection{Descriptive summary of model organism genomes}
+Long iiLoci are flagged as regions for annotation review.
+More generally, for each giLocus the lengths of the flanking iiLoci are reported as the \textit{liil} and \textit{riil} attributes, corresponding to the \textit{left iiLocus length} and \textit{right iiLocus length}, respectively.
+In cases where a giLocus abuts or overlaps with another giLocus, the corresponding iiLocus length is set to zero, while the number of overlapping nucleotides is recorded using the \textit{left\_overlap} and \textit{right\_overlap} attributes.
+The software tracks these cases as \textit{zero-length iiLoci} (\textit{ziLoci}).
+The iiLoci lengths are used in two different ways to reveal gene spacing characteristics.
+The distribution of aggregate lengths of $n$ adjacent iiLoci shows the mode of typical gene spacings as well as outliers.
+%Should we use the percentage of genes in the genome that are flanked on both sides by intergenic space, those that have intergenic space only on one flank, and those flanked tightly on both sides by other genes.
+Secondly, overlapping or abutting giLoci are collapsed into \textit{merged iLoci} (\textit{miLoci}) during post-processing and represent gene clusters.
+Our results show that relative counts and lengths of miLoci compared to non-merged siLoci provide robust measures of genome compactness.
 
-To demonstrate the utility of iLoci for providing a descriptive overview of genome composition and organization, we retrieved RefSeq genome assemblies and corresponding annotations for ten model organisms.
-For each species, we computed iLoci and associated descriptive statistics, including length, nucleotide composition, exon count, and \textit{effective length} using standard GenHub build tasks as described in previous sections.
-The iLocus effective length is also reported as a fraction of \textit{effective genome size}---the total number of nucleotides in the genome that do not reside within fiLoci---to mitigate potentially confounding inflation of genome size by many short unannotated sequences or sequence fragments.
-
-\subsection{Genomic positioning of giLoci}
-
-Given a genome annotation in GFF3 format, we compute random gene arrangements to provide a baseline for investigating genomic positioning of genes.
+To evaluate observed gene spacing patterns with statistical expectation, we implemented a procedure to generate randomized gene arrangements relative to the input genome annotation in GFF3 format.
 First, iLoci are computed with $\delta=0$ to identify the precise boundaries of annotated genic regions.
 Next, giLoci are removed from the sequence and the remaining iiLoci are concatenated.
-Then, after shuffling the order of the giLoci, a new position for re-inserting each giLocus into the sequence is selected from a uniform distribution.
-Finally, after all re-insertion positions are selected, the giLoci are re-inserted sequentially into the sequence.
+Then, new positions are randomly selected from a uniform distribution for re-inserting the giLoci in shuffled order into the sequence.
 As each giLocus is re-inserted, the genomic sequence is expanded, and all downstream re-insertion sites are adjusted accordingly.
+Re-running the iLocus parsing procedure and computing neighbor statistics on these random arrangements provides a baseline for comparison, revealing how genome annotations as observed differ (at the genome scale) from what could be expected from a completely random arrangement of genes.
 
-\subsection{Assessing iLocus stability}
 
+\subsection{Comparing assembly/annotation pairs: iLocus stability}
 Given two assembly/annotation versions for the same genome, we evaluate the stability of iLoci across the two versions using sequence alignment and interval overlap.
 Specifically, iLocus sequences from the earlier assembly/annotation version (version \textit{A}) are aligned to the genome of the newer version (version \textit{B}), and the interval of each alignment is compared to the intervals of iLoci annotated on \textit{B}.
 An iLocus from \textit{A} is designated stable if the following criteria are satisfied: it aligns to genome \textit{B} with at least 95\% identity; an iLocus from \textit{B} overlaps with at least 90\% of the aligned iLocus sequence from \textit{A}; and the alignment interval overlaps with at least 90\% of that same iLocus from \textit{B}.
@@ -262,10 +263,10 @@ For this study, we used Vmatch \cite{Vmatch} to compute iLocus alignments (using
 As a preliminary step, we used RepeatMasker \cite{RepeatMasker,RepBase} and bedtools \cite{bedtools} to identify and filter out iLoci with substantial repetitive content to make alignment computations tractable.
 Specifically, any iLocus with at least 500 bp or 25\% repetitive content was excluded from the Vmatch alignment procedure.
 
-\subsection{Computing \textit{hiLoci} based on protein clustering}
 
+\subsection{Comparing genome content and organization between related genomes: homologous iLoci}
 Given a set of annotated genome assemblies for a clade of related species, we compute \textit{homologous iLoci (hiLoci)} via a protein clustering procedure.
-For each species, a representative protein sequence is selected for each piLocus (as described in the \textbf{Descriptive statistics} section).
+For each species, a representative protein sequence is selected for each piLocus (as described in the \textbf{Genome content statistics} section).
 The distinct protein complements from all species are then combined, and the aggregate collection of protein sequences is clustered using cd-hit \cite{cdhit}.
 
 In brief, cd-hit processes proteins iteratively from longest to shortest.
@@ -282,33 +283,27 @@ The script provides the following default clustering criteria, although these de
 The default parameters are as follows: sequence identity $\geq$ 50\%; length difference $\leq$ 65\%; alignment coverage for longer sequence $\geq$ 75\%; alignment coverage for shorter sequence $\geq$ 85\%.
 On the command line these parameters are specified as \texttt{-c 0.50 -s 0.65 -aL 0.75 -aS 0.85}.
 
-\subsection{Classifying hiLoci from a clade of 9 chlorophyte species}
 
-To investigate the extent of gene conservation in the green algae (phylum: Chlorophyta), we collected and processed data for nine chlorophyte species, as well as four land plants as an outgroup.
-%(\textit{Auxenochlorella protothecoides}, \textit{Chlamydomonas reinhardtii}, \textit{Chlorella variabilis}, \textit{Coccomyxa subellipsoidea}, \textit{Micromonas pusilla}, \textit{Micromonas sp. RCC299}, \textit{Ostreococcus lucimarinus}, \textit{Ostreococcus tauri}, and \textit{Volvox carteri})
-%(\textit{Arabidopsis thaliana}, \textit{Brachypodium distachyon}, \textit{Medicago truncatula}, and \textit{Oryza sativa})
-Retrieval of annotations and sequences and calculation of hiLoci was invoked using standard procedures as described in previous sections.
+\subsection{Data sets analyzed}
+To demonstrate the utility of iLoci for providing a descriptive overview of genome composition and organization, we retrieved RefSeq genome assemblies and corresponding annotations for ten model organisms (complete species names listed shown \textbf{Table \ref{Table:iLocusCountsModOrg}}).
+Species were selected to provide a broad sampling of eukaryotic diversity, with a preference for robust model organisms with mature chromosome-level genome assemblies and extensive community-supported annotation.
+For each species, we computed iLoci and associated feature statistics, including length, nucleotide composition, exon count, and \textit{effective length} using standard GenHub build tasks as described before.
+Precise configurations and commands run are described in detail in the \textbf{genome-summary} section at \url{https://github.com/BrendelGroup/IntervalLoci}.
+
+Using iLocus summaries of these ten model organisms as a baseline for comparison, we characterized the genome content and organization of three additional species of interest that serve as important experimental models for evolutionary and ecological studies.
+The alga \textit{Volvox carteri} is the focus of research on the evolution of cellular complexity and development, and was the second alga (after \textit{Chlamydomonas reinhardtii}) to have its genome sequenced.
+The paper wasp \textit{Polistes dominula} is an important model for studying the evolution of social behavior, and provided one of the first sequenced genomes of a vespid wasp \cite{PdomGenome}.
+The water flea \textit{Daphnia pulex} is a species of ecological and evolutionary interest, and was the first crustacean to have its genome sequenced \cite{DaphniaGenome}.
+Genomes for these three species were processed using the same procedure as the ten model organisms (see \url{https://github.com/BrendelGroup/IntervalLoci}).
+
+
+%\subsubsection*{Classifying hiLoci from a clade of 9 chlorophyte species}
+To investigate the extent of gene conservation in the green algae (phylum: Chlorophyta), we collected and processed data for nine chlorophyte species (\textit{Auxenochlorella protothecoides}, \textit{Chlamydomonas reinhardtii}, \textit{Chlorella variabilis}, \textit{Coccomyxa subellipsoidea}, \textit{Micromonas pusilla}, \textit{Micromonas sp. RCC299}, \textit{Ostreococcus lucimarinus}, \textit{Ostreococcus tauri}, and \textit{Volvox carteri}), as well as four land plants (\textit{Arabidopsis thaliana}, \textit{Brachypodium distachyon}, \textit{Medicago truncatula}, and \textit{Oryza sativa}) as an outgroup.
+Retrieval of annotations and sequences and calculation of hiLoci was invoked using standard procedures as described before (see \mbox{\textbf{chlorophyta}} section at \url{https://github.com/BrendelGroup/IntervalLoci}).
 Following the protein clustering procedure, each hiLocus was assigned a preliminary classification: \textit{highly conserved} if it had a representative from each of the nine chlorophyte genomes; \textit{conserved} if it had a representative from at least four chlorophyte genomes; \textit{matched} if it had a representative from at least two genomes (including the outgroups); and \textit{unmatched} if it had a representative from only a single genome.
 
 iLoci initially classified as \textit{unmatched} were subjected to additional screening to distinguish conserved proteins lacking a nearly-full-length match (due to incomplete or incorrect annotation, or true evolutionary divergence) from orphan proteins without any reliable match.
 iLoci with a BLASTP match against another species (\texttt{-evalue 1e-10}) were reclassified as \textit{matched}, while those lacking a match were reclassified as \textit{orphan}.
-
-
-%\textit{Intergenic iLoci (iiLoci)} capture and provide convenient access to information about the largest unannotated regions of the genome.
-%Furthermore, overlapping or abutting giLoci can be merged with a trivial amount of post-processing, and characteristics of these \textit{merged iLoci (miLoci)}---length, gene count, length of flanking iiLoci---provide insight into the largest and most gene dense regions of the genome.
-%Together, miLoci and iiLoci provide an excellent resource for investigating genome organization.
-%
-%Although no iiLoci are reported for pairs of adjacent genes separated by little or no intergenic space, tracking these cases as \textit{zero-length iiLoci (ziLoci)} can provide additional insight into genome organization.
-%For instance, when reporting the length of a giLocus' two flanking iiLoci, ziLoci provide valuable information on the percentage of genes in the genome that are flanked on both sides by intergenic space, those that have intergenic space only on one flank, and those flanked tightly on both sides by other genes.
-%Additionally, calculating and plotting aggregate lengths of $N$ adjacent iiLoci provides insight into the spatial distribution of genes when ziLoci are included.
-%Investigating multiple small values of $N$ reveals the extent to which genes are clustered in regions of high gene density in the genome.
-%
-%The spatial organization of genes in the eukaryotic genome is influenced by a variety of factors such as genome size, transposable element activity, and nucleotide composition constraints.
-%We implemented a procedure to produce random non-overlapping arrangements of giLoci on a genomic sequence.
-%Re-running the iLocus parsing procedure and computing neighbor statistics on these random arrangements provides a baseline for comparison, revealing how genome annotations as observed differ (at the genome scale) from what could be expected from a completely random arrangement of genes.
-%
-%For XX species, we selected six 1Mb regions each from the genome, randomly distributed the giLoci from that region, re-ran the iLocus parsing procedure, and compared length, neighbor statistics, and other characteristics between the actual annotations and the randomly distributed annotations.
-
 
 
 
@@ -350,24 +345,24 @@ iLoci with a BLASTP match against another species (\texttt{-evalue 1e-10}) were 
 }
 \end{table}
 
-\begin{table}[h]
+\begin{table}[t]
 \caption{Summary of piLoci from genomes of ten model organisms and three additional species.}
 \label{Table:piLocusSingleGeneFraction}
 \begin{tabularx}{\textwidth}{lrrr}
 \hline
                             Species &               piLoci &  Occupancy\textsuperscript{1} &   Single Exon piLoci  \\ \hline
 \textit{Saccharomyces cerevisiae}   &                5,794 &              11.4 Mb (94.3\%) &       5,529 (95.4\%)  \\
-\textit{Caenorhabditis elegans}     &               20,152 &              71.2 Mb (71.0\%) &          579 (2.9\%)  \\
-\textit{Chlamydomonas reinhardtii}  &               14,296 &              74.1 Mb (68.2\%) &        1,127 (7.9\%)  \\
+\textit{Caenorhabditis elegans}     &               20,152 &              71.2 Mb (71.0\%) &         579 ( 2.9\%)  \\
+\textit{Chlamydomonas reinhardtii}  &               14,296 &              74.1 Mb (68.2\%) &       1,127 ( 7.9\%)  \\
 \textit{Medicago truncatula}        &               50,444 &             179.5 Mb (44.9\%) &      11,481 (22.8\%)  \\
-\textit{Anopheles gambiae}          &               12,304 &              83.7 Mb (35.9\%) &        1,137 (9.2\%)  \\
+\textit{Anopheles gambiae}          &               12,304 &              83.7 Mb (35.9\%) &       1,137 ( 9.2\%)  \\
 \textit{Drosophila melanogaster}    &               13,354 &              95.1 Mb (70.0\%) &       2,062 (15.4\%)  \\
-\textit{Xenopus tropicalis}         &               21,839 &             686.6 Mb (50.4\%) &        1,353 (6.2\%)  \\
-\textit{Danio rerio}                &               26,395 &             793.7 Mb (58.6\%) &        1,062 (4.1\%)  \\
+\textit{Xenopus tropicalis}         &               21,839 &             686.6 Mb (50.4\%) &       1,353 ( 6.2\%)  \\
+\textit{Danio rerio}                &               26,395 &             793.7 Mb (58.6\%) &       1,062 ( 4.1\%)  \\
 \textit{Mus musculus}               &               21,523 &           1,014.1 Mb (38.2\%) &       2,326 (10.8\%)  \\
-\textit{Homo sapiens}               &               19,466 &           1,204.7 Mb (40.0\%) &        1,270 (6.5\%)  \\ \hline
-\textit{Volvox carteri}             &               14,390 &              89.2 Mb (69.1\%) &        1,086 (7.5\%)  \\
-\textit{Polistes dominula}          &               11,580 &              64.1 Mb (34.8\%) &          455 (3.9\%)  \\
+\textit{Homo sapiens}               &               19,466 &           1,204.7 Mb (40.0\%) &       1,270 ( 6.5\%)  \\ \hline
+\textit{Volvox carteri}             &               14,390 &              89.2 Mb (69.1\%) &       1,086 ( 7.5\%)  \\
+\textit{Polistes dominula}          &               11,580 &              64.1 Mb (34.8\%) &         455 ( 3.9\%)  \\
 \textit{Daphnia pulex}              &               30,614 &              89.2 Mb (54.3\%) &       5,053 (16.5\%)  \\ \hline
 \end{tabularx}
 \raggedright
@@ -396,29 +391,20 @@ The inclusion of introns and UTRs places the protein-coding fraction of the geno
 ciLoci occur in the dozens or hundreds in most genomes, accounting for only a small proportion of genes.
 Only one genome from these ten species, that of \textit{Medicago truncatula}, harbors no ciLoci.
 
-%The piLocus count accurately reflects the large number of annotated gene models in \textit{Daphnia}.
-%Interestingly, however, the genomic space occupied by these piLoci represents a smaller proportion of the genome than is observed in \textit{Drosophila melanogaster}, the primary species to which it was originally compared to emphasize its compactness \cite{DaphniaGenome}.
-%
-%We confirmed that genes in \textit{Daphnia} are on average shorter than genes in \textit{Drosophila}, despite containing more introns per gene (see \textbf{Figures S1-S2}).\daniel[*]{I will probably end up moving all figures in this paragraph to the supplement. I'll keep them in for now for simplicity's sake.}
-%However the claim that reduced intron length is responsible for this difference (and more generally for overall genome compactness) seems to be overstated.
-%The average intron length is indeed shorter (283 bp versus 1,211 bp in \textit{Drosophila}), but the median length is indistinguishable (75 bp versus 72 bp in \textit{Drosophila}), indicating fewer introns in the long tail of the length distribution in \textit{Daphnia} (\textbf{Figure S3}).
-%The extent to which this difference reflects real genome biology versus artifacts of the respective annotation workflows warrants additional investigation, but the distribution of exon lengths provides additional perspective on the observed difference in gene length.
-%The exon length distribution in both species is much less biased than that of introns, and exons in \textit{Daphnia} (mean: 227 bp, median 154 bp) are approximately half the length of exons in \textit{Drosophila} (mean: 514 bp, median: 286 bp; see \textbf{Figure S6}).
-
 \subsection{Gene clustering is abundant in eukaryotic genomes}
 
-\begin{table}[h]
+\begin{table}
 \caption{Summary of miLoci from genomes of ten model organisms and three additional species.}
 \label{Table:miLocusSummaryModOrg}
-\begin{tabularx}{\textwidth}{p{4cm}rrrr}
+\begin{tabularx}{\textwidth}{lrrrr}
 \hline
                             Species &               miLoci & Occupancy\textsuperscript{1} & Gene Count\textsuperscript{2} & Singletons\textsuperscript{3}  \\ \hline
-\textit{Saccharomyces \mbox{cerevisiae}}   &                  240 &             11.4 Mb (95.0\%) &                     4, 15, 35 &                    65 (1.1\%)  \\
-\textit{Caenorhabditis \mbox{elegans}}     &                5,178 &             70.4 Mb (70.2\%) &                       3, 4, 7 &                 2,611 (6.6\%)  \\
-\textit{Chlamydomonas \mbox{reinhardtii}}  &                3,042 &             54.9 Mb (50.5\%) &                       2, 3, 4 &                3,753 (26.3\%)  \\
+\textit{Saccharomyces cerevisiae}   &                  240 &             11.4 Mb (95.0\%) &                     4, 15, 35 &                   65 ( 1.1\%)  \\
+\textit{Caenorhabditis elegans}     &                5,178 &             70.4 Mb (70.2\%) &                       3, 4, 7 &                2,611 ( 6.6\%)  \\
+\textit{Chlamydomonas reinhardtii}  &                3,042 &             54.9 Mb (50.5\%) &                       2, 3, 4 &                3,753 (26.3\%)  \\
 \textit{Medicago truncatula}        &                9,799 &             81.2 Mb (20.3\%) &                       2, 2, 3 &               27,702 (53.8\%)  \\
 \textit{Anopheles gambiae}          &                2,198 &             33.9 Mb (14.5\%) &                       2, 2, 4 &                5,962 (46.1\%)  \\
-\textit{Drosophila melanogaster}    &                1,867 &             88.3 Mb (65.0\%) &                      2, 4, 11 &                 1,621 (9.7\%)  \\
+\textit{Drosophila melanogaster}    &                1,867 &             88.3 Mb (65.0\%) &                      2, 4, 11 &                1,621 ( 9.7\%)  \\
 \textit{Xenopus tropicalis}         &                3,489 &            206.8 Mb (15.2\%) &                       2, 2, 3 &               17,009 (62.9\%)  \\
 \textit{Danio rerio}                &                5,752 &            285.4 Mb (21.1\%) &                       2, 2, 3 &               18,834 (48.1\%)  \\
 \textit{Mus musculus}               &                6,625 &            746.9 Mb (28.1\%) &                       2, 2, 3 &               17,085 (48.0\%)  \\
@@ -431,7 +417,7 @@ Only one genome from these ten species, that of \textit{Medicago truncatula}, ha
 {\scriptsize
 \textsuperscript{1}Total number of nucleotides occupied by miLoci, and the corresponding fraction of effective genome size. \\
 \textsuperscript{2}Quartiles of the distribution of gene count per miLocus. \\
-\textsuperscript{3}Total number of giLoci not contained in a miLocus, and corresponding fraction of all giLoci. \\
+\textsuperscript{3}Total number of giLoci not contained in a miLocus, and corresponding fraction of all giLoci.
 }
 \end{table}
 
@@ -480,22 +466,23 @@ Within Chlorophyta, compactness scales almost perfectly with genome size, althou
 Sequences from \textit{Saccharomyces cerevisiae} are the most compact of all 10 model organisms analyzed, consistent with the paucity of iiLoci in the genome and the highest gene counts per miLocus observed in these data sets.
 
 Very few sequences show extremely low levels of compactness: only six sequences have $\phi < 0.2$ and $\sigma < 0.2$, two of which correspond to mammalian sex chromosomes, with the other four corresponding to unplaced scaffolds from \textit{Xenopus tropicalis}.
-Likewise, very few sequences have evidence of extensive ``archipelago"-type organization (high $\phi$ and low $\sigma$).
-Those with $\phi > 0.8$ and $\sigma < 0.3$ appear to be outliers within genomes otherwise characterized by intermediate levels of density.
+Likewise, very few sequences are dominated by an ``archipelago"-type organization (high $\phi$ and low $\sigma$).
+Those with $\phi > 0.7$ and $\sigma < 0.3$ are annotated with hundreds or thousands of tRNA genes, many packed tightly together in large clusters.
+tRNA-derived SINE elements are known to be abundant in at least one of these species \cite{DrerGenome}, suggesting that these clusters are comprised primarily of misannotated repetitive elements.
 
 \subsection{Gene clustering occurs more frequently than expected by chance}
 
 The framework provided by miLoci for investigating genome organization enables us to investigate whether the amount of clustering observed in a particular genome assembly/annotation pair is more or less than would be expected by chance.
 For long chromosome and scaffold sequences ($\geq$ 1Mb) in ten model organisms, we computed random spatial arrangements of the genes on each sequence and then re-computed iLoci and associated summary statistics for comparison with the observed annotation.
 
-\begin{table}[t]
+\begin{table}[h]
 \caption{Summary of miLoci computed on randomly positioned genes.}
 \label{Table:miLocusSummaryShuffled}
 \begin{tabularx}{\textwidth}{lrrrr}
 \hline
 Species                                &               miLoci &            Occupancy &           Gene Count &           Singletons  \\ \hline
-\textit{Saccharomyces cerevisiae}      &                  134 &      4.6 Mb (96.7\%) &            5, 14, 23 &           10 (0.4\%)  \\
-\textit{Caenorhabditis elegans}        &                6,389 &     71.7 Mb (71.5\%) &              2, 4, 6 &        3,186 (8.1\%)  \\
+\textit{Saccharomyces cerevisiae}      &                  134 &      4.6 Mb (96.7\%) &            5, 14, 23 &          10 ( 0.4\%)  \\
+\textit{Caenorhabditis elegans}        &                6,389 &     71.7 Mb (71.5\%) &              2, 4, 6 &       3,186 ( 8.1\%)  \\
 \textit{Chlamydomonas reinhardtii}     &                2,502 &     34.0 Mb (42.7\%) &              2, 2, 3 &       3,866 (36.6\%)  \\
 \textit{Medicago truncatula}           &                9,189 &     73.8 Mb (19.2\%) &              2, 2, 3 &      27,408 (56.0\%)  \\
 \textit{Anopheles gambiae}             &                1,506 &     26.2 Mb (11.4\%) &              2, 2, 2 &       8,982 (72.4\%)  \\
@@ -521,10 +508,7 @@ The $(\phi, \sigma)$ statistics calculated on long genomic sequences are consist
 
 \subsection{Characterization of three species of interest}
 
-With baseline expectations about genome content and organization established by iLocus analysis of ten model organism genomes, we sought to characterize the composition and organization of genomes from 3 additional species.
-The alga \textit{Volvox carteri} is the focus of research on the evolution of cellular complexity and development, and was the second alga (after \textit{Chlamydomonas reinhardtii}) to have its genome sequenced.
-The paper wasp \textit{Polistes dominula} is an important model for studying the evolution of social behavior, and along with \textit{Polistes canadensis} provided the first sequenced genomes of vespid wasps \cite{PdomGenome}.
-The water flea \textit{Daphnia pulex} is a species of ecological and evolutionary interest, and was the first crustacean to have its genome sequenced \cite{DaphniaGenome}.
+With baseline expectations about genome content and organization established by iLocus analysis of ten model organism genomes, we sought to characterize the composition and organization of genomes from 3 additional species: the multicelullar green alga \textit{Volvox carteri}, the primitively eusocial paper wasp \textit{Polistes dominula}, and the microcrustacean \textit{Daphnia pulex}.
 
 The genome content of \textit{Volvox carteri} is very similar to that of \textit{Chlamydomonas reinhardtii} (\textbf{Tables \ref{Table:iLocusCountsModOrg}-\ref{Table:miLocusSummaryModOrg}}).
 Characteristics of protein-coding regions (summarized in \textbf{Table \ref{Table:piLocusSingleGeneFraction}}) show particular similarity, as reflected by the number of piLoci, the total space occupied by these piLoci, and the fraction of piLoci corresponding to single-exon genes.
@@ -549,8 +533,16 @@ However, this appears to be influenced more by reduced exon length rather than b
 Further, we observe consistently lower $(\phi, \sigma)$ values for \textit{Daphnia} than for \textit{Drosophila}, reflective of a smaller fraction of tightly-packed genes and a smaller proportion of the genome sequence occupied by such gene clusters (\textbf{Figure S5C}).
 Across all of these measures, \textit{Daphnia pulex} is characterized by a moderate level of genomic compactness relative to other arthropods and eukaryotes in general.
 
-\subsection{iLoci provide a robust representation of the genome}
+%The piLocus count accurately reflects the large number of annotated gene models in \textit{Daphnia}.
+%Interestingly, however, the genomic space occupied by these piLoci represents a smaller proportion of the genome than is observed in \textit{Drosophila melanogaster}, the primary species to which it was originally compared to emphasize its compactness \cite{DaphniaGenome}.
+%
+%We confirmed that genes in \textit{Daphnia} are on average shorter than genes in \textit{Drosophila}, despite containing more introns per gene (see \textbf{Figures S1-S2}).\daniel[*]{I will probably end up moving all figures in this paragraph to the supplement. I'll keep them in for now for simplicity's sake.}
+%However the claim that reduced intron length is responsible for this difference (and more generally for overall genome compactness) seems to be overstated.
+%The average intron length is indeed shorter (283 bp versus 1,211 bp in \textit{Drosophila}), but the median length is indistinguishable (75 bp versus 72 bp in \textit{Drosophila}), indicating fewer introns in the long tail of the length distribution in \textit{Daphnia} (\textbf{Figure S3}).
+%The extent to which this difference reflects real genome biology versus artifacts of the respective annotation workflows warrants additional investigation, but the distribution of exon lengths provides additional perspective on the observed difference in gene length.
+%The exon length distribution in both species is much less biased than that of introns, and exons in \textit{Daphnia} (mean: 227 bp, median 154 bp) are approximately half the length of exons in \textit{Drosophila} (mean: 514 bp, median: 286 bp; see \textbf{Figure S6}).
 
+\subsection{iLoci provide a robust representation of the genome}
 Improvements in genome assemblies come at the expense of disrupting the sequence-based coordinate system typically used for annotating the location of genome features.
 Parsing an annotated genome into iLoci provides an alternative representation of the genome that is robust to assembly and annotation updates.
 To assess the stability of iLoci in genome projects over time, we selected two model organisms (\textit{Arabidopsis thaliana} and the honey bee \textit{Apis mellifera}) for which multiple assemblies and annotations produced over the span of several years are available.
@@ -560,7 +552,7 @@ Between TAIR6 and TAIR10, changes to the genome sequence were quite limited and 
 \begin{table}[h]
 \caption{Descriptive summary of annotated genome assemblies for \textit{A. thaliana} and \textit{A. mellifera}.}
 \label{Table:AthaAmelSummary}
-\begin{tabularx}{\textwidth}{lR{2.5cm}R{2.5cm}R{2.5cm}R{2.5cm}}
+\begin{tabularx}{\textwidth}{lrrrr}
 \hline
 ~                          & TAIR6  & TAIR10 & OGSv1.0\textsuperscript{1} & OGSv3.2\textsuperscript{2} \\ \hline
 Assembly size (Mb)         & 119.2  & 119.1  & 228.6          & 234.1          \\
@@ -579,7 +571,7 @@ Total iLoci                & 37,299 & 37,669 & 22,784         & 26,251         \
 \raggedright
 {\scriptsize
 \textsuperscript{1}Corresponds to assembly Amel\_2.0. \\
-\textsuperscript{2}Corresponds to assembly Amel\_4.5. \\
+\textsuperscript{2}Corresponds to assembly Amel\_4.5.
 }
 \end{table}
 
@@ -606,7 +598,7 @@ The only minor exception to note is the conversion of 285 fiLoci in OGSv1.0 to s
 \begin{table}[h]
 \caption{A breakdown of stable iLoci by type.}
 \label{Table:AthaAmelStableMatrix}
-\begin{tabularx}{\textwidth}{lR{2cm}R{2cm}R{2cm}R{2cm}R{2cm}}
+\begin{tabularx}{\textwidth}{lrrrrr}
 \multicolumn{6}{c}{\textit{Arabidopsis thaliana} (TAIR6 $\rightarrow$ TAIR10)} \\ \hline
           & siLocus  & ciLocus  & niLocus  & iiLocus  & fiLocus  \\ \hline
 siLocus   & 22,717   & 24       & 5        & 3        & 0        \\
@@ -616,7 +608,7 @@ iiLocus   & 21       & 1        & 0        & 5,366    & 0        \\
 fiLocus   & 0        & 0        & 0        & 0        & 4        \\ \hline
 \multicolumn{6}{c}{ } \\
 \end{tabularx}
-\begin{tabularx}{\textwidth}{lR{2cm}R{2cm}R{2cm}R{2cm}R{2cm}}
+\begin{tabularx}{\textwidth}{lrrrrr}
 \multicolumn{6}{c}{\textit{Apis mellifera} (OGSv1.0 $\rightarrow$ OGSv3.2)} \\ \hline
           & siLocus  & ciLocus  & niLocus  & iiLocus  & fiLocus  \\ \hline
 siLocus   & 2,659    & 15       & 0        & 0        & 23       \\
@@ -631,8 +623,8 @@ Rows correspond to the type annotated in the earlier annotation version, and col
 }
 \end{table}
 
-\subsection{iLoci reveal extent of gene conservation in green algae}
 
+\subsection{iLoci reveal extent of gene conservation in green algae}
 The green algae (phylum Chlorophyta) diverged from land plants an estimated 1 billion years ago \cite{Merchant245} and encompass a diverse set of organisms ubiquitous in marine and soil environments.
 Chlorophytes exhibit substantial variation in physical stature, genome size, and cellular complexity, and include many important systems for study of the evolution of multicellularity and photosynthesis.
 The publication of the \textit{Volvox carteri} genome \cite{VolvoxGenome} reported over 5,000 protein families conserved between \textit{Volvox} (a multicellular alga) and \textit{Chlamydomonos reinhardtii} (a unicellular relative), accounting for over a third of the  species' respective proteomes.
@@ -671,7 +663,7 @@ Similarities to closely related model organisms across a broad range of measures
 In contrast, any stark differences should point to specific genomic features that warrant additional investigation to distinguish the effects of annotation from real differences in genome biology.
 And as the assembly and annotation for a new genome is refined, especially during the incipient stages of a genome project, iLoci provide a stable organizational principle for data points unaffected by data improvements.
 
-
+%The spatial organization of genes in the eukaryotic genome is influenced by a variety of factors such as genome size, transposable element activity, and nucleotide composition constraints.
 
 
 
