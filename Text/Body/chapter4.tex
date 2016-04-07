@@ -445,6 +445,9 @@ Characteristic differences between genes corresponding to miLoci and genes corre
 Nucleotide composition of miLocus genes is indistinguishable from that of singletons (\textbf{Table S1}).
 In some species (such as the two mammals) singletons are substantially shorter than miLocus-associated siLoci, in other species (such as the two non-mammal vertebrates) singletons are slightly longer, and in yet other species (such as \textit{Caenorhabditis elegans}) singleton length is indistinguishable from miLocus gene length.
 
+The spacing of genes over longer ranges is revealed by distributions of aggregate lengths of $n$ adjacent iiLoci.
+Long-range spacing of genes varies considerably in eukaryotes, with some species exhibiting homogenous gene spacing over relatively short spans (spans of 5-10 genes in \textit{Caenorhabditis elegans} and \textit{Medicago truncatula}), and others showing heterogenous spacing even over long spans (spans of more than 30 genes in \textit{Mus musculus}; see \textbf{Figure \ref{Fig:AdjiiLoci}}).
+
 \subsection{Compactness of eukaryotic genomes varies widely}
 
 \textbf{Figure \ref{Fig:CompactnessModel}} further explores the notion of compactness of a genome by two complementary measures calculated on the constituent chromosome or long scaffold sequences:
@@ -704,6 +707,11 @@ iLocus F displays three distinct, but overlapping genes.
 The boundaries of the gene-containing iLoci (giLoci) are derived from the annotation ends, extended in each direction by $\delta$.
 An exception occurs between iLoci H and I, where the extension would result in an iiLocus shorter than $\delta$: in this case, the bordering iLoci (H and I) are extended towards each other to fill the entire space.
 
+\subsection*{Figure \ref{Fig:AdjiiLoci}}
+
+\noindent
+Aggregate lengths of $n$ adjacent iiLoci for 3 species (\textit{Caenorhabditis elegans}, \textit{Medicago truncatula}, and \textit{Mus musculus}). The value of $n$ at which the distribution of aggregate iiLocus lengths is normal is reflective of the range at which local variations in gene spacing are evened out.
+
 \subsection*{Figure \ref{Fig:CompactnessModel}}
 
 \noindent
@@ -758,6 +766,15 @@ Plot of length and nucleotide composition for piLoci from the \textit{Chlamydomo
 %\caption{Distribution of exon length for eleven model organism genomes.}
 %\label{Fig:piLocusExonLength}
 %\end{figure}
+
+\begin{figure}[!bht]
+\centering
+\includegraphics[width=0.85\textwidth]{Assets/Graphics/iLoci/adj-iil-cele.png}
+\includegraphics[width=0.85\textwidth]{Assets/Graphics/iLoci/adj-iil-mtru.png}
+\includegraphics[width=0.85\textwidth]{Assets/Graphics/iLoci/adj-iil-mmus.png}
+\caption{~}
+\label{Fig:AdjiiLoci}
+\end{figure}
 
 \begin{figure}[h]
 \includegraphics[width=6in]{Assets/Graphics/iLoci/compactness-theoretical.png}
