@@ -191,8 +191,8 @@ One advantage of this approach is its low memory footprint, as at most only a sm
 The \textit{AgnLocusStream} module in the AEGeAn Toolkit implements a node stream for computing iLocus boundaries.
 This node stream expects as input gene annotations (CCs with a gene feature as the root node) sorted by genomic position, but it is designed to work with arbitrary feature types.
 Initially, the node stream will collect a single gene feature from the input and store it in a buffer.
-Then, as subsequent gene features are collected, they are tested for overlap with the gene(s) in the buffer and accumulated as long as they overlap with any gene already in the buffer.
-When the node stream encounters a gene feature that does not overlap with any gene in the buffer, a giLocus feature node is created, all the genes in the buffer are assigned as children to the giLocus, a reference to the giLocus is stored temporarily in the node stream, and the giLocus is emitted for further processing or storage.
+Then, as subsequent gene features are collected, they are tested for overlap with the current iLocus (buffer) and accumulated as long as their leftmost position is less than or equal to the rightmost position of the buffer.
+When the node stream encounters a gene feature that does not overlap with the buffer, a giLocus feature is created, all the genes in the buffer are assigned as children to the giLocus, a reference to the giLocus is stored temporarily in the node stream, and the giLocus is emitted for further processing or storage.
 Later, as the subsequent giLocus is emitted, the adjacent pair of giLoci are extended toward each other and, when appropriate, an iiLocus is created and emitted, as described in \textbf{Algorithm \ref{Alg:ExtendIntervals}}.
 
 The AEGeAn Toolkit's \textit{AgnLocusRefineStream} module implements a node stream for post-processing the initial iLocus designations, as described in the previous section.
