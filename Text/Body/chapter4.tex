@@ -98,13 +98,13 @@ The ciLoci will typically require a whole lot more attention to establish whethe
 
 \subsection{Operational definition of iLoci}
 %\subsubsection*{Basic procedure}
-Computing iLoci for a genomic sequence $S$ depends on a set of intervals $G$ (corresponding to gene models annotated on $S$) and an extension parameter $\delta$.
+Computing iLoci for an assembled contig/scaffold/pseudo-chromosome $S$ depends on a set of intervals $G$ (corresponding to gene models annotated on $S$) and an extension parameter $\delta$.
 The basic procedure is described in \textbf{Algorithms \ref{Alg:ComputeiLoci}} and \textbf{\ref{Alg:ExtendIntervals}}.
 In brief, the $\textsc{ComputeLoci}$ algorithm computes a new set of intervals $L$ such that any two overlapping elements $g_m, g_n \in G$ are bounded by the same interval $loc \in L$.
 Although the algorithm is general, here $g_m$ and $g_n$ refer to gene bodies, defined as the interval from the start to the end of the respective annotated transcription events.
 The $\textsc{ExtendIntervals}$ algorithm then assesses each pair of adjacent intervals $loc_m, loc_n \in L$ and determines how far the intervals can be extended toward each other and whether any additional space remains between them for the creation of a third interval:
-if the distance between the two intervals $dist(loc_m, loc_n) > 3 \delta$ nucleotides, then $loc_m$ and $loc_n$ will be extended toward each other by $\delta$ nucleotides, each designated as a giLocus, and the remaining space between them will be designated as an iiLocus;
-if $2\delta < dist(loc_m, loc_n) \leq 3\delta$, then $loc_m$ and $loc_n$ are extended toward each other equally until they meet, with extensions marginally longer than $\delta$ so as to avoid creating an extremely short iiLocus;
+if the number of nucleotides separating the two intervals $dist(loc_m, loc_n) > 3 \delta$ nucleotides, then $loc_m$ and $loc_n$ will be extended toward each other by $\delta$ nucleotides, each designated as a giLocus, and the remaining space between them will be designated as an iiLocus;
+if $2\delta < dist(loc_m, loc_n) \leq 3\delta$, then $loc_m$ and $loc_n$ are extended toward each other equally until they meet, with extensions potentially as long as $1.5\delta$, to prevent annotating an extremely short iiLocus;
 if $dist(loc_m, loc_n) \leq 2\delta$, $loc_m$ and $loc_n$ will each be extended by $\delta$ resulting in overlapping iLoci.
 In the two latter cases the toolkit records a zero-length iLoci (\textit{ziLocus}) between the adjacent giLoci for consistency and calculation of cumulative statistics described below.
 
@@ -151,7 +151,7 @@ In the two latter cases the toolkit records a zero-length iLoci (\textit{ziLocus
     \State $\textit{End}(x) \gets \textit{End}(x) + \delta$
     \State $\textit{Start}(y) \gets \textit{Start}(y) - \delta$
 \ElsIf{$2\delta < \textit{dist}(x, y) < 3\delta$}
-    \State $\textit{midpoint} \gets \textit{Average}\left(\textit{End}(x), \textit{Start}(y)\right)$
+    \State $\textit{midpoint} \gets \left\lfloor \textit{Average}\left(\textit{End}(x), \textit{Start}(y)\right) \right\rfloor$
     \State $\textit{End}(x) \gets \textit{midpoint}$
     \State $\textit{Start}(y) \gets \textit{midpoint} + 1$
 \Else
@@ -175,7 +175,10 @@ While this is intended to capture gene models that may be conflicting or misanno
 For example, if two genes---each a few kilobases in length---happen to have 10-20 nucleotides of overlap in their UTRs, they should be separated and handled as distinct loci.
 In post-processing, we enable splitting of such trivially overlapping iLoci by introducing two additional parameters: $\omega$, the number of nucleotides that two gene models must overlap to remain in the same iLocus, and $\kappa$ indicating whether that overlap is calculated using entire gene bodies ($\kappa = 0$) or just the coding sequences ($\kappa = 1$).
 
-Another exception occurs when a gene resides completely within a single intron of another gene.
+The initial procedure also groups non-coding RNA genes and protein-coding genes together if they overlap.
+In post-processing, ncRNA genes and protein-coding genes are treated separately and will not be grouped in the same iLocus regardless of overlap, although overlapping ncRNA genes are grouped in the same niLocus.
+
+An additional exception occurs when a gene resides completely within a single intron of another gene.
 These genes are placed in the same iLocus during the initial parsing procedure, but can be separated into distinct iLoci during post-processing.
 
 
@@ -233,7 +236,8 @@ Here we focus on gene orientation and spacing: are there species-specific patter
 Because of the flexible design of the code base described in the \textbf{Implementation} section, these questions can easily be generalized and extended, for example with respect to selection of subtypes of genic loci.
 
 To study gene orientation, the \textit{genhub-build.py} script reports for each iiLocus the orientation of the flanking giLoci as FF (forward $>>$), RR (reverse $<<$), RF (outward $<>$), or FR (inward $><$).
-That data is used to identify the longest stretches of genes all on the forward strand, all on the reverse strand, or periodically alternating between strands.
+In the case that an iiLocus is flanked by one or more ciLoci, the orientation of the gene models directly flanking the intergenic space are reported.
+These data are used to identify the longest stretches of genes all on the forward strand, all on the reverse strand, or periodically alternating between strands.
 Differences in occurrence numbers and lengths of outward and inward iiLoci are also determined for possible interpretation in terms of promoter architecture.
 
 Long iiLoci are flagged as regions for annotation review.
@@ -341,7 +345,7 @@ iLoci with a BLASTP match against another species (\texttt{-evalue 1e-10}) were 
 \raggedright
 {\scriptsize
 \textsuperscript{1}Total number of nucleotides in the genome assembly. \\
-\textsuperscript{2}Total number of assembled (pseudo)chromosomes or unplaced genomic scaffolds or, for some species, both. \\
+\textsuperscript{2}Total number of assembled (pseudo-)chromosomes or unplaced genomic scaffolds or, for some species, both. \\
 }
 \end{table}
 
@@ -701,9 +705,8 @@ Gene annotations are shown underneath the genome sequence.
 Exons are schematized by horizontal lines, introns by the triangular thin lines below.
 Arrows indicate transcriptional direction.
 iLoci A, C, E, G, and J are without gene annotation, with A and J representing potentially incomplete genomic fragments (fiLoci), and C, E, and G representing intergenic regions (iiLoci).
-iLoci B, H, and I contain a single gene annotation each.
-iLocus D shows alternative transcripts.
-iLocus F displays three distinct, but overlapping genes.
+siLoci contain a single gene annotation each and include genes with a single annotated transcript (B, H, and I) as well as genes with alternative transcripts (D).
+ciLocus F contains three distinct, but overlapping genes.
 The boundaries of the gene-containing iLoci (giLoci) are derived from the annotation ends, extended in each direction by $\delta$.
 An exception occurs between iLoci H and I, where the extension would result in an iiLocus shorter than $\delta$: in this case, the bordering iLoci (H and I) are extended towards each other to fill the entire space.
 
