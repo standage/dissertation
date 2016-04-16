@@ -6,6 +6,21 @@ A paper to be submitted to \textit{Genome Biology}.
 
 Standage DS, Brendel VP
 
+\section{Abstract}
+
+\noindent \textbf{Background:}
+The rate at which new draft genome sequences and corresponding annotations are being produced outpaces the scientific community's capacity to refine these drafts into ``finished" reference-quality data resources.
+Scientists must be able to evaluate newly sequenced genomes in the context of previously published data, requiring summaries of genome content that can be quickly computed and meaningfully compared without the support of a large model organism research community.
+As annotation quality will necessarily vary within and across data sets, the ability to select subsets of only those data that are well supported is critical for distinguishing technical artifacts from biological effects.
+
+\noindent \textbf{Results:}
+We introduce a new framework for genome analyses based on parsing an annotated genome assembly into distinct \textit{interval loci (iLoci)}.
+We demonstrate that iLoci provide an alternative coordinate system that is robust to changes in assemblies and annotations, and facilitates granular quality control of genome data.
+We discuss how statistics computed on iLoci reflect various characteristics of genome content and organization, and illustrate how this can be used to establish a baseline context for evaluating a new genome assembly and annotation.
+We also introduce a well-defined measure of relative genome compactness, and more generally show how iLoci reveal the extent of gene clustering genome wide.
+
+\noindent \textbf{Conclusions:}
+The iLocus framework, available as open source software as part of the AEGeAn Toolkit (\url{https://brendelgroup.github.io/AEGeAn}), provides a comprehensive solution to common challenges in annotation and analysis of non-model genomes.
 
 \section{Background}
 
@@ -442,6 +457,12 @@ In other cases, such as \textit{Drosophila melanogaster}, the bulk of the gene s
 The majority of miLoci in eukaryotes contain between 2 and 4 genes (distribution of gene count per miLocus is summarized by quartiles in \textbf{Table \ref{Table:miLocusSummaryModOrg}}).
 Exceptions to this trend include three species---\textit{Saccharomyces cerevisiae}, \textit{Caenorhabditis elegans} and \textit{Drosophila melanogaster}---the latter of which harbors 512 miLoci with 10 or more genes.
 
+The largest miLoci from each species exhibit wide diversity of function, and often contain functionally related genes.
+The longest miLoci in the human genome include a cluster of 23 snoRNA genes, a cluster of V(D)J adaptive immunity genes, and a cluster of keratin associated proteins, while in mouse the longest miLocus is comprised of 72 microRNA genes.
+In the non-mammal vertebrates, the longest miLoci are comprised exclusively of long stretches of hundreds tRNA gene annotations.
+As tRNA-derived SINE transposons are known to be abundant in at least one of these species \cite{DrerGenome}, and no annotations for such transposons appear to be included in the RefSeq annotation, it is likely these miLoci capture large clusters of misannotated repetitive elements.
+Within the two plant genomes studied (\textit{Medicago} and \textit{Chlamydomonas}) miLoci include a large proportion of genes of unknown function (encoding ``hypothetical" and ``predicted" proteins), although ribosomal proteins, membrane proteins, photosystem II proteins (in \textit{Medicago}), and flagellar proteins (in \textit{Chlamydomonas}) feature prominently in the largest miLoci.
+
 The percentage of genes that are merged into miLoci exhibits incredible variation across eukaryotes.
 Singletons (those that are not merged) account for anywhere between 1\% and 63\% of the giLoci in the genome, for the most part increasing in abundance and percentage as genome size increases.
 
@@ -474,8 +495,7 @@ Sequences from \textit{Saccharomyces cerevisiae} are the most compact of all 10 
 
 Very few sequences show extremely low levels of compactness: only six sequences have $\phi < 0.2$ and $\sigma < 0.2$, two of which correspond to mammalian sex chromosomes, with the other four corresponding to unplaced scaffolds from \textit{Xenopus tropicalis}.
 Likewise, very few sequences are dominated by an ``archipelago"-type organization (high $\phi$ and low $\sigma$).
-Those with $\phi > 0.7$ and $\sigma < 0.3$ are annotated with hundreds or thousands of tRNA genes, many packed tightly together in large clusters.
-tRNA-derived SINE elements are known to be abundant in at least one of these species \cite{DrerGenome}, suggesting that these clusters are comprised primarily of misannotated repetitive elements.
+Those with $\phi > 0.7$ and $\sigma < 0.3$ are annotated almost exclusively with long stretches of dozens or hundreds of tRNA gene annotations in \textit{Xenopus tropicalis} and \textit{Danio rerio}.
 
 \subsection{Gene clustering occurs more frequently than expected by chance}
 
