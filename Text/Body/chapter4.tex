@@ -398,7 +398,9 @@ The inclusion of introns and UTRs places the protein-coding fraction of the geno
 ciLoci occur in the dozens or hundreds in most genomes, accounting for only a small proportion of genes.
 Only one genome from these ten species, that of \textit{Medicago truncatula}, harbors no ciLoci.
 
-\subsection{Gene clustering is abundant in eukaryotic genomes}
+\subsection{iLoci reflect patterns of genome organization}
+
+\subsubsection{Gene clustering is abundant in eukaryotic genomes}
 
 \begin{table}
 \small
@@ -452,7 +454,7 @@ Within the two plant genomes studied (\textit{Medicago} and \textit{Chlamydomona
 The spacing of genes over longer ranges is revealed by distributions of aggregate lengths of $n$ adjacent iiLoci.
 Long-range spacing of genes varies considerably in eukaryotes, with some species exhibiting homogenous gene spacing over relatively short spans (spans of 5-10 genes in \textit{Caenorhabditis elegans} and \textit{Medicago truncatula}), and others showing heterogenous spacing even over long spans (spans of more than 30 genes in \textit{Mus musculus}; see \textbf{Figure \ref{Fig:AdjiiLoci}}).
 
-\subsection{Compactness of eukaryotic genomes varies widely}
+\subsubsection{Compactness of eukaryotic genomes varies widely}
 
 \textbf{Figure \ref{Fig:CompactnessModel}} further explores the notion of compactness of a genome by two complementary measures calculated on the constituent chromosome or long scaffold sequences:
 $\sigma$, defined as the proportion of the sequence occupied by miLoci;
@@ -476,7 +478,7 @@ Very few sequences show extremely low levels of compactness: only six sequences 
 Likewise, very few sequences are dominated by an ``archipelago"-type organization (high $\phi$ and low $\sigma$).
 Those with $\phi > 0.7$ and $\sigma < 0.3$ are annotated almost exclusively with long stretches of dozens or hundreds of tRNA gene annotations in \textit{Xenopus tropicalis} and \textit{Danio rerio}.
 
-\subsection{Gene clustering occurs more frequently than expected by chance}
+\subsubsection{Gene clustering occurs more frequently than expected by chance}
 
 The framework provided by miLoci for investigating genome organization enables us to investigate whether the amount of clustering observed in a particular genome assembly/annotation pair is more or less than would be expected by chance.
 For long chromosome and scaffold sequences ($\geq$ 1Mb) in ten model organisms, we computed random spatial arrangements of the genes on each sequence and then re-computed iLoci and associated summary statistics for comparison with the observed annotation.
@@ -658,19 +660,38 @@ Conserved and highly conserved piLoci tend to be longer on average and restricte
 
 \section{Discussion}
 
-The summary of genome content provided by iLoci for a given assembly and annotation reveals genomic characteristics of common interest.
-Some of these characteristics (such as the number of genes) are quite standard and deceptively simple to calculate, but lack a consistent well-defined operational definition in terms of data inputs and outputs, complicating the comparison of data from disparate sources.
-Other characteristics informed by iLoci are novel, such as the number of complex protein-coding regions of a genome, the proportion of the genome occupied by protein-coding genes, or the genome-wide extent of gene clustering.
-In particular, characteristics of miLoci yield novel insights into genome organization and provide a measure of genome ``compactness" that is strikingly consistent across different genomic sequences in an organism and across different organisms within a clade of species.
-The methods described in this study provide a well-defined, consistent, and reproducible framework for documenting these characteristics of genome content.
-Complete with a portable software implementation that is compatible with simple standard inputs and easily applied to many data sets, iLoci can be easily adapted to analysis of new data and re-analysis of old data alike.
+Within the context of annotating a new genome, iLoci provide a quick and convenient solution for leveraging genomes of related model organism to establish baseline expectations about genome composition and organization for the organism of interest.
+Similarities to genomes of related species across a broad range of measures gives one confidence in the quality of the genome assembly and annotation.
+By contrast, any stark differences should point to specific genomic features that warrant additional investigation to distinguish the effects of annotation from real differences in genome biology.
+Considerable effort has been devoted to making such comparisons as easy as possible: relevant software is freely available as open source code, is engineered with a focus on resource efficiency (enabling it to run easily on laptop or desktop computers), and works with a small number of standard input files.
+In short, iLoci provide a ``common currency" for evaluating new data sets and re-evaluating previously published data sets alike.
 
-Within the context of annotating a new genome, iLoci provide a simple way to leverage model organisms to establish baseline expectations about genome content for that particular organism.
-Similarities to closely related model organisms across a broad range of measures gives one confidence in the quality of their genome assembly and annotation.
-In contrast, any stark differences should point to specific genomic features that warrant additional investigation to distinguish the effects of annotation from real differences in genome biology.
-And as the assembly and annotation for a new genome is refined, especially during the incipient stages of a genome project, iLoci provide a stable organizational principle for data points unaffected by data improvements.
+Additional applications of iLoci in the annotation and analysis of novel genomes abound.
+Leveraging iLoci with strong support from expression and homology evidence to train species-specific gene prediction models can yield improvements in subsequent annotation efforts.
+The longest regions of the genome annotated as intergenic can yield insight into the proliferation of transoposable and other repetitive elements and non-coding RNA genes, or alternatively characteristics of regions where annotation workflows fail to predict genes.
+The largest regions of high gene density, as represented by miLoci, provide an excellent starting place for investigating the clustering of functionally related genes, whereas miLoci containing two genes are candidates for analysis of tandem gene duplication.
 
-%The spatial organization of genes in the eukaryotic genome is influenced by a variety of factors such as genome size, transposable element activity, and nucleotide composition constraints.
+iLoci also facilitate analysis of genome organization at different scales.
+At the scale of whole chromosomes (or large fractions thereof), iLoci provide a well-defined measure of genome compactness that can be compared across annotations, assemblies, and species.
+At a slightly smaller scale, iLoci can be leveraged to investigate large-scale changes in genome organization along the length of a chromosome, and possible interpretations in terms of transposon activity and other dynamic mechanisms of genome expansion and contraction.
+At the scale of individual genes, iLoci capture local aspects of genome organization, furnishing insight into gene spacing and orientation for specific genes of interest
+
+TODO: simulation of genome dynamics.
+
+
+
+
+% The summary of genome content provided by iLoci for a given assembly and annotation reveals genomic characteristics of common interest.
+% Some of these characteristics (such as the number of genes) are quite standard and deceptively simple to calculate, but lack a consistent well-defined operational definition in terms of data inputs and outputs, complicating the comparison of data from disparate sources.
+% Other characteristics informed by iLoci are novel, such as the number of complex protein-coding regions of a genome, the proportion of the genome occupied by protein-coding genes, or the genome-wide extent of gene clustering.
+% In particular, characteristics of miLoci yield novel insights into genome organization and provide a measure of genome ``compactness" that is strikingly consistent across different genomic sequences in an organism and across different organisms within a clade of species.
+% The methods described in this study provide a well-defined, consistent, and reproducible framework for documenting these characteristics of genome content.
+% Complete with a portable software implementation that is compatible with simple standard inputs and easily applied to many data sets, iLoci can be easily adapted to analysis of new data and re-analysis of old data alike.
+%
+% Within the context of annotating a new genome, iLoci provide a simple way to leverage model organisms to establish baseline expectations about genome content for that particular organism.
+% Similarities to closely related model organisms across a broad range of measures gives one confidence in the quality of their genome assembly and annotation.
+% In contrast, any stark differences should point to specific genomic features that warrant additional investigation to distinguish the effects of annotation from real differences in genome biology.
+% And as the assembly and annotation for a new genome is refined, especially during the incipient stages of a genome project, iLoci provide a stable organizational principle for data points unaffected by data improvements.
 
 
 
