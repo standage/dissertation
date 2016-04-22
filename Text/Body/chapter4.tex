@@ -660,39 +660,23 @@ Conserved and highly conserved piLoci tend to be longer on average and restricte
 
 \section{Discussion}
 
-Within the context of annotating a new genome, iLoci provide a quick and convenient solution for leveraging genomes of related model organism to establish baseline expectations about genome composition and organization for the organism of interest.
+Within the context of annotating a new genome, iLoci provide a quick and convenient solution for leveraging genomes of related model organisms to establish baseline expectations about genome composition and organization for the organism of interest.
 Similarities to genomes of related species across a broad range of measures gives one confidence in the quality of the genome assembly and annotation.
 By contrast, any stark differences should point to specific genomic features that warrant additional investigation to distinguish the effects of annotation from real differences in genome biology.
 Considerable effort has been devoted to making such comparisons as easy as possible: relevant software is freely available as open source code, is engineered with a focus on resource efficiency (enabling it to run easily on laptop or desktop computers), and works with a small number of standard input files.
 In short, iLoci provide a ``common currency" for evaluating new data sets and re-evaluating previously published data sets alike.
 
-Additional applications of iLoci in the annotation and analysis of novel genomes abound.
+Additional applications of iLoci in the annotation and analysis of novel genomes are numerous.
 Leveraging iLoci with strong support from expression and homology evidence to train species-specific gene prediction models can yield improvements in subsequent annotation efforts.
 The longest regions of the genome annotated as intergenic can yield insight into the proliferation of transoposable and other repetitive elements and non-coding RNA genes, or alternatively characteristics of regions where annotation workflows fail to predict genes.
-The largest regions of high gene density, as represented by miLoci, provide an excellent starting place for investigating the clustering of functionally related genes, whereas miLoci containing two genes are candidates for analysis of tandem gene duplication.
+The largest regions of high gene density, as represented by miLoci, provide an excellent starting place for investigating the clustering of functionally related genes, whereas miLoci containing two genes are candidates for genome-wide analysis of tandem gene duplication.
 
-iLoci also facilitate analysis of genome organization at different scales.
+iLoci also facilitate analysis of genome organization at multiple scales.
 At the scale of whole chromosomes (or large fractions thereof), iLoci provide a well-defined measure of genome compactness that can be compared across annotations, assemblies, and species.
-At a slightly smaller scale, iLoci can be leveraged to investigate large-scale changes in genome organization along the length of a chromosome, and possible interpretations in terms of transposon activity and other dynamic mechanisms of genome expansion and contraction.
-At the scale of individual genes, iLoci capture local aspects of genome organization, furnishing insight into gene spacing and orientation for specific genes of interest
-
-TODO: simulation of genome dynamics.
-
-
-
-
-% The summary of genome content provided by iLoci for a given assembly and annotation reveals genomic characteristics of common interest.
-% Some of these characteristics (such as the number of genes) are quite standard and deceptively simple to calculate, but lack a consistent well-defined operational definition in terms of data inputs and outputs, complicating the comparison of data from disparate sources.
-% Other characteristics informed by iLoci are novel, such as the number of complex protein-coding regions of a genome, the proportion of the genome occupied by protein-coding genes, or the genome-wide extent of gene clustering.
-% In particular, characteristics of miLoci yield novel insights into genome organization and provide a measure of genome ``compactness" that is strikingly consistent across different genomic sequences in an organism and across different organisms within a clade of species.
-% The methods described in this study provide a well-defined, consistent, and reproducible framework for documenting these characteristics of genome content.
-% Complete with a portable software implementation that is compatible with simple standard inputs and easily applied to many data sets, iLoci can be easily adapted to analysis of new data and re-analysis of old data alike.
-%
-% Within the context of annotating a new genome, iLoci provide a simple way to leverage model organisms to establish baseline expectations about genome content for that particular organism.
-% Similarities to closely related model organisms across a broad range of measures gives one confidence in the quality of their genome assembly and annotation.
-% In contrast, any stark differences should point to specific genomic features that warrant additional investigation to distinguish the effects of annotation from real differences in genome biology.
-% And as the assembly and annotation for a new genome is refined, especially during the incipient stages of a genome project, iLoci provide a stable organizational principle for data points unaffected by data improvements.
-
+At a slightly smaller scale, iLoci can be leveraged to investigate large-scale changes in genome organization along the length of the chromosome, with possible interpretation in terms of transposon activity and other dynamic mechanisms of genome expansion and contraction.
+At the scale of individual genes, iLoci capture local aspects of genome organization, furnishing insight into gene spacing and orientation for specific genes of interest.
+Insight gained from analysis of genome organization at these various scales also lays a foundation for more detailed modeling of genome architecture, and perhaps even simulation of genome evolutionary dynamics.
+Simulating transposon activity, gene duplication, and genome rearrangements at various rates, and observing the effect these have on signatures of large-scale genome organization provided by iLoci could yield insight into the dominant mechanisms driving the evolution of genome architecture in particular species or clades of interest.
 
 
 
@@ -712,14 +696,36 @@ Finally, iLoci provide a way to break down the entire genome into distinct block
 \newpage
 \section{Figures} % To be commented out and submitted separately
 
-\subsection*{Figure \ref{Fig:iLocusDesignations}}
 
-\noindent
-Designation of iLocus types shown in green, with classification logic described in blue.
 
-\subsection*{Figure \ref{Fig:iLoci}}
 
-\noindent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{figure}[!bht]
+\includegraphics[width=6in]{Assets/Graphics/iLoci/ilocus-designations.png}
+\centering
+\caption{Designation of iLocus types shown in green, with classification logic described in blue.}
+\label{Fig:iLocusDesignations}
+\end{figure}
+
+\begin{figure}[!bht]
+\includegraphics[width=6in]{Assets/Graphics/iLoci/ilocus-demo.pdf}
+\centering
+\caption{
 Parsing an annotated genome sequence into iLoci.
 The letters A to J indicate 10 adjacent iLoci on the genomic sequence (central horizontal line), separated by the long vertical bars.
 Gene annotations are shown underneath the genome sequence.
@@ -730,80 +736,23 @@ siLoci contain a single gene annotation each and include genes with a single ann
 ciLocus F contains three distinct, but overlapping genes.
 The boundaries of the gene-containing iLoci (giLoci) are derived from the annotation ends, extended in each direction by $\delta$.
 An exception occurs between iLoci H and I, where the extension would result in an iiLocus shorter than $\delta$: in this case, the bordering iLoci (H and I) are extended towards each other to fill the entire space.
-
-\subsection*{Figure \ref{Fig:AdjiiLoci}}
-
-\noindent
-Aggregate lengths of $n$ adjacent iiLoci for 3 species (\textit{Caenorhabditis elegans}, \textit{Medicago truncatula}, and \textit{Mus musculus}). The value of $n$ at which the distribution of aggregate iiLocus lengths is normal is reflective of the range at which local variations in gene spacing are evened out.
-
-\subsection*{Figure \ref{Fig:CompactnessModel}}
-
-\noindent
-Theoretical values of $\sigma$ (the proportion of genome sequence occupied by miLoci) plotted as a function of $\phi$ (the proportion of giLoci merged into miLoci) at different values of $\rho$ (the ratio of iiLocus length to giLocus length).
-
-\subsection*{Figure \ref{Fig:ModOrgCompactness}}
-
-\noindent
-The genomic compactness of ten model organisms, as measured on long ($\geq$ 1 Mb) chromosome or scaffold sequences.
-
-\subsection*{Figure \ref{Fig:CompactnessShuffled}}
-
-\noindent
-Comparison of genome compactness as measured on genomic sequences as annotated (solid squares) versus the same sequences with a random arrangement of genes (hollow circles). Each point represents the average (centroid) of ($\phi, \sigma)$ values computed on all long chromosome and scaffold sequences in the corresponding assembly, as shown in \textbf{Figure \ref{Fig:ModOrgCompactness}}.
-
-\subsection*{Figure \ref{Fig:iLociStable}}
-
-\noindent
-A breakdown of iLoci from two species by stability and classification.
-
-\subsection*{Figure \ref{Fig:iLociStableScatter}}
-
-\noindent
-Scatter plot showing the length and nucleotide composition of iLoci from \textit{Arabidopsis thaliana} (top) and \textit{Apis mellifera} (bottom). iLoci that are stable between two assembly/annotation versions are represented by red marks, while unstable iLoci are represented by blue and green marks. siLoci are shown on the left, and iiLoci are shown on the right.
-
-\subsection*{Figure \ref{Fig:GreenAlgaeBreakdown}}
-
-\noindent
-Counts and genomic space occupied of iLoci from 9 species of green algae, categorized according to gene content and homology status.
-
-\subsection*{Figure \ref{Fig:CreiBreakdownScatter}}
-
-\noindent
-Plot of length and nucleotide composition for piLoci from the \textit{Chlamydomonas reinhardtii} genome. Blue point represent \textit{highly conserved piLoci}, green represent \textit{conserved piLoci}, and red represent \textit{orphan piLoci}.
-
-\begin{figure}[!bht]
-\includegraphics[width=6in]{Assets/Graphics/iLoci/ilocus-designations.png}
-\centering
-\caption{~}
-\label{Fig:iLocusDesignations}
-\end{figure}
-
-\begin{figure}[!bht]
-\includegraphics[width=6in]{Assets/Graphics/iLoci/ilocus-demo.pdf}
-\centering
-\caption{~}
+}
 \label{Fig:iLoci}
 \end{figure}
 
-%\begin{figure}[!bht]
-%\includegraphics[scale=0.4]{modorg-exon-length.png}
-%\caption{Distribution of exon length for eleven model organism genomes.}
-%\label{Fig:piLocusExonLength}
-%\end{figure}
-
 \begin{figure}[!bht]
 \centering
-\includegraphics[width=0.85\textwidth]{Assets/Graphics/iLoci/adj-iil-cele.png}
-\includegraphics[width=0.85\textwidth]{Assets/Graphics/iLoci/adj-iil-mtru.png}
-\includegraphics[width=0.85\textwidth]{Assets/Graphics/iLoci/adj-iil-mmus.png}
-\caption{~}
+\includegraphics[width=0.65\textwidth]{Assets/Graphics/iLoci/adj-iil-cele.png}
+\includegraphics[width=0.65\textwidth]{Assets/Graphics/iLoci/adj-iil-mtru.png}
+\includegraphics[width=0.65\textwidth]{Assets/Graphics/iLoci/adj-iil-mmus.png}
+\caption{Aggregate lengths of $n$ adjacent iiLoci for 3 species (\textit{Caenorhabditis elegans}, \textit{Medicago truncatula}, and \textit{Mus musculus}). The value of $n$ at which the distribution of aggregate iiLocus lengths is normal is reflective of the range at which local variations in gene spacing are evened out.}
 \label{Fig:AdjiiLoci}
 \end{figure}
 
 \begin{figure}[h]
 \includegraphics[width=6in]{Assets/Graphics/iLoci/compactness-theoretical.png}
 \centering
-\caption{~}
+\caption{Theoretical values of $\sigma$ (the proportion of genome sequence occupied by miLoci) plotted as a function of $\phi$ (the proportion of giLoci merged into miLoci) at different values of $\rho$ (the ratio of iiLocus length to giLocus length).}
 \label{Fig:CompactnessModel}
 \end{figure}
 
@@ -811,31 +760,25 @@ Plot of length and nucleotide composition for piLoci from the \textit{Chlamydomo
 \begin{figure}[h]
 \includegraphics[width=6in]{Assets/Graphics/iLoci/modorg-compactness.png}
 \centering
-\caption{~}
+\caption{The genomic compactness of ten model organisms, as measured on long ($\geq$ 1 Mb) chromosome or scaffold sequences.}
 \label{Fig:ModOrgCompactness}
 \end{figure}
 
 \begin{figure}[!bht]
 \centering
 \includegraphics[width=6in]{Assets/Graphics/iLoci/compactness-shuffled.png}
-\caption{~}
+\caption{Comparison of genome compactness as measured on genomic sequences as annotated (solid squares) versus the same sequences with a random arrangement of genes (hollow circles). Each point represents the average (centroid) of ($\phi, \sigma)$ values computed on all long chromosome and scaffold sequences in the corresponding assembly, as shown in \textbf{Figure \ref{Fig:ModOrgCompactness}}.}
 \label{Fig:CompactnessShuffled}
 \end{figure}
 
 \clearpage
 
-%\begin{figure}[!bht]
-%\includegraphics[scale=0.45]{modorg-iilocus-length.png}
-%\caption{Distribution of iiLocus length for eleven model organism genomes.}
-%\label{Fig:iiLocusLengthModOrg}
-%\end{figure}
-
 \begin{figure}[h]
 \centering
-\includegraphics[width=6in]{Assets/Graphics/iLoci/atha-stable.png} \par
-\vspace{50px}
-\includegraphics[width=6in]{Assets/Graphics/iLoci/amel-stable.png}
-\caption{~}
+\includegraphics[width=5.5in]{Assets/Graphics/iLoci/atha-stable.png} \par
+\vspace{40px}
+\includegraphics[width=5.5in]{Assets/Graphics/iLoci/amel-stable.png}
+\caption{A breakdown of iLoci from two species by stability and classification.}
 \label{Fig:iLociStable}
 \end{figure}
 
@@ -843,7 +786,7 @@ Plot of length and nucleotide composition for piLoci from the \textit{Chlamydomo
 \centering
 \includegraphics[width=6in]{Assets/Graphics/iLoci/atha-stable-scatter.png}
 \includegraphics[width=6in]{Assets/Graphics/iLoci/amel-stable-scatter.png}
-\caption{~}
+\caption{Scatter plot showing the length and nucleotide composition of iLoci from \textit{Arabidopsis thaliana} (top) and \textit{Apis mellifera} (bottom). iLoci that are stable between two assembly/annotation versions are represented by red marks, while unstable iLoci are represented by blue and green marks. siLoci are shown on the left, and iiLoci are shown on the right.}
 \label{Fig:iLociStableScatter}
 \end{figure}
 
@@ -851,86 +794,16 @@ Plot of length and nucleotide composition for piLoci from the \textit{Chlamydomo
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=6in]{Assets/Graphics/iLoci/algae-bd-counts.png} \par
-\vspace{50px}
-\includegraphics[width=6in]{Assets/Graphics/iLoci/algae-bd-bp.png}
-\caption{~}
+\includegraphics[width=5.5in]{Assets/Graphics/iLoci/algae-bd-counts.png} \par
+\vspace{40px}
+\includegraphics[width=5.5in]{Assets/Graphics/iLoci/algae-bd-bp.png}
+\caption{Counts and genomic space occupied of iLoci from 9 species of green algae, categorized according to gene content and homology status.}
 \label{Fig:GreenAlgaeBreakdown}
 \end{figure}
 
 \begin{figure}[h]
 \includegraphics[width=6in]{Assets/Graphics/iLoci/crei-breakdown-scatter.png}
 \centering
-\caption{~}
+\caption{Plot of length and nucleotide composition for piLoci from the \textit{Chlamydomonas reinhardtii} genome. Blue point represent \textit{highly conserved piLoci}, green represent \textit{conserved piLoci}, and red represent \textit{orphan piLoci}.}
 \label{Fig:CreiBreakdownScatter}
 \end{figure}
-
-
-%%% Supplemental figures
-%\setcounter{figure}{0}
-%\makeatletter
-%\renewcommand{\thefigure}{S\@arabic\c@figure}
-%\makeatother
-%
-%\begin{figure}[h]
-%\includegraphics[scale=0.4]{Assets/Graphics/iLoci/modorg-silocus-length.png}
-%\caption{Distribution of siLocus length for genomes of \textit{Daphnia pulex} and ten model organisms.}
-%\label{Fig:siLocusLengthModOrg}
-%\end{figure}
-%
-%\begin{figure}[h]
-%\includegraphics[scale=0.4]{Assets/Graphics/iLoci/modorg-pilocus-exoncount.png}
-%\caption{Distribution of piLocus exon count for eleven eukaryotic genomes.}
-%\label{Fig:piLocusExonCount}
-%\end{figure}
-%
-%\begin{figure}[h]
-%\includegraphics[scale=0.4]{Assets/Graphics/iLoci/modorg-intron-length.png}
-%\caption{Distribution of intron length for eleven eukaryotic genomes.}
-%\label{Fig:piLocusIntronLength}
-%\end{figure}
-%
-%\begin{figure}[h]
-%\includegraphics[scale=0.45]{Assets/Graphics/iLoci/modorg-milocus-length.png}
-%\caption{Distribution of miLocus length for eleven eukaryotic genomes.}
-%\label{Fig:miLocusLengthModOrg}
-%\end{figure}
-%
-%\begin{figure}[h]
-%\includegraphics[scale=0.3]{Assets/Graphics/iLoci/compactness-by-clade.png}
-%\caption{The genomic compactness of organisms from four clades, as measured on long ($\geq$ 1 Mb) chromosome or scaffold sequences. Gray curves represent theoretically derived ($\phi, \sigma$) values with $\rho$ calculated on giLocus and iiLocus lengths of the shown genomes.}
-%\label{Fig:CompactnessByClade}
-%\end{figure}
-%
-%\begin{figure}[h]
-%\includegraphics[scale=0.4]{Assets/Graphics/iLoci/modorg-exon-length.png}
-%\caption{Distribution of exon length for eleven eukaryotic genomes.}
-%\label{Fig:piLocusExonLength}
-%\end{figure}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                               %%
-%% Tables                        %%
-%%                               %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Use of \listoftables is discouraged.
-%%
-%\newpage
-%\section{Tables}
-%
-%\setcounter{table}{0}
-%\makeatletter
-%\renewcommand{\thetable}{S\@arabic\c@table}
-%\makeatother
-%
-%\begin{table}[h]
-%\caption{Comparison of length and nucleotide composition between siLocus singletons and miLocus-associated siLoci.}
-%\label{Table:miLocusVsSingletonProp}
-%\end{table}
-%
-%\begin{table}[h]
-%\caption{Counts and percentages of iLoci\textsuperscript{1} that are stable between assembly/annotation versions, in various ranges of length and nucleotide composition.}
-%\label{Table:AthaAmelLengthSlice}
-%\end{table}
