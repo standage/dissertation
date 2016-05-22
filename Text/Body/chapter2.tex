@@ -1,7 +1,7 @@
 \chapter{GENOME, TRANSCRIPTOME, AND METHYLOME SEQUENCING OF A PRIMITIVELY EUSOCIAL WASP REVEAL A GREATLY REDUCED DNA METHYLATION SYSTEM IN A SOCIAL INSECT}
 
 A manuscript published in \textit{Molecular Ecology}.
-\textbf{Supporting Information (SI)} available online: \href{http://dx.doi.org/10.1111/mec.13578}{doi:10.1111/mec.13578}.
+%\textbf{Supporting Information (SI)} available online: \href{http://dx.doi.org/10.1111/mec.13578}{doi:10.1111/mec.13578}.
 
 \noindent\hfil\rule{0.5\textwidth}{.4pt}\hfil
 
@@ -83,7 +83,7 @@ independently evolved many convergent features, including the presence
 of female castes in the form of queens and workers. Second, there have
 been relatively few genome sequences available for species in key
 transitional stages between solitary and eusocial forms (notably, there
-has been a large recent advance in this area \cite{KapheimTenBee,Kocher2013,PcanGenome,Sadd2015}. Here, we
+has been a large recent advance in this area \cite{KapheimTenBee,Kocher2013,PcanGenome,Sadd2015}). Here, we
 expand the potential for comparative genomics of eusocial Hymenoptera by
 describing the first complete genome sequence of \textit{Polistes
 dominula}, a behavioral model species within the family Vespidae that
@@ -818,7 +818,17 @@ and processed wasp samples. DS, VB, and AT wrote the manuscript.
 
 \section{Figures}
 
-\subsection*{Figure \ref{Fig:Pdom1}}
+\begin{figure}[!htb]
+\centering
+\includegraphics[height=6.5in]{Assets/Graphics/Pdom/figure-1}
+\caption{(Caption on the following page.)}
+\label{Fig:Pdom1}
+\end{figure}
+
+\FloatBarrier
+\clearpage
+
+\subsection*{Figure \ref{Fig:Pdom1} continued.}
 \noindent
 \textbf{A}. Best supported molecular phylogeny of the eusocial aculeate Hymenoptera based on recent transcriptome studies and analysis of 2,077 conserved genes reported in this study.
 \textbf{B}. Stacked bar plot showing genome content of \textit{Polistes dominula} broken down by the proportion occupied by various categories of gene content and conservation, compared to another paper wasp (green labels), two bees (black labels), two ants (red labels), and the outgroup \textit{Nasonia vitripennis}. See also \textbf{Figure S5}.
@@ -827,36 +837,31 @@ and processed wasp samples. DS, VB, and AT wrote the manuscript.
 Photo credits: \textit{N. vitripennis} by E. Cash and J. Gibson;
 \textit{P. dominula} by S. McCann; \textit{S. invicta} and \textit{A. mellifera} by A. Wild.
 
-\subsection*{Figure \ref{Fig:Pdom2}}
+\begin{figure}
+\centering
+\includegraphics[height=8in]{Assets/Graphics/Pdom/figure-2}
+\caption{(Caption on the following page.)}
+\label{Fig:Pdom2}
+\end{figure}
+
+\FloatBarrier
+\subsection*{Figure \ref{Fig:Pdom2} continued.}
 \noindent
 \textbf{A}. Heatmap of expression values of 367 differentially expressed interval loci (iLoci). The blue color indicates overexpression, while the yellow indicates underexpression. 212 iLoci (58\%) of the differentially expressed iLoci are overexpressed in workers.
 \textbf{B}. Bar chart showing the representation of eight GO functional categories as a proportion of differentially expressed iLoci (blue bars) versus all iLoci (red bars), determined by an enrichment analysis to be overrepresented in differentially expressed iLoci.
 \textbf{C}. Putative \textit{Polistes-}specific genes, defined as unmatched transcripts with significant pairwise protein-level similarity among three Polistes species (Pd for \textit{P. dominula}, Pc for \textit{P. canadensis}, and Pm for \textit{P. metricus}). Because of variation in gene copy number and number of alternative transcript isoforms, the number of transcripts in each intersection of the diagram is different for each species, and only the smallest number is shown. For example, the 3-species intersection consists of 144 transcripts from \textit{P. dominula}, 136 transcripts from \textit{P. canadensis}, and 95 transcripts from \textit{P. metricus}.
 
-\subsection*{Figure \ref{Fig:Pdom3}}
+\begin{sidewaysfigure}[!H]
+\includegraphics[width=8in]{Assets/Graphics/Pdom/figure-3}
+\centering
+\caption{(Caption on the following page.)}
+\label{Fig:Pdom3}
+\end{sidewaysfigure}
+
+\FloatBarrier
+\subsection*{Figure \ref{Fig:Pdom3} continued.}
 \noindent
 \textbf{A}. Copy number of five methylation-related genes in the primary Hymenoptera lineages.
 \textbf{B}. Evidence for shared synteny around the \textit{Dnmt3} locus in bee, paper wasp, and ant genomes. Colored bars represent conserved coding regions between \textit{Polistes dominula} (top track) and \textit{Apis mellifera} (black blocks), \textit{Bombus terrestris} (grey blocks), and \textit{Camponotus floridanus} (red blocks). Regions of similarity are largely collinear (shown for the \textit{Apis mellifera} to \textit{Camponotus floridanus} comparison by the blue lines connecting the similar blocks). Gene models are shown by arrow structures with coding exons in green, UTRs in blue, and introns as thin lines. Each gene is denoted by a numbered box as follows: 1) GenBank protein entries XP\_006568814 (26S proteasome non-ATP regulatory subunit 6-like), 2) XP\_006568813 (uncharacterized), XP\_00658716 (Dnmt3), 4) XP\_006568806 (polynucleotide 5'-hydroxyl-kinase NOL9-like), and 5) XP\_0065688112 (histone lysine demethylase PHF8-like) in \textit{A. mellifera} (linkage group LG2, GenBank NC\_007071), from left to right. The lack of similarity blocks around 50K on the \textit{P. dominula} scale demonstrates the postulated loss of \textit{Dnmt3} in this species.
 \textbf{C}. Bar chart showing the number of CpGs with a high level of support for methylation from bisulfite sequence data. The number of highly supported methylation sites for each species is based on pooled reads for all available samples, and is shown for one bee (black), two ants (red, note that ``worker'' refers to ``minor workers'' in \textit{C. floridanus}), two paper wasps (green), and \textit{N. vitripennis} (blue).
 \textbf{D.} Gene models for the 7 \textit{P. dominula} methylated genes (with corresponding Gene ID numbers and putative annotations based on best BLAST hits). Approximate locations of each of the 124 highly supported methylation sites within each gene are indicated with a line-dot symbol, with sites methylated in both queen and worker samples (n=76) indicated in black, sites methylated in just the queen sample in green (n=18), and sites methylated in just the worker sample (n=30) in orange.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=6in]{Assets/Graphics/Pdom/figure-1}
-\caption{~}
-\label{Fig:Pdom1}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=6in]{Assets/Graphics/Pdom/figure-2}
-\caption{~}
-\label{Fig:Pdom2}
-\end{figure}
-
-\begin{sidewaysfigure}[h]
-\includegraphics[width=8in]{Assets/Graphics/Pdom/figure-3}
-\centering
-\caption{~}
-\label{Fig:Pdom3}
-\end{sidewaysfigure}

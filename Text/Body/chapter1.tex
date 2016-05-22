@@ -3,7 +3,7 @@
 \section{Overview}
 
 In the 2000s, the advent of new nucleotide sequencing strategies based on ion semiconductors (Ion Torrent), pyrosequencing (454), and sequencing-by-synthesis (Illumina) provided new tools for studying genomes of both model and non-model organisms at unprecedented scale, resolution, and cost effectiveness.
-These technologies continue to evolve, the latest innovations involving single-molecule long read sequencing (Pacific Biosciences SMRT and Oxford Nanopore).
+These technologies continue to evolve, more recent innovations involving single-molecule long read sequencing (Pacific Biosciences SMRT and Oxford Nanopore).
 By the 2010s, these so-called \textit{next-generation sequencing (NGS)} technologies had made genome sequencing accessible to essentially any scientist with even a modest research budget.
 This ``democratization of sequencing" has precipitated a tremendous increase in the number of published genome projects and draft genome sequences (\url{http://www.ncbi.nlm.nih.gov/genome/browse/}), as well as genome-scale data sets profiling gene expression, chromatin accessibility, transcription initiation, and a multitude of other genomic characteristics.
 
@@ -24,7 +24,7 @@ My first encounter with many of these issues came from my genomics studies of th
 This wasp is an important model system for studying the evolution of social behavior, as it exhibits an intermediate level of social complexity, with no morphological differentiation between castes and frequent competition for reproductive opportunities within colonies \cite{JandtToth}.
 The molecular mechanisms underlying caste differentiation across all social insects are still poorly understood, although various mechanisms have been proposed to play primary roles, such as differential gene expression \cite{ChenDiffExp,GrozingerDiffExp,WhitfieldDiffExp,OmettoDiffExp,SimolaDiffExp,HarrisonDiffExp,PcanTrans}, differential splicing \cite{Dnmt3KD}, DNA methylation patterns \cite{Dnmt3KD,Lyko2011}, and recently emerged species- or clade-specific genes \cite{SumnerTRG,JohnsonTRG}.
 These hypotheses have been tested in bees and ants, but prior to this study no genome resources were available for any species from the major vespid wasp lineage.
-This project was funded to sequence the genome, transcriptome, and methylome of the wasp, to facilitate investigation of the molecular basis of caste differentiation in \textit{Polistes}, and to provide an additional important data source for comparative analysis of all social insects.
+The \textit{Polistes dominula} genome project was funded to sequence the genome, transcriptome, and methylome of the wasp, to facilitate investigation of the molecular basis of caste differentiation in \textit{Polistes}, and to provide an additional important data source for comparative analysis of all social insects.
 
 Our initial work was driven largely by questions of genome composition.
 How large is the \textit{Polistes} genome?
@@ -42,12 +42,12 @@ At the same time, we investigated questions of functional genomics and epigenomi
 How many \textit{Polistes} genes show differential expression between the queen and worker castes?
 What is the extent of alternative splicing in \textit{Polistes}, and do any alternative splicing events exhibit caste-related bias?
 What is the extent of DNA methylation in \textit{Polistes}, and does the genome encode a full complement of methylation-related genes?
-
 This last question led us to one of the highlight discoveries of the study: that \textit{Polistes} lacks a critical DNA methyltransferase (\textit{Dnmt3}) and has essentially no DNA methylation genome-wide.
-But more in line with the focus of this dissertation, the \textit{Polistes dominula} genome project exposed me to the challenges of creating genomic data resources \textit{de novo} for a non-model research system, and the corresponding challenges of data quality assessment and management.
+
+More in line with the focus of this dissertation, the \textit{Polistes dominula} genome project exposed me to the challenges of creating genomic data resources \textit{de novo} for a non-model research system, and the corresponding challenges of data quality assessment and management.
 These challenges motivated the development of methods and tools to facilitate comparison, evaluation, and analysis of genome annotations, with additional applications to studying genome organization.
 
-\section{ParsEval: comparison of distinct annotation sources}
+\section{ParsEval: Comparison of distinct annotation sources}
 
 Automated genome annotation typically relies on integrating tools for \textit{ab initio} gene prediction, transcript and protein spliced alignment, and evaluation of support for gene structural components.
 Each class of tools comes with a variety of parameter settings, and it can be difficult to predict in advance the influence these parameters will have on the final annotation product.
@@ -67,7 +67,7 @@ The ParsEval paper introduces a precise operational definition for a \textit{gen
 The objective was to define a parsing of the genome into distinct units that are complete and can be analyzed independently.
 Generalizing this concept and applying it as an organizational principle for genome analyses has been a major focus of this dissertation.
 
-\section{iLoci: an organizational framework}
+\section{iLoci: An organizational framework}
 
 The ParsEval tool proved valuable throughout the \textit{Polistes dominula} genome project, but we subsequently encountered issues that required additional attention and development.
 Although our \textit{Polistes} assembly and annotation compared favorably to other published hymenopteran genomes, our data was subject to the same quality inconsistencies that characterize any NGS-based genome project.

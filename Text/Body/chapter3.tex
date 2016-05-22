@@ -8,7 +8,7 @@ Standage DS, Brendel VP
 
 \section{Abstract}
 
-\textbf{Background:} Accurate gene structure annotation is a fundamental but somewhat elusive goal of genome projects, as witnessed by the fact that (model) genomes typically undergo several cycles of re-annotation.
+\noindent \textbf{Background:} Accurate gene structure annotation is a fundamental but somewhat elusive goal of genome projects, as witnessed by the fact that (model) genomes typically undergo several cycles of re-annotation.
 In many cases, it is not only different versions of annotations that need to be compared but also different sources of annotation of the same genome, derived from distinct gene prediction workflows.
 Such comparisons are of interest to annotation providers, prediction software developers, and end-users, who all need to assess what is common and what is different among distinct annotation sources.
 We developed ParsEval, a software application for pairwise comparison of sets of gene structure annotations.
@@ -17,11 +17,11 @@ These statistics are presented in an aggregate summary report, with additional d
 Genome browser styled graphics embedded in these reports help visualize the genomic context of the annotations.
 Output from ParsEval is both easily read and parsed, enabling systematic identification of problematic gene models for subsequent focused analysis.
 
-\textbf{Results:} ParsEval is capable of analyzing annotations for large eukaryotic genomes on typical desktop or laptop hardware.
+\noindent \textbf{Results:} ParsEval is capable of analyzing annotations for large eukaryotic genomes on typical desktop or laptop hardware.
 In comparison to existing methods, ParsEval exhibits a considerable performance improvement, both in terms of runtime and memory consumption.
 Reports from ParsEval can provide relevant biological insights into the gene structure annotations being compared.
 
-\textbf{Conclusions:} Implemented in C, ParseEval provides the quickest and most feature-rich solution for genome annotation comparison
+\noindent \textbf{Conclusions:} Implemented in C, ParseEval provides the quickest and most feature-rich solution for genome annotation comparison
 to date.
 The source code is freely available (under an ISC license) at \url{http://parseval.sourceforge.net/}.
 
@@ -70,7 +70,7 @@ Such locus-resolution comparisons are useful not only to software developers and
 Motivated by a need for genome-scale evaluations with locus-scale detail, we developed ParsEval, a program for comparing and analyzing distinct sets of gene structure annotations for the same input sequences.
 The program is designed to incorporate all of the benefits of existing methods while addressing their shortcomings.
 ParsEval identifies differences in exon/intron assignments and in coding sequence (CDS) and UTR designations, at both feature-level (exon, CDS segment, UTR segment) and nucleotide-level resolution.
-The output consists of a set of commonly used statistics that provide quantitative measures of agreement when comparing predicted gene structures against a standard reference \citep{Burset,Zhao,Eilbeck}.
+The output consists of a set of commonly used statistics that provide quantitative measures of agreement when comparing predicted gene structures against a standard reference \citep{Burset,Zhao,AED}.
 This output is presented in a detailed report for each gene locus, supplemented with genome browser styled graphics to enable additional visual assessment and analysis of the annotations.
 The statistics are also presented in a single summary report that aggregates the statistics across all loci, providing a condensed high-level view of the similarity between the two sets of annotations.
 For gene loci that include alternatively spliced genes or overlapping genes (or both), ParsEval determines the optimal matching of reference transcripts to prediction transcripts, and additionally reports any novel transcript predictions that have been identified.
@@ -79,7 +79,7 @@ For gene loci that include alternatively spliced genes or overlapping genes (or 
 
 \subsection{Overview}
 ParsEval is a gene annotation comparison and analysis tool, designed with a focus on speed, resource efficiency, and portability.
-The program takes as input a pair of gene structure annotations corresponding to the same sequence (in GFF3 format \citep{SO}), analogous to two separate annotation tracks one might see in a genome browser.
+The program takes as input a pair of gene structure annotations corresponding to the same sequence (in GFF3 format \citep{GFF3}), analogous to two separate annotation tracks one might see in a genome browser.
 For comparison purposes, the first set of annotations is treated as the \emph{reference} while the other is treated as the \emph{prediction}, although ParsEval makes no assumptions regarding the respective quality of the two annotation sets.
 The output of the program is a set of reports containing common comparison statistics intended to highlight relevant similarities and differences between the two sources of annotation.
 
@@ -94,7 +94,7 @@ ParsEval's only external dependency is the GenomeTools library \citep{GenomeTool
 \subsection{Gene locus identification}
 Comparative analysis of two sets of gene annotations requires determining how annotations from one set correspond to annotations from the other, as well as the genomic coordinates (the \emph{gene locus}) that should be considered in each comparison.
 For rare cases in which a single reference annotation and a single prediction annotation line up perfectly, determining the gene locus and the corresponding genes is trivial.
-However, in most cases this task is complicated a variety of factors.
+However, in most cases this task is complicated by a variety of factors.
 For example, a single gene prediction workflow may annotate multiple genes at a single location, so one must determine how to associate these annotations with corresponding annotations from an alternative source.
 Furthermore, when one or more gene annotations from one source overlap with multiple annotations from another source, one must determine how to compare these gene annotations and which coordinates to include in the comparison.
 
@@ -135,16 +135,16 @@ A model vector is generated for each clique, after which ParsEval compares all r
 \subsection{Comparative analysis of annotations}
 Given a pair of equal-length model vectors representing a pair of gene structure annotations at a given locus, ParsEval computes a variety of comparison statistics to measure the level of agreement between the pair of annotations.
 Calculated at different levels of resolution, these statistics provide a detailed assessment of similarity between the reference and the prediction.
-At the resolution of distinct annotation features, ParsEval calculates the sensitivity and specificity as described in  \citep{Burset}, the F1 score as described in  \citep{Zhao}, and the annotation edit distance as described in  \citep{Eilbeck,Holt}.
+At the resolution of distinct annotation features, ParsEval calculates the sensitivity and specificity as described in \citep{Burset}, the F1 score as described in \citep{Zhao}, and the annotation edit distance as described in \citep{AED,Holt}.
 These statistics are calculated for exons, CDS segments, and UTR segments.
 Note that for a prediction feature to be considered a true positive, ParsEval requires both the start and end coordinates to match the reference perfectly.
 
-At the nucleotide-level resolution, ParsEval also calculates the sensitivity, specificity, F1 score, and annotation edit distance, as well as the simple matching coefficient and the correlation coefficient as described in  \citep{Burset}.
+At the nucleotide-level resolution, ParsEval also calculates the sensitivity, specificity, F1 score, and annotation edit distance, as well as the simple matching coefficient and the correlation coefficient as described in \citep{Burset}.
 These statistics are calculated for coding nucleotides (CDS) and untranslated exonic nucleotides (UTR).
 Overall identity at the nucleotide level, of which the simple matching coefficient is a generalization, is also computed.
 
 For complex loci requiring multiple comparisons, the locus report includes an aggregate summary of the similarity statistics at the locus level in addition to the reports for each individual comparison.
-This locus-level summary also includes the splice complexity statistic \citep{Eilbeck}, which ParsEval computes and reports for both the reference and the prediction at the locus level.
+This locus-level summary also includes the splice complexity statistic \citep{AED}, which ParsEval computes and reports for both the reference and the prediction at the locus level.
 
 Based on the computed statistics, each comparison is classified in terms of similarity.
 A comparison is classified as a \emph{perfect match} if the model vectors (and by implication the annotated gene structures) are identical.
@@ -179,7 +179,7 @@ If more targeted reporting is desired, ParsEval also provides some filtering fea
 Using a simple optional configuration file, the user can exclude some gene loci from the reports based on a variety of features: locus length, number of genes, number of transcripts, number of transcripts per gene, number of exons, and CDS length.
 No comparisons are performed for loci that are filtered out, and thus do not contribute to the reported aggregate summary statistics and comparison classifications.
 
-To facilitate integration of comparison reports with popular genome browsers such as GBrowse  \citep{GBrowse} and PlantGDB  \citep{Duvick}, ParsEval can generate an additional output file (in GFF3 format) containing the coordinates of each gene locus.
+To facilitate integration of comparison reports with popular genome browsers such as GBrowse \citep{GBrowse} and PlantGDB \citep{Duvick}, ParsEval can generate an additional output file (in GFF3 format) containing the coordinates of each gene locus.
 These genome browsers commonly allow users to anonymously create private custom tracks with uploaded data, which provides the quickest mechanism for integration.
 Once a track is populated with the uploaded locus data, the user can configure the track configuration so that each locus feature in the track is hyperlinked to the corresponding ParsEval report stored, for example, on that user's local machine (see Figure \ref{Fig:ParsEval3}).
 Alternatively, if a more permanent and public solution is desired, a user with administrative privileges for the genome browser can follow standard procedures for populating a new track with the GFF3 data, and then configure the track so that locus features are linked to network-accessible ParsEval reports.
@@ -200,11 +200,11 @@ High-quality gene structure annotations derived from a combination of computatio
 Identifying differences between the new method's predictions and such gold standard reference can help identify areas in which the novel method provides or needs improvement.
 Reports from ParsEval are effective for quickly and clearly identifying such differences.
 
-To demonstrate ParsEval in this context, we reproduced a comparison that was originally published to assess the performance of the AUGUSTUS gene prediction program  \citep{Stanke2003}.
+To demonstrate ParsEval in this context, we reproduced a comparison that was originally published to assess the performance of the AUGUSTUS gene prediction program \citep{Stanke2003}.
 In the original study, AUGUSTUS was tested on the \emph{h178} data set \citep{Guigo2000}, a set of 178 human genomic sequences, each containing a single gene, for which annotations were available from the EMBL database release 50 \citep{embl}.
 Gene predictions from AUGUSTUS were compared the annotations from EMBL, and sensitivity and specificity scores were calculated at the nucleotide level, the exon level, and the gene level.
 
-We obtained the \emph{h178} data set (sequences and EMBL r50 annotations) from  \citep{imim}.
+We obtained the \emph{h178} data set (sequences and EMBL r50 annotations) from \citep{imim}.
 We then used the latest version of AUGUSTUS (2.5.5) to generate gene predictions for the 178 sequences.
 The data files were reformatted and then compared using ParsEval.
 Running on a desktop computer, ParsEval generated graphical reports in less than a minute.
@@ -412,20 +412,25 @@ The authors would like to thank the developers of the GenomeTools software for h
 
 \section{Figures}
 
-\subsection*{Figure \ref{Fig:ParsEval1}}
-
-\noindent
+\begin{figure}[!hbt]
+\centering
+\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-1.png}
+\caption{
 \textbf{Associating Annotations with Gene Loci}.
 The black bar provides a scale corresponding to a genomic region for which two sets of
 annotations are available. Reference annotations for gene structure are represented with red glyphs, while prediction annotations are shown with
 blue glyphs. Arrows indicate the strand of the gene annotation, and different levels of shading correspond to different gene structure features: dark
 shading for coding sequence, medium shading for UTRs, and light shading for introns. Green brackets denote gene loci as determined by the
-common practice of using only the genomic coordinates from reference gene annotations.Orange brackets denote gene loci as determined by
+common practice of using only the genomic coordinates from reference gene annotations. Orange brackets denote gene loci as determined by
 ParsEval, which takes into account both reference and prediction annotations when selecting distinct loci for comparison.
+}
+\label{Fig:ParsEval1}
+\end{figure}
 
-\subsection*{Figure \ref{Fig:ParsEval2}}
-
-\noindent
+\begin{figure}
+\centering
+\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-2.png}
+\caption{
 \textbf{Locus Identification Using a Gene Interval Graph}.
 Red and blue nodes in this interval graph correspond to reference and prediction
 gene annotations (respectively) as shown in Figure \ref{Fig:ParsEval1}. Two nodes are connected by an edge if the corresponding gene annotations overlap. Each
@@ -434,32 +439,18 @@ gene locus, defined as the smallest genomic region containing every gene annotat
 associated with the corresponding subgraph. In this example, nodes representing five reference annotations and four prediction annotations are
 shown. The four connected components in the graph correspond to four gene loci, for which precise genomic coordinates can be determined from
 the associated genes (shown in orange brackets in Figure \ref{Fig:ParsEval1}).
+}
+\label{Fig:ParsEval2}
+\end{figure}
 
-\subsection*{Figure \ref{Fig:ParsEval3}}
-
-\noindent
+\begin{figure}
+\centering
+\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-3.png}
+\caption{
 \textbf{Integrating ParsEval Reports with a Genome Browser}.
 Screenshot of the \textit{Arabidopsis thaliana} genome browser at Phytozome (http://phytozome.net/), with a custom anonymous user track populated by ParsEval output. Boxes in this custom track represent loci identified by ParsEval
 and are color-coded according to the level of agreement between the two sets of annotations compared (dark red and pastel blue glyphs,
 respectively). This custom track can easily be configured so that features are hyperlinked to ParsEval reports containing detailed comparison statistics.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-1.png}
-\caption{~}
-\label{Fig:ParsEval1}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-2.png}
-\caption{~}
-\label{Fig:ParsEval2}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=6in]{Assets/Graphics/ParsEval/figure-3.png}
-\caption{~}
+}
 \label{Fig:ParsEval3}
 \end{figure}
